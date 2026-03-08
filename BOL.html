@@ -987,7 +987,10 @@ submitBtn.addEventListener('click', async ()=>{
 
   const formData = new FormData();
   formData.append("audio", recordedBlob, "attempt.webm");
-  const response = await fetch("http://localhost:3001/api/transcribe", { method: "POST", body: formData });
+const response = await fetch("https://bol-backend-j3f2.onrender.com/api/transcribe", {
+  method: "POST",
+  body: formData
+});
   if (!response.ok) { throw new Error("Backend transcribe failed"); }
   const backendData = await response.json();
 
@@ -1021,7 +1024,7 @@ submitBtn.addEventListener('click', async ()=>{
   if (!transcript || transcript.trim().length === 0) {
     console.warn("No transcript found — skipping LLM.");
   } else {
-    const llmResponse = await fetch("http://localhost:3001/api/llm-feedback", {
+const llmResponse = await fetch("https://bol-backend-j3f2.onrender.com/api/llm-feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
      body: JSON.stringify({ 
