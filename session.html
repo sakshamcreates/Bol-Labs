@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Session Insights — BOL</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --sr-bg-page:        #0b0f14;
+  --sr-bg-card:        #111520;
+  --sr-bg-card-hover:  #141a28;
+  --sr-border:         #1e2535;
+  --sr-border-subtle:  #151c2a;
+  --sr-text-primary:   #e5e7eb;
+  --sr-text-secondary: #94a3b8;
+  --sr-text-muted:     #4b5563;
+  --sr-accent:         #6366f1;
+  --sr-accent2:        #7c3aed;
+  --sr-accent3:        #818cf8;
+  --sr-accent4:        #a78bfa;
+  --sr-accent-dim:     rgba(99,102,241,.12);
+  --sr-accent-glow:    rgba(99,102,241,.30);
+  --sr-green:          #22c55e;
+  --sr-font-sans:      'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --sr-font-mono:      'IBM Plex Mono', 'SF Mono', monospace;
+  --sr-radius-sm:      6px;
+  --sr-radius-md:      10px;
+  --sr-radius-lg:      14px;
+}
+
+html, body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(99,102,241,0.18), transparent 60%),
+    radial-gradient(circle at 85% 80%, rgba(34,197,94,0.08), transparent 70%),
+    #020617;
+  color: var(--sr-text-primary);
+  font-family: var(--sr-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── TOPBAR ─── */
+.sr-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11,15,20,.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--sr-border-subtle);
+  padding: 0 40px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sr-topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sr-topbar__logo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--sr-accent), var(--sr-accent2));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sr-font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 0 14px rgba(99,102,241,0.4);
+  flex-shrink: 0;
+}
+
+.sr-topbar__brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sr-topbar__name {
+  font-family: var(--sr-font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sr-text-primary);
+  letter-spacing: .04em;
+  line-height: 1;
+}
+
+.sr-topbar__tagline {
+  font-size: 10.5px;
+  font-weight: 400;
+  color: var(--sr-text-secondary);
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.sr-topbar__founder {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--sr-green);
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.sr-topbar__meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.sr-topbar__badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--sr-text-muted);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--sr-border);
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-family: var(--sr-font-mono);
+}
+
+.sr-topbar__email {
+  font-size: 12px;
+  color: var(--sr-text-secondary);
+  font-family: var(--sr-font-sans);
+}
+
+.sr-topbar__status-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--sr-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--sr-accent-glow);
+  animation: srPulseDot 2s ease-in-out infinite;
+}
+
+@keyframes srPulseDot {
+  0%, 100% { box-shadow: 0 0 6px var(--sr-accent-glow); }
+  50%       { box-shadow: 0 0 14px var(--sr-accent-glow); }
+}
+
+.sr-logout-btn {
+  background: transparent;
+  border: 1px solid var(--sr-border);
+  color: var(--sr-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: var(--sr-font-sans);
+  padding: 6px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .15s;
+  letter-spacing: .01em;
+}
+
+.sr-logout-btn:hover {
+  background: rgba(255,255,255,.04);
+  border-color: var(--sr-text-secondary);
+  color: var(--sr-text-primary);
+}
+
+/* ─── MAIN ─── */
+.sr-main {
+  min-height: calc(100vh - 52px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+}
+
+/* ambient blobs */
+.sr-blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+}
+.sr-blob--1 {
+  width: 460px; height: 460px;
+  background: rgba(99,102,241,0.08);
+  top: 10%; left: 50%;
+  transform: translateX(-50%);
+}
+.sr-blob--2 {
+  width: 320px; height: 320px;
+  background: rgba(139,92,246,0.06);
+  bottom: 15%; right: 10%;
+}
+
+/* ─── CARD ─── */
+.sr-coming-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 580px;
+  background: var(--sr-bg-card);
+  border: 1px solid var(--sr-border);
+  border-radius: var(--sr-radius-lg);
+  padding: 44px 40px 38px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.02) inset,
+    0 4px 48px rgba(0,0,0,0.6),
+    0 0 80px rgba(99,102,241,0.05);
+  animation: srFadeUp .5s cubic-bezier(.16,1,.3,1) both;
+}
+
+/* top shimmer line */
+.sr-coming-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124,58,237,0.5), rgba(99,102,241,0.5), transparent);
+  border-radius: 1px;
+}
+
+@keyframes srFadeUp {
+  from { opacity: 0; transform: translateY(20px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+/* ─── CARD ICON ─── */
+.sr-card-icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.sr-card-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sr-font-mono);
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08) inset,
+    0 0 28px rgba(99,102,241,0.45),
+    0 8px 24px rgba(0,0,0,0.4);
+  letter-spacing: -0.5px;
+}
+
+/* ─── STATUS CHIP ─── */
+.sr-status-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  margin: 0 auto 22px;
+  padding: 5px 13px;
+  background: var(--sr-accent-dim);
+  border: 1px solid rgba(99,102,241,.22);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sr-accent3);
+  letter-spacing: .04em;
+  font-family: var(--sr-font-sans);
+}
+
+.sr-status-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sr-accent);
+  animation: srPulseDot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* ─── TITLE ─── */
+.sr-coming-title {
+  font-family: var(--sr-font-sans);
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--sr-text-primary);
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.sr-coming-title span {
+  background: linear-gradient(90deg, var(--sr-accent), var(--sr-accent4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── SUBTITLE ─── */
+.sr-coming-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--sr-text-secondary);
+  text-align: center;
+  line-height: 1.65;
+  margin-bottom: 28px;
+  font-family: var(--sr-font-sans);
+}
+
+/* ─── DIVIDER ─── */
+.sr-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--sr-border), transparent);
+  margin-bottom: 24px;
+}
+
+/* ─── FEATURES ─── */
+.sr-features-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  color: var(--sr-text-muted);
+  margin-bottom: 12px;
+  font-family: var(--sr-font-sans);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sr-features-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--sr-border-subtle);
+}
+
+.sr-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.sr-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  background: var(--sr-border-subtle);
+  border: 1px solid var(--sr-border);
+  border-radius: var(--sr-radius-md);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--sr-text-secondary);
+  font-family: var(--sr-font-sans);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: border-color .2s, background .2s, color .2s;
+}
+
+.sr-feature-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sr-feature-item:hover {
+  border-color: rgba(99,102,241,.25);
+  background: rgba(99,102,241,.06);
+  color: var(--sr-text-primary);
+}
+
+.sr-feature-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sr-accent), var(--sr-accent4));
+  box-shadow: 0 0 7px rgba(99,102,241,.55);
+  flex-shrink: 0;
+}
+
+/* ─── PRIMARY BUTTON ─── */
+.sr-btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 24px;
+  font-family: var(--sr-font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: #fff;
+  background: linear-gradient(135deg, var(--sr-accent) 0%, var(--sr-accent2) 100%);
+  border: none;
+  border-radius: var(--sr-radius-md);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  box-shadow: 0 4px 24px rgba(99,102,241,.35), 0 1px 0 rgba(255,255,255,.1) inset;
+}
+
+.sr-btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, transparent 60%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.sr-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(99,102,241,.45);
+  filter: brightness(1.07);
+}
+
+.sr-btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 14px rgba(99,102,241,.3);
+}
+
+/* ─── FOOTER ─── */
+.sr-page-footer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--sr-text-muted);
+  padding: 16px 0 20px;
+  font-family: var(--sr-font-sans);
+  letter-spacing: .02em;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 600px) {
+  .sr-topbar { padding: 0 20px; }
+  .sr-topbar__email { display: none; }
+  .sr-topbar__badge { display: none; }
+  .sr-coming-card { padding: 32px 22px 28px; }
+  .sr-coming-title { font-size: 22px; }
+}
+
+/* =============================================================
+   MOBILE RESPONSIVENESS ADDITIONS — session insights page
+   Paste these rules at the END of the existing <style> block
+   inside session-insights.html (before the closing </style>)
+   Rules: no HTML changes, no JS selector changes, CSS only
+   Target: screens ≤ 768px  |  prevents horizontal scroll
+   ============================================================= */
+
+/* ── Global: prevent horizontal overflow ── */
+@media (max-width: 768px) {
+
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* ── BLOBS: scale down so they don't cause overflow ── */
+  .sr-blob--1 {
+    width: 280px;
+    height: 280px;
+    /* keep centered */
+  }
+
+  .sr-blob--2 {
+    width: 200px;
+    height: 200px;
+    right: -40px; /* partial offscreen is fine — blob is decorative */
+  }
+
+  /* ── TOPBAR: tighter padding, allow wrapping ── */
+  .sr-topbar {
+    padding: 0 16px;
+    height: auto;              /* let it grow if content wraps */
+    min-height: 52px;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  /* Brand: shrink text slightly */
+  .sr-topbar__logo {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  .sr-topbar__name {
+    font-size: 12px;
+  }
+
+  .sr-topbar__tagline {
+    font-size: 9px;
+  }
+
+  .sr-topbar__founder {
+    font-size: 9px;
+  }
+
+  /* Meta section: hide non-essential elements to prevent overflow */
+  .sr-topbar__badge {
+    display: none;  /* "Prototype V1" chip hidden on mobile */
+  }
+
+  .sr-topbar__email {
+    font-size: 10px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .sr-topbar__meta {
+    gap: 10px;
+  }
+
+  .sr-logout-btn {
+    padding: 5px 12px;
+    font-size: 11px;
+  }
+
+  /* ── MAIN: reduce padding ── */
+  .sr-main {
+    padding: 24px 14px;
+    min-height: calc(100vh - 52px); /* keeps footer at bottom */
+  }
+
+  /* ── CARD: full width with safe padding ── */
+  .sr-coming-card {
+    max-width: 100%;           /* was 580px fixed — let it fill the screen */
+    padding: 28px 18px 24px;   /* was 44px 40px 38px */
+    border-radius: 12px;
+  }
+
+  /* Logo icon: slightly smaller */
+  .sr-card-logo {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+
+  .sr-card-icon-wrap {
+    margin-bottom: 18px;
+  }
+
+  /* Status chip: compact */
+  .sr-status-chip {
+    font-size: 10px;
+    padding: 4px 11px;
+    margin-bottom: 16px;
+  }
+
+  /* Title: smaller on mobile */
+  .sr-coming-title {
+    font-size: 20px;        /* was 26px */
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  /* Subtitle: tighter */
+  .sr-coming-subtitle {
+    font-size: 13px;
+    margin-bottom: 20px;
+    /* Remove <br/> effect — allow natural wrapping */
+    word-break: break-word;
+  }
+
+  /* Force any <br> inside subtitle invisible on mobile */
+  .sr-coming-subtitle br {
+    display: none;
+  }
+
+  /* Divider: no change needed */
+
+  /* Features label */
+  .sr-features-label {
+    font-size: 9px;
+    margin-bottom: 10px;
+  }
+
+  /* Feature items: tighter padding */
+  .sr-feature-item {
+    padding: 9px 12px;
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  .sr-feature-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .sr-features-list {
+    gap: 6px;
+    margin-bottom: 22px;
+  }
+
+  /* CTA button: already full width — just tighten padding */
+  .sr-btn-primary {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+
+  /* Footer */
+  .sr-page-footer {
+    font-size: 10px;
+    padding: 12px 0 16px;
+  }
+}
+
+/* ── Extra-small: 380px and below ── */
+@media (max-width: 380px) {
+
+  .sr-topbar {
+    padding: 6px 12px;
+  }
+
+  .sr-topbar__name {
+    font-size: 11px;
+  }
+
+  /* Hide tagline + founder on very small nav */
+  .sr-topbar__tagline,
+  .sr-topbar__founder {
+    display: none;
+  }
+
+  .sr-topbar__email {
+    display: none;  /* email overflows at 380px */
+  }
+
+  .sr-coming-card {
+    padding: 22px 14px 20px;
+  }
+
+  .sr-coming-title {
+    font-size: 18px;
+  }
+
+  .sr-coming-subtitle {
+    font-size: 12px;
+  }
+
+  .sr-feature-item {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  .sr-card-logo {
+    width: 44px;
+    height: 44px;
+    font-size: 17px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="sr-blob sr-blob--1"></div>
+<div class="sr-blob sr-blob--2"></div>
+
+<!-- ─── TOPBAR ─── -->
+<header class="sr-topbar">
+  <div class="sr-topbar__brand">
+    <div class="sr-topbar__logo">B</div>
+    <div class="sr-topbar__brand-text">
+      <span class="sr-topbar__name">BOL</span>
+      <span class="sr-topbar__tagline">Real-time speaking confidence lab</span>
+      <span class="sr-topbar__founder">Founder: Saksham Singh</span>
+    </div>
+  </div>
+  <div class="sr-topbar__meta">
+    <div class="sr-topbar__status-dot"></div>
+    <span class="sr-topbar__badge">Prototype V1</span>
+ <span class="sr-topbar__email" id="userEmail"></span>
+    <button class="sr-logout-btn" onclick="handleLogout()">Logout</button>
+  </div>
+</header>
+
+<!-- ─── MAIN ─── -->
+<main class="sr-main">
+  <div class="sr-coming-card">
+
+    <!-- icon -->
+<div class="sr-card-icon-wrap">
+  <div class="sr-card-logo">B</div>
+</div>
+
+    <!-- status chip -->
+    <div class="sr-status-chip">
+      <span class="sr-status-pulse"></span>
+      Under Development
+    </div>
+
+    <!-- title -->
+    <h1 class="sr-coming-title">
+      Session Insights<br/><span>Coming Soon</span>
+    </h1>
+
+    <!-- subtitle -->
+    <p class="sr-coming-subtitle">
+      Detailed per-session speaking analysis is currently<br/>under development.
+    </p>
+
+    <div class="sr-divider"></div>
+
+    <!-- features -->
+    <p class="sr-features-label">This feature will allow you to</p>
+    <div class="sr-features-list" id="featureList">
+      <div class="sr-feature-item"><span class="sr-feature-dot"></span>Review full session metrics</div>
+      <div class="sr-feature-item"><span class="sr-feature-dot"></span>Listen to your recording</div>
+      <div class="sr-feature-item"><span class="sr-feature-dot"></span>See confidence breakdown</div>
+      <div class="sr-feature-item"><span class="sr-feature-dot"></span>Get targeted improvement drills</div>
+    </div>
+
+    <!-- CTA button -->
+    <button class="sr-btn-primary" onclick="goToDashboard()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Back to Dashboard
+    </button>
+
+  </div>
+
+  <footer class="sr-page-footer">© 2025 BOL · Break Your Stage Fear</footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://muifdxmbtrpbqglyuudx.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_vD-_br5ry0EDmwkTgPVCHg_a9Bazjcv";
+
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+  const { data, error } = await supabaseClient.auth.getUser();
+
+  if (error || !data?.user) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const user = data.user;
+
+  const emailEl = document.getElementById("userEmail");
+  if (emailEl) emailEl.textContent = user.email;
+});
+
+async function handleLogout() {
+  const confirmLogout = confirm("Are you sure you want to log out?");
+  if (!confirmLogout) return;
+
+  await supabaseClient.auth.signOut();
+  window.location.href = "index.html";
+}
+
+function goToDashboard() {
+  window.location.href = "dashboard.html";
+}
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+  const { data, error } = await supabaseClient.auth.getUser();
+
+  if (error || !data?.user) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const user = data.user;
+
+  const emailEl = document.getElementById("userEmail");
+  if (emailEl) emailEl.textContent = user.email;
+
+  /* Feature animation restore */
+  const items = document.querySelectorAll('.sr-feature-item');
+  items.forEach((el, i) => {
+    setTimeout(() => {
+      el.style.transition =
+        'opacity .4s ease, transform .4s ease, border-color .2s, background .2s, color .2s';
+      el.classList.add('visible');
+    }, 500 + i * 85);
+  });
+
+});
+</script>
+
+</body>
+</html>

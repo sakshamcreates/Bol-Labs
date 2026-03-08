@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>BOL — Break Your Stage Fear</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="backup5.css">
+  <link rel="stylesheet" href="result-screen-1.css">
+</head>
+<body>
+  <div class="page">
+    <!-- NAV -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo-circle">B</div>
+        <div>
+          <div class="logo-text-main">BOL</div>
+          <div class="nav-tagline">Real-time speaking confidence lab</div>
+          <div class="nav-username">Founder: Saksham Singh </div>
+        </div>
+      </div>
+    <div class="top-right">
+        <div class="account-block">       
+  <span class="version-tag">Prototype v1</span>
+ <div class="account-box">
+  <div class="account-info">
+    <div id="userNameDisplay" class="account-name"></div>
+    <div id="userEmail" class="account-email"></div>
+  </div>
+  <button id="logoutBtn" class="logout-btn">Logout</button>
+</div>
+</div>
+    </header>
+
+    <!-- HERO + SNAPSHOT -->
+    <main class="hero-grid">
+      <section>
+        <div class="pill"><div class="pill-dot"></div><span>Built for students who freeze on stage</span></div>
+        <h1 class="hero-title">Break your <span class="blue">stage fear</span> before it <br/> breaks your future.</h1>
+        <p class="hero-subtitle">
+          If your voice shakes the moment you touch the mic, you're not alone — but you've got no excuse to stay the same.
+          <b>BOL trains your speaking confidence like a gym workout</b>: focused drills, instant metrics, and clear next steps to make your delivery reliable under pressure.
+        </p>
+        <ul class="hero-bullets">
+          <li>30–60s focused drills that mimic viva, pitch, or HR rounds.</li>
+          <li>Instant numeric confidence score plus plain-language suggestions.</li>
+          <li>Practice plans so each attempt actually improves your stage presence.</li>
+        </ul>
+        <div class="hero-actions">
+          <button id="recordTestBtn" class="primary-btn">Record 30-sec Test</button>
+          <button class="secondary-btn">Watch 15-sec demo</button>
+        </div>
+        <p style="color:var(--muted);margin-top:12px;font-size:13px;max-width:680px">
+          Stop practicing in front of mirrors. Stop begging friends for fake reassurance. Test yourself against numbers that don't lie — then fix the exact weak points that make you freeze.
+        </p>
+        <div style="margin-top:18px;color:var(--muted);line-height:1.5;max-width:720px">
+          <strong style="color:var(--text)">What you get immediately:</strong>
+          <ul style="margin-top:8px;padding-left:18px;color:var(--muted);">
+            <li>Confidence score (0–100) with a breakdown of timing, pauses, and volume.</li>
+            <li>Actionable micro-feedback: one-line coaching you can apply instantly.</li>
+            <li>Audio playback for self-review and comparison between attempts.</li>
+          </ul>
+        </div>
+      </section>
+
+      <aside class="snapshot-card">
+        <div class="snapshot-header">
+          <div>
+            <div style="font-size:13px;font-weight:700">Live Confidence Snapshot</div>
+            <div style="font-size:12px;color:var(--muted)">1-minute self-intro analyzed by BOL</div>
+          </div>
+          <div class="badge"><span style="width:9px;height:9px;border-radius:999px;background:#16a34a;display:inline-block"></span> Stage-ready</div>
+        </div>
+        <div class="score-label">Confidence score</div>
+        <div class="score-row">
+          <div class="score-main" id="scoreValue">78 <span>/100</span></div>
+          <div id="scoreLabel" style="font-size:13px;color:#86efac;font-weight:700">Good, can still improve</div>
+        </div>
+        <div class="score-bar"><div class="score-bar-fill" id="scoreBarFill"></div></div>
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="metric-label">Speaking length</div>
+            <div class="metric-main">42 sec</div>
+            <div class="metric-tag">Ideal pace</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Pauses</div>
+            <div class="metric-main">3 pauses</div>
+            <div class="metric-tag">Balanced</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Volume</div>
+            <div class="metric-main">Stable · Clear</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Overall feel</div>
+            <div class="metric-main">Confident, slightly fast</div>
+          </div>
+        </div>
+        <div class="snapshot-footer">
+          "Slow down just 5–10% and hold eye contact longer in your opening line." <span style="color:var(--accent1);cursor:pointer">BOL feedback engine</span>
+        </div>
+      </aside>
+    </main>
+
+    <!-- WHY -->
+    <section class="section">
+      <h2 class="section-title">Why BOL is different from a mirror practice.</h2>
+      <p class="section-subtitle">Mirrors don't give feedback. Friends sugarcoat. BOL tells you exactly how your speaking <b>sounds</b> — in numbers and simple language — so you know what to fix.</p>
+      <div class="three-grid" style="margin-top:6px">
+        <div class="info-card">
+          <div class="info-card-title">Practice like it's the real stage.</div>
+          <p>30–60 second focused drills. Pick a topic, hit record, and speak. BOL treats every attempt like a mini-presentation — not casual timepass — so your brain learns under pressure, just like the real viva or pitch.</p>
+          <p style="margin-top:8px;color:var(--muted);font-size:13px">Use the timer and audio playback to simulate stage stress and improve under realistic conditions.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">Instant, honest feedback.</div>
+          <p>No buttering, only breakdown. You get a confidence score plus a breakdown of timing, pauses and average loudness. You see why you sound underconfident — not just a random number that tells you nothing.</p>
+          <p style="margin-top:8px;color:var(--muted);font-size:13px">Feedback is designed to be actionable: one tweak per attempt so progress compounds fast.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-card-title">Built for students & speakers.</div>
+          <p>Whether it's a college viva, placement interview, or tech-fest pitch, BOL helps you test your delivery before you walk into the room — so you don't freeze when it actually matters.</p>
+          <p style="margin-top:8px;color:var(--muted);font-size:13px">Works on laptop or phone: quick daily drills fit into study schedules and do not require a coach.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section">
+      <h2 class="section-title">How this prototype actually works.</h2>
+      <p class="section-subtitle">This is not a random-number generator. The demo analyzes measurable parts of your audio in the browser — then converts them into a confidence estimate.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:12px">
+        <div class="info-card">
+          <div class="info-step-label">Step 1</div>
+          <div class="info-card-title">You speak for 30–60 seconds.</div>
+          <p>Talk about yourself, your project, or any topic. BOL records your voice, tracks how long you speak, and when you pause — just like a real viva or HR round.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-step-label">Step 2</div>
+          <div class="info-card-title">We analyze timing, pauses & volume.</div>
+          <p>The system calculates speaking length, silence gaps, and average loudness. These are combined in a scoring formula to estimate your confidence level on a 0–100 scale.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-step-label">Step 3</div>
+          <div class="info-card-title">You get a score and clear next steps.</div>
+          <p>You see your confidence score plus plain-language advice: slow down, reduce fillers, increase volume, or pause less — so every attempt becomes one step closer to stage-ready.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUTURE -->
+    <section class="section">
+      <h2 class="section-title">Future: from prototype to full AI speaking coach.</h2>
+      <p class="section-subtitle">This tech-fest version is a working prototype. The long-term vision is a full-stack AI coach that tracks your progress over months and prepares you for any stage.</p>
+      <ul class="future-list">
+        <li>Emotion & stress detection directly from your voice (so the app notices panic before you do).</li>
+        <li>Filler-word detection like "umm", "uhh", "aa", "that", "actually", "I like".</li>
+        <li>Personalized practice plans for interviews, group discussions, and presentations.</li>
+        <li>Mobile app for daily 5-minute speaking workouts and streak-based progress tracking.</li>
+      </ul>
+      <p class="footer-line">BOL — Break Your Stage Fear. Tech-fest prototype v1 · Built by a student who was tired of shaking on stage. Prototype uses duration, pauses & visual volume only. Future versions add AI emotion & filler-word detection.</p>
+    </section>
+  </div>
+
+  <!-- RECORD MODAL -->
+  <div id="recordModal" class="record-modal" aria-hidden="true">
+    <div class="record-modal-backdrop"></div>
+    <div class="record-modal-content">
+      <button id="closeModalBtn" class="record-modal-close" aria-label="Close">&times;</button>
+      <h2 class="record-title">Record your voice</h2>
+      <p class="record-subtitle">Speak for 30–60 seconds about yourself, your viva, or your project.</p>
+      <button id="micButton" class="mic-button" aria-pressed="false">
+        <span class="mic-icon">🎙️</span>
+        <span id="micLabel" class="mic-label">Begin calmly</span>
+      </button>
+      <div id="waveform" class="waveform">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+      </div>
+      <p id="suggestionText" class="record-suggestion"></p>
+      <div id="timerDisplay" class="record-timer">00:00</div>
+      <button id="submitRecordingBtn" class="submit-btn" disabled>Submit attempt</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       NEW RESULT SCREEN — test3.html structure, indigo/purple theme
+       ============================================================ -->
+  <div id="resultScreen" class="result-screen" aria-hidden="true">
+    <div class="sr-page-wrap">
+
+      <!-- TOPBAR -->
+      <header class="sr-topbar">
+        <div class="sr-topbar__brand">
+          <div class="sr-topbar__logo">BOL</div>
+          <span class="sr-topbar__name">Break Your Stage Fear</span>
+          <span class="sr-topbar__breadcrumb">&nbsp;/&nbsp;<span>Session Report</span></span>
+        </div>
+        <div class="sr-topbar__meta">
+          <span class="sr-topbar__status-dot"></span>
+          <span class="sr-topbar__date" id="srSessionDate">—</span>
+          <button id="srTopbarClose" class="sr-close-btn" aria-label="Close">✕</button>
+        </div>
+      </header>
+
+      <!-- SCROLLABLE CONTENT -->
+      <div class="sr-scroll-body">
+        <main class="sr-page">
+
+          <!-- ── PERFORMANCE OVERVIEW ── -->
+          <section class="sr-fade-up sr-fade-up--1">
+            <div class="sr-section-label">Performance Overview</div>
+            <div class="sr-hero">
+
+              <!-- Score Ring Panel -->
+              <div class="sr-score-panel" id="srScorePanel">
+                <div class="sr-score-ring-wrapper">
+                  <svg class="sr-score-ring-svg" viewBox="0 0 180 180">
+                    <defs>
+                      <linearGradient id="srGradScore" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%"   stop-color="#6366f1"/>
+                        <stop offset="100%" stop-color="#7c3aed"/>
+                      </linearGradient>
+                    </defs>
+                    <circle class="sr-score-ring-bg"   cx="90" cy="90" r="80"/>
+                    <circle class="sr-score-ring-fill" id="sr-ring-fill" cx="90" cy="90" r="80"/>
+                  </svg>
+                  <div class="sr-score-ring-inner">
+                    <span class="sr-score-number" id="ringScore">0</span>
+                    <span class="sr-score-max">/100</span>
+                  </div>
+                </div>
+                <span class="sr-score-label-text">Confidence Score</span>
+                <div class="sr-score-status">
+                  <div class="sr-score-badge" id="srBadge">
+                    <span class="sr-score-badge-dot"></span>
+                    <span id="srBadgeText">Calculating…</span>
+                  </div>
+                  <span class="sr-score-subtext" id="srScoreSubtext">Based on pacing, pauses &amp; vocal delivery</span>
+                </div>
+              </div>
+
+              <!-- Metrics Panel -->
+              <div class="sr-metrics-panel">
+                <div class="sr-metrics-header">
+                  <div class="sr-metrics-title">Session Summary</div>
+                  <div class="sr-metrics-subtitle" id="srMetaLine">Analyzing your speaking delivery…</div>
+                </div>
+                <div class="sr-metrics-grid">
+
+                  <div class="sr-metric-card">
+                    <div class="sr-metric-card__icon-row">
+                      <div class="sr-metric-card__icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      </div>
+                      <span class="sr-metric-card__trend sr-metric-card__trend--up">Active</span>
+                    </div>
+                    <div><span class="sr-metric-card__value" id="resultEffectiveDuration">00:00</span></div>
+                    <div class="sr-metric-card__label">Active Speech Duration</div>
+                    <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srEffBar"></div></div>
+                  </div>
+
+                  <div class="sr-metric-card">
+                    <div class="sr-metric-card__icon-row">
+                      <div class="sr-metric-card__icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                      </div>
+                      <span class="sr-metric-card__trend sr-metric-card__trend--neutral">Total</span>
+                    </div>
+                    <div><span class="sr-metric-card__value" id="resultTotalDuration">00:00</span></div>
+                    <div class="sr-metric-card__label">Total Session Duration</div>
+                    <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srTotBar" style="width:100%"></div></div>
+                  </div>
+
+                  <div class="sr-metric-card">
+                    <div class="sr-metric-card__icon-row">
+                      <div class="sr-metric-card__icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+                      </div>
+                      <span class="sr-metric-card__trend sr-metric-card__trend--up" id="srWpmTrend">Rate</span>
+                    </div>
+                    <div><span class="sr-metric-card__value" id="resultBackendWpm">—</span></div>
+                    <div class="sr-metric-card__label">Speech Rate</div>
+                    <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srWpmBar"></div></div>
+                  </div>
+
+                  <div class="sr-metric-card">
+                    <div class="sr-metric-card__icon-row">
+                      <div class="sr-metric-card__icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg>
+                      </div>
+                      <span class="sr-metric-card__trend sr-metric-card__trend--neutral">Detected</span>
+                    </div>
+                    <div>
+                      <span class="sr-metric-card__value"><span id="resultPauses">0</span><span class="sr-metric-card__unit"> pauses</span></span>
+                    </div>
+                    <div class="sr-metric-card__label">Total Pauses Detected</div>
+                    <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srPauseBar"></div></div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── TEMPORAL ANALYSIS ── -->
+          <section class="sr-fade-up sr-fade-up--2">
+            <div class="sr-section-label">Temporal Analysis</div>
+            <div class="sr-timeline-card sr-card">
+              <div class="sr-timeline-header">
+                <div class="sr-timeline-header-left">
+                  <div class="sr-card__title" style="margin-bottom:0;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    Confidence Timeline
+                  </div>
+                  <span style="font-size:11px;color:var(--sr-text-muted);">Confidence progression modelled from vocal analysis</span>
+                </div>
+                <div class="sr-timeline-legend">
+                  <div class="sr-legend-item"><div class="sr-legend-dot"></div>Session Score</div>
+                  <div class="sr-legend-item">
+                    <div style="width:14px;height:1px;background:var(--sr-text-muted);border-top:1px dashed var(--sr-text-muted);"></div>
+                    Avg Baseline
+                  </div>
+                </div>
+              </div>
+              <div class="sr-chart-canvas-wrap">
+                <canvas id="sr-timeline-canvas"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <!-- ── AUDIO PLAYBACK ── -->
+          <section class="sr-fade-up sr-fade-up--3">
+            <div class="sr-section-label">Recording</div>
+            <div class="sr-playback-card sr-card">
+              <div class="sr-card__title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                Attempt Recording
+              </div>
+
+              <!-- Decorative waveform -->
+              <div class="sr-playback-waveform" id="sr-waveform"></div>
+
+              <div class="sr-playback-inner">
+                <button class="sr-playback-btn" id="playAudioBtnPolished" aria-label="Play / Pause">
+                  <svg id="sr-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </button>
+                <div class="sr-playback-track">
+                  <div class="sr-playback-meta">
+                    <span class="sr-playback-title">Your Attempt</span>
+                    <span class="sr-playback-time" id="sr-time-display">0:00</span>
+                  </div>
+                  <div class="sr-playback-progress-wrap" id="sr-progress-wrap">
+                    <div class="sr-playback-progress-fill" id="sr-progress-fill"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hidden audio element connected by JS -->
+              <audio id="attemptAudioPolished" style="display:none"></audio>
+              <!-- Transcript toggle -->
+<div style="margin-top:14px;">
+  <button id="accessTranscriptBtn" class="sr-transcript-btn">Access Transcript</button>
+
+  <div id="transcriptContainer" style="display:none;margin-top:10px;">
+    <div style="background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.18);border-radius:10px;padding:14px;font-size:13px;color:#c7d2fe;line-height:1.7;font-family:'IBM Plex Sans',sans-serif;" id="transcriptText"></div>
+  </div>
+</div>
+            </div>
+          </section>
+
+          <!-- ── AI ANALYSIS ── -->
+          <section class="sr-fade-up sr-fade-up--4">
+            <div class="sr-section-label">AI Analysis</div>
+            <div class="sr-analysis-card sr-card">
+              <div class="sr-analysis-header">
+                <div class="sr-card__title" style="margin-bottom:0;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  Analysis
+                </div>
+                <span class="sr-analysis-model-tag">BOL-ANALYSIS-v2</span>
+              </div>
+
+              <!-- Sub-score breakdown -->
+              <div class="sr-breakdown-row">
+                <div class="sr-breakdown-card">
+                  <div class="sr-breakdown-card__label">Vocal Clarity</div>
+                  <div class="sr-breakdown-card__score-row">
+                    <span class="sr-breakdown-card__score" id="srClarityScore">—</span>
+                    <span class="sr-breakdown-card__max">/100</span>
+                  </div>
+                  <div class="sr-breakdown-bar"><div class="sr-breakdown-bar-fill sr-bar-primary" id="srClarityBar"></div></div>
+                </div>
+                <div class="sr-breakdown-card">
+                  <div class="sr-breakdown-card__label">Pace Control</div>
+                  <div class="sr-breakdown-card__score-row">
+                    <span class="sr-breakdown-card__score" id="srPaceScore">—</span>
+                    <span class="sr-breakdown-card__max">/100</span>
+                  </div>
+                  <div class="sr-breakdown-bar"><div class="sr-breakdown-bar-fill sr-bar-amber" id="srPaceBar"></div></div>
+                </div>
+                <div class="sr-breakdown-card">
+                  <div class="sr-breakdown-card__label">Delivery Flow</div>
+                  <div class="sr-breakdown-card__score-row">
+                    <span class="sr-breakdown-card__score" id="srFlowScore">—</span>
+                    <span class="sr-breakdown-card__max">/100</span>
+                  </div>
+                  <div class="sr-breakdown-bar"><div class="sr-breakdown-bar-fill sr-bar-primary" id="srFlowBar"></div></div>
+                </div>
+              </div>
+
+              <!-- AI Feedback text (mapped to resultFeedback) -->
+              <div class="sr-result-feedback" id="resultFeedback">Feedback will appear here.</div>
+
+              <!-- Trajectory row -->
+              <div class="sr-trajectory-row hidden" id="trajectoryRow">
+                <span class="sr-trajectory-arrow" id="trajectoryArrow">—</span>
+                <span class="sr-trajectory-text" id="trajectoryText">—</span>
+              </div>
+<!-- IMPROVE CONFIDENCE CTA -->
+<section class="sr-fade-up sr-fade-up--5">
+  <div class="sr-improve-cta-wrap">
+    
+    <button id="improveConfidenceBtn" class="sr-improve-cta-btn">
+      Unlock Your Power
+    </button>
+
+  </div>
+            
+          </section>
+
+          <!-- ── NEXT STEPS / ACTIONS ── -->
+          <section class="sr-fade-up sr-fade-up--5">
+            <div class="sr-section-label">Next Steps</div>
+            <div class="sr-actions-row">
+              <button id="retakeBtnPolished" class="sr-btn sr-btn--primary">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+                Retake Attempt
+              </button>
+              <button id="saveBtn" class="sr-btn sr-btn--secondary">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                Save Attempt
+              </button>
+  <button id="closeResultBtn" class="sr-btn sr-btn--ghost">
+    Close
+  </button>
+             
+            </div>
+          </section>
+
+        </main>
+      </div><!-- /sr-scroll-body -->
+    </div><!-- /sr-page-wrap -->
+  </div><!-- /#resultScreen -->
+
+  <!-- ANALYSIS LOADER -->
+  <div id="analysisLoader" class="analysis-loader">
+    <div class="loader-container">
+        <div class="loader-ring"></div>
+        <img src="logo.png" class="loader-logo">
+    </div>
+    <div class="loader-text">Running AI confidence model...</div>
+    <div class="loader-sub">AI is evaluating your speaking patterns</div>
+  </div>
+
+  <!-- =====================================================================
+       APPLICATION SCRIPT — ALL ORIGINAL LOGIC PRESERVED
+       Only animateRing + showResultScreen updated for new result screen IDs
+       ===================================================================== -->
+  <script type="module">
+
+// ===== Import VAD =====
+import { createVAD } from "./vad/vad.js";
+
+// ===== RICKY VAD CONTROLLER =====
+let rickyVAD = null;
+let rickyStream = null;
+let rickySpeechActive = false;
+let rickySpeechDetected = false;
+
+async function startRickyVAD() {
+  if (rickyVAD) return;
+  console.log("🎧 Ricky VAD started");
+  try {
+    rickyStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  } catch (err) {
+    console.error("getUserMedia failed:", err);
+    return;
+  }
+  rickyVAD = createVAD({
+    onSpeechStart: () => {
+      console.log("🟣 RICKY VAD: SPEECH START");
+      rickySpeechActive = true;
+      rickySpeechDetected = true;
+      if (speechConfirmed) return;
+      const CONFIRM_MS = 450;
+      const SAMPLE_INTERVAL = 60;
+      const neededSamples = Math.floor(CONFIRM_MS / SAMPLE_INTERVAL);
+      let samples = [];
+      let sampleTimer = null;
+      let startTs = performance.now();
+      sampleTimer = setInterval(() => {
+        try {
+          if (!analyser || !dataArray || !audioContext) return;
+          analyser.getByteFrequencyData(dataArray);
+          const sp = speechBandEnergy(dataArray, audioContext.sampleRate);
+          samples.push(sp);
+          if (samples.length > neededSamples + 2) samples.shift();
+        } catch (e) { console.warn("ricky sample error", e); }
+      }, SAMPLE_INTERVAL);
+      setTimeout(() => {
+        clearInterval(sampleTimer);
+        if (!samples.length) { console.log("⛔ Ricky confirm suppressed — no analyser samples"); return; }
+        const mean = samples.reduce((a,b)=>a+b,0)/samples.length;
+        const varE = energyVariance(samples);
+        const requiredMean = (typeof silenceThreshold === "number" ? silenceThreshold : 10) + 2;
+        const minVar = 0.6;
+        const minDuration = 300;
+        const dur = performance.now() - startTs;
+        console.log("🧪 Ricky debug →", "mean:", mean.toFixed(2), "var:", varE.toFixed(2), "dur:", Math.round(dur), "threshold:", requiredMean.toFixed(2));
+        if (mean > requiredMean && varE > minVar && dur >= minDuration) {
+          speechConfirmed = true;
+          console.log("✅ Human speech confirmed (Ricky VAD)");
+        } else {
+          console.log("⛔ Ricky confirm suppressed (likely transient).", "mean=", mean.toFixed(2), "reqMean=", requiredMean, "var=", varE.toFixed(2), "dur=", Math.round(dur));
+        }
+      }, CONFIRM_MS + 10);
+    },
+    onSpeechEnd: () => {
+      console.log("🟣 RICKY VAD: SPEECH END");
+      rickySpeechActive = false;
+    }
+  });
+  await rickyVAD.start(rickyStream);
+}
+
+function stopRickyVAD() {
+  if (!rickyVAD) return;
+  console.log("🛑 Ricky VAD stopped");
+  rickyVAD = null;
+  if (rickyStream) { rickyStream.getTracks().forEach(t => t.stop()); rickyStream = null; }
+  rickySpeechActive = false;
+}
+
+/* ---------- Helpers ---------- */
+function variance(arr){
+  if (!arr || arr.length < 2) return 0;
+  const mean = arr.reduce((a,b)=>a+b,0)/arr.length;
+  return arr.reduce((a,b)=>a + Math.pow(b-mean,2),0)/arr.length;
+}
+
+function rollingVariance(arr, windowSize = 20) {
+  if (!arr || arr.length < windowSize) return [];
+  let vars = [];
+  for (let i = 0; i <= arr.length - windowSize; i++) {
+    const window = arr.slice(i, i + windowSize);
+    vars.push(variance(window));
+  }
+  return vars;
+}
+
+function speechBandEnergy(freqData, sampleRate) {
+  const binSize = sampleRate / (freqData.length * 2);
+  let sum = 0, count = 0;
+  for (let i = 0; i < freqData.length; i++) {
+    const freq = i * binSize;
+    if (freq >= 300 && freq <= 3400) { sum += freqData[i]; count++; }
+  }
+  return count ? sum / count : 0;
+}
+
+/* ---------- State ---------- */
+let speechConfirmed = false;
+let speechEnergyFrames = 0;
+let continuousSpeechMs = 0;
+let lastSpeechFrameTs = null;
+let recentEnergies = [];
+let effectiveSpeechSeconds = 0;
+let lastSpeechTs = null;
+let silenceThreshold = 8;
+let silenceDuration = 0;
+let speechSegmentStartMs = null;
+let lastAboveThresholdMs = null;
+let totalSpeechMs = 0;
+const MIN_SEGMENT_MS = 180;
+const MAX_INTER_SEGMENT_GAP_MS = 350;
+const ENERGY_GATE = silenceThreshold + 6;
+
+/* ---------- UI Elements ---------- */
+const resultScreenEl = document.getElementById("resultScreen");
+const ringScoreEl    = document.getElementById("ringScore");
+
+const saveBtn     = document.getElementById("saveBtn");
+const retakeBtn   = document.getElementById("retakeBtnPolished");
+const closeBtn    = document.getElementById("closeResultBtn");
+const transcriptBtn       = document.getElementById("accessTranscriptBtn");
+const transcriptContainer = document.getElementById("transcriptContainer");
+const transcriptText      = document.getElementById("transcriptText");
+
+/* Recording + UI */
+const recordBtn    = document.getElementById("recordTestBtn");
+const modal        = document.getElementById("recordModal");
+const closeModalBtn= document.getElementById("closeModalBtn");
+const micButton    = document.getElementById("micButton");
+const micLabel     = document.getElementById("micLabel");
+const waveform     = document.getElementById("waveform");
+const bars         = waveform ? Array.from(waveform.querySelectorAll(".bar")) : [];
+const suggestionText = document.getElementById("suggestionText");
+const timerDisplay = document.getElementById("timerDisplay");
+const submitBtn    = document.getElementById("submitRecordingBtn");
+
+const scoreValueEl   = document.getElementById("scoreValue");
+const scoreLabelEl   = document.getElementById("scoreLabel");
+const scoreBarFillEl = document.getElementById("scoreBarFill");
+
+/* ---------- Audio vars ---------- */
+let mediaRecorder = null, audioChunks = [], recordingStream = null, recordedBlob = null;
+let recordingStartMs = null;
+let lastTranscript = "";
+let lastFillers = [];
+
+let audioContext = null, analyser = null, dataArray = null;
+let llmFeedback = "";
+let pauseEvents = [];
+let lastAvg = 0;
+let isRecording = false, secondsElapsed = 0, timerInterval = null, suggestionInterval = null, waveformInterval = null;
+
+let onsetSamples = [], midSamples = [], onsetPenalty = 0;
+let loudnessSamples = [], loudnessPenalty = 0;
+let recoverySamples = [], recoveredPauses = 0, spiralPauses = 0;
+
+let noiseSamples = [];
+let calibrated = false;
+
+const suggestions=["Yes, you can do it.","Don't be in a hurry.","Relax your shoulders.","Start simply — one line at a time.","Imagine you're talking to a friend.","Breathe once, then speak in one flow."];
+
+/* ---------- UI helpers ---------- */
+function startTimer(){ timerInterval = setInterval(()=>{ secondsElapsed++; const mm=String(Math.floor(secondsElapsed/60)).padStart(2,"0"); const ss=String(secondsElapsed%60).padStart(2,"0"); timerDisplay.textContent=mm+":"+ss; },1000); }
+function startSuggestionLoop(){ let idx=0; suggestionText.textContent=suggestions[idx]; suggestionInterval=setInterval(()=>{ idx=(idx+1)%suggestions.length; suggestionText.textContent=suggestions[idx]; },3000); }
+function startWaveformAnimation(){ waveformInterval=setInterval(()=>{ bars.forEach(b=>{ const h=10+Math.random()*40; const o=0.28+Math.random()*0.7; b.style.height=h+"px"; b.style.opacity=o.toFixed(2); }); },120); }
+function resetWaveform(){ bars.forEach(b=>{b.style.height="10px";b.style.opacity="0.3";}); }
+function stopIntervals(){ clearInterval(timerInterval); clearInterval(suggestionInterval); clearInterval(waveformInterval); timerInterval=suggestionInterval=waveformInterval=null; }
+
+function resetRecordingState(){
+  recordingStartMs = null;
+  lastSilenceTs = null;
+  speechConfirmed = false;
+  speechEnergyFrames = 0;
+  effectiveSpeechSeconds = 0;
+  lastSpeechTs = null;
+  isRecording=false;
+  submitBtn.disabled = true;
+  secondsElapsed = 0;
+  timerDisplay.textContent="00:00";
+  micLabel.textContent="Tap to start";
+  micButton.classList.remove("recording");
+  stopIntervals();
+  resetWaveform();
+  suggestionText.textContent="";
+  silenceDuration=0;
+  pauseEvents = [];
+  lastAvg = 0;
+  recentEnergies = [];
+  speechEnergyFrames = 0;
+  speechConfirmed = false;
+  effectiveSpeechSeconds = 0;
+  lastSpeechTs = null;
+  speechSegmentStartMs = null;
+  lastAboveThresholdMs = null;
+  totalSpeechMs = 0;
+  onsetSamples = [];
+  midSamples = [];
+  onsetPenalty = 0;
+  loudnessSamples = [];
+  loudnessPenalty = 0;
+  recoverySamples = [];
+  recoveredPauses = 0;
+  spiralPauses = 0;
+  calibrated = false;
+  noiseSamples = [];
+  rickySpeechDetected = false;
+  lastTranscript = "";
+  if (transcriptContainer) transcriptContainer.style.display = "none";
+  if (transcriptBtn) transcriptBtn.textContent = "Access Transcript";
+}
+
+/* ---------- monitorSilence ---------- */
+function energyVariance(arr) {
+  if (!arr || arr.length < 5) return 0;
+  const mean = arr.reduce((a, b) => a + b, 0) / arr.length;
+  return arr.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / arr.length;
+}
+
+let lastSilenceTs = null;
+let prevEnergy = 0;
+
+function monitorSilence() {
+  if (!isRecording) return;
+  if (!analyser || !dataArray || !audioContext){ requestAnimationFrame(monitorSilence); return; }
+  analyser.getByteFrequencyData(dataArray);
+  const speechEnergy = speechBandEnergy(dataArray, audioContext.sampleRate);
+  const totalEnergy = dataArray.reduce((a,b)=>a+b,0) / dataArray.length;
+  const speechRatio = speechEnergy / (totalEnergy + 1);
+  if (!calibrated && secondsElapsed < 2) {
+    noiseSamples.push(speechEnergy);
+    if (noiseSamples.length > 40) {
+      const meanNoise = noiseSamples.reduce((a,b)=>a+b,0)/noiseSamples.length;
+      silenceThreshold = meanNoise + 3;
+      calibrated = true;
+      console.log("🎯 Noise calibrated:", silenceThreshold);
+    }
+    prevEnergy = speechEnergy;
+    requestAnimationFrame(monitorSilence);
+    return;
+  }
+  const delta = Math.abs(speechEnergy - prevEnergy);
+  if (speechConfirmed && speechEnergy < silenceThreshold) {
+    if (!lastSilenceTs) { lastSilenceTs = performance.now(); }
+    const silenceDur = performance.now() - lastSilenceTs;
+    if (silenceDur < 180) { requestAnimationFrame(monitorSilence); return; }
+  } else {
+    if (lastSilenceTs) {
+      const dur = performance.now() - lastSilenceTs;
+      if (dur > 650) {
+        pauseEvents.push({ time: secondsElapsed, durationMs: dur, preEnergy: prevEnergy, postEnergy: speechEnergy });
+      }
+      lastSilenceTs = null;
+    }
+  }
+  prevEnergy = speechEnergy;
+  if (delta > 60) { requestAnimationFrame(monitorSilence); return; }
+  recentEnergies.push(speechEnergy);
+  if (recentEnergies.length > 15) recentEnergies.shift();
+  const varEnergy = energyVariance(recentEnergies);
+  if (speechConfirmed) {
+    if (secondsElapsed <= 3) onsetSamples.push(speechEnergy);
+    else if (secondsElapsed >= 6 && secondsElapsed <= 10) midSamples.push(speechEnergy);
+  }
+  loudnessSamples.push(speechEnergy);
+  if (loudnessSamples.length > 800) loudnessSamples.shift();
+  const nowMs = performance.now();
+  const dynamicGate = silenceThreshold + 2;
+  const aboveGate = (speechConfirmed && speechEnergy > dynamicGate);
+  if (aboveGate) {
+    lastAboveThresholdMs = nowMs;
+    if (speechSegmentStartMs === null) { speechSegmentStartMs = nowMs; }
+  } else {
+    if (lastAboveThresholdMs !== null) {
+      const gapMs = nowMs - lastAboveThresholdMs;
+      if (gapMs > MAX_INTER_SEGMENT_GAP_MS) {
+        if (speechSegmentStartMs !== null) {
+          const segDuration = lastAboveThresholdMs - speechSegmentStartMs;
+          if (segDuration >= MIN_SEGMENT_MS) { totalSpeechMs += segDuration; }
+        }
+        speechSegmentStartMs = null;
+        lastAboveThresholdMs = null;
+      }
+    }
+  }
+  let liveTotalMs = totalSpeechMs;
+  if (speechSegmentStartMs !== null && lastAboveThresholdMs !== null) {
+    liveTotalMs += Math.max(0, lastAboveThresholdMs - speechSegmentStartMs);
+  }
+  effectiveSpeechSeconds = Math.round((liveTotalMs / 1000) * 100) / 100;
+  recoverySamples.push({ time: secondsElapsed, energy: speechEnergy });
+  if (recoverySamples.length > 600) recoverySamples.shift();
+  requestAnimationFrame(monitorSilence);
+}
+
+/* ---------- Permissions and recording ---------- */
+function ensureMicPermission(){
+  return new Promise(async (resolve)=>{
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+      alert("Browser mic support nahi kar raha.");
+      if (micLabel) micLabel.textContent = "Mic not supported";
+      if (micButton) micButton.disabled = true;
+      return resolve(null);
+    }
+    try {
+      if(navigator.permissions && navigator.permissions.query){
+        try {
+          const status = await navigator.permissions.query({ name: 'microphone' });
+          if(status.state === 'denied'){
+            if (micLabel) micLabel.textContent = "Microphone blocked — enable in browser settings";
+            if (micButton) { micButton.setAttribute('aria-disabled','true'); micButton.disabled = true; }
+            return resolve(null);
+          }
+          if(status.state === 'granted'){
+            try {
+              const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+              return resolve(stream);
+            } catch(e){ console.error("getUserMedia failed despite permission granted:", e); alert("Mic access fail hua. Check browser settings."); return resolve(null); }
+          }
+        } catch(errPerm){ console.warn("Permissions API query failed, falling back to getUserMedia.", errPerm); }
+      }
+    } catch(e){ console.warn("Permissions check failed:", e); }
+    if (micLabel) micLabel.textContent = "Asking for mic permission...";
+    try {
+      const s = await navigator.mediaDevices.getUserMedia({ audio: true });
+      return resolve(s);
+    } catch(err){
+      console.warn("User denied mic or error:", err);
+      if (micLabel) micLabel.textContent = "Permission denied — enable mic to record";
+      alert("Mic permission deny ho gayi. Please allow microphone.");
+      return resolve(null);
+    }
+  });
+}
+
+function startRecordingUI(preExistingStream){
+  (async ()=>{
+    await startRickyVAD();
+    let stream = preExistingStream || null;
+    if(!stream) stream = await ensureMicPermission();
+    if(!stream){
+      if (micLabel) micLabel.textContent = "Permission required to record";
+      if (micButton) micButton.classList.remove("recording");
+      isRecording = false;
+      return;
+    }
+    recordingStream = stream;
+    try {
+      audioContext = new (window.AudioContext||window.webkitAudioContext)();
+      const source = audioContext.createMediaStreamSource(stream);
+      analyser = audioContext.createAnalyser();
+      analyser.fftSize = 1024;
+      const bufferLength = analyser.frequencyBinCount;
+      dataArray = new Uint8Array(bufferLength);
+      source.connect(analyser);
+    } catch(e){ console.error("AudioContext setup failed:", e); }
+    isRecording=true;
+    recordingStartMs = performance.now();
+    if (micButton) micButton.classList.add("recording");
+    if (micLabel) micLabel.textContent="Tap to stop";
+    secondsElapsed=0; timerDisplay.textContent="00:00"; submitBtn.disabled=true;
+    startTimer(); startSuggestionLoop(); startWaveformAnimation();
+    silenceDuration=0;
+    try {
+      mediaRecorder = new MediaRecorder(stream); audioChunks=[];
+      mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+      mediaRecorder.onstop = () => {
+        recordedBlob = new Blob(audioChunks, { type: "audio/webm;codecs=opus" });
+      };
+      mediaRecorder.start();
+      requestAnimationFrame(monitorSilence);
+    } catch(err){ console.error("MediaRecorder start failed:", err); alert("Recording start nahi ho paaya."); stopRecordingUI(); }
+  })();
+}
+
+function stopRecordingUI(){
+  stopRickyVAD();
+  isRecording=false;
+  if (micButton) micButton.classList.remove("recording");
+  if (micLabel) micLabel.textContent="Tap to record again";
+  if (recordingStartMs !== null) {
+    const totalSessionMs = Math.max(0, performance.now() - recordingStartMs);
+    secondsElapsed = Math.round(totalSessionMs / 1000);
+    recordingStartMs = null;
+  }
+  submitBtn.disabled = secondsElapsed < 5;
+  stopIntervals(); resetWaveform();
+  if (speechSegmentStartMs !== null && lastAboveThresholdMs !== null) {
+    const segDuration = lastAboveThresholdMs - speechSegmentStartMs;
+    if (segDuration >= MIN_SEGMENT_MS) { totalSpeechMs += segDuration; }
+  }
+  speechSegmentStartMs = null;
+  lastAboveThresholdMs = null;
+  effectiveSpeechSeconds = Math.round((totalSpeechMs / 1000) * 100) / 100;
+  if(mediaRecorder && mediaRecorder.state!=="inactive") mediaRecorder.stop();
+  if(recordingStream){ recordingStream.getTracks().forEach(t=>t.stop()); recordingStream=null; }
+  if(audioContext){ try{ audioContext.close(); }catch(e){} audioContext=null; }
+}
+
+/* ---------- Wiring UI ---------- */
+function openModal(){ resetRecordingState(); if (modal) { modal.classList.add("show"); modal.setAttribute('aria-hidden','false'); } checkPermissionStatus(); }
+function closeModal(){ stopRecordingUI(); if (modal) { modal.classList.remove("show"); modal.setAttribute('aria-hidden','true'); } }
+
+async function checkPermissionStatus(){
+  try {
+    if(navigator.permissions && navigator.permissions.query){
+      const status = await navigator.permissions.query({ name: 'microphone' });
+      if(status.state === 'granted'){ if (micLabel) micLabel.textContent = "Mic ready — tap to start"; if (micButton) micButton.disabled = false; }
+      else if(status.state === 'denied'){ if (micLabel) micLabel.textContent = "Microphone blocked — enable in browser settings"; if (micButton) micButton.disabled = true; }
+      else { if (micLabel) micLabel.textContent = "Allow mic to record"; if (micButton) micButton.disabled = false; }
+    } else { if (micLabel) micLabel.textContent = "Tap to allow mic & start"; if (micButton) micButton.disabled = false; }
+  } catch(e){ if (micLabel) micLabel.textContent = "Tap to allow mic & start"; if (micButton) micButton.disabled = false; }
+}
+
+if (recordBtn)    recordBtn.addEventListener("click", openModal);
+if (closeModalBtn) closeModalBtn.addEventListener("click", closeModal);
+if (modal) modal.addEventListener("click",(e)=>{ if(e.target===modal||e.target.classList.contains("record-modal-backdrop")) closeModal(); });
+
+if (micButton) micButton.addEventListener('click', async ()=>{
+  if(isRecording){ stopRecordingUI(); return; }
+  micLabel.textContent = "Checking permission...";
+  micButton.disabled = true;
+  const stream = await ensureMicPermission();
+  micButton.disabled = false;
+  if(stream) startRecordingUI(stream);
+});
+
+/* ---------- Backend score computation ---------- */
+function computeBackendScoreFromBackendResponse(d) {
+  function scale(val100, maxPoints) { return (Math.max(0, Math.min(100, val100)) / 100) * maxPoints; }
+  const wpm = Number(d.speechRate || 0);
+  let speechRatePct = 0;
+  if (wpm < 95) speechRatePct = 20;
+  else if (wpm < 115) speechRatePct = 55;
+  else if (wpm <= 140) speechRatePct = 100;
+  else if (wpm <= 155) speechRatePct = 82;
+  else if (wpm <= 170) speechRatePct = 60;
+  else speechRatePct = 30;
+  const speechRatePoints = scale(speechRatePct, 15);
+  const sentenceScoreRaw = Number((d.sentenceCompletion && d.sentenceCompletion.score) || (d.sentenceCompletionStep2 && d.sentenceCompletionStep2.score) || 60);
+  let sentencePoints = 0;
+  if(sentenceScoreRaw >= 90) sentencePoints = 15;
+  else if(sentenceScoreRaw >= 80) sentencePoints = 11;
+  else if(sentenceScoreRaw >= 70) sentencePoints = 7;
+  else if(sentenceScoreRaw >= 60) sentencePoints = 4;
+  else if(sentenceScoreRaw >= 50) sentencePoints = 2;
+  else sentencePoints = 0;
+  let lexLevel = null;
+  try {
+    lexLevel = (d.sentenceCompletionStep2 && d.sentenceCompletionStep2.lexicalConfidence && d.sentenceCompletionStep2.lexicalConfidence.interpreted && d.sentenceCompletionStep2.lexicalConfidence.interpreted.level) ||
+               (d.lexicalConfidence && d.lexicalConfidence.interpreted && d.lexicalConfidence.interpreted.level) || null;
+  } catch(e) { lexLevel = null; }
+  let lexPoints = 0;
+  if (lexLevel === 'strong') lexPoints = 12;
+  else if (lexLevel === 'mixed') lexPoints = 7;
+  else if (lexLevel === 'weak') lexPoints = 3;
+  else {
+    const raw = d.lexicalConfidence || (d.sentenceCompletionStep2 && d.sentenceCompletionStep2.lexicalConfidence && d.sentenceCompletionStep2.lexicalConfidence.raw) || null;
+    if (raw && typeof raw === 'object') {
+      const auth = Number(raw.authorityCount || raw.authority || 0);
+      const hedge = Number(raw.hedgeCount || raw.hedge || 0);
+      const total = Math.max(1, auth + hedge);
+      const authRatio = auth / total;
+      if (authRatio >= 0.7) lexPoints = 12;
+      else if (authRatio >= 0.4) lexPoints = 7;
+      else lexPoints = 3;
+    } else { lexPoints = 7; }
+  }
+  let silenceMod = 0;
+  if (Array.isArray(d.silenceAnalysis)) {
+    d.silenceAnalysis.forEach(s => {
+      const t = (s.type || '').toLowerCase();
+      if (t === 'rhetorical_pause') silenceMod += 1;
+      else if (t === 'cognitive_pause') silenceMod += 0.5;
+      else if (t === 'panic_pause') silenceMod -= 1.5;
+      else if (t === 'search_pause') silenceMod -= 1;
+    });
+  }
+  silenceMod = Math.max(-3, Math.min(3, Math.round(silenceMod)));
+  const fillerCount = Number(d.fillerCount || (Array.isArray(d.fillers) ? d.fillers.length : 0) || 0);
+  const duration = Number(d.durationSeconds || d.duration || 1);
+  const per30 = (fillerCount / Math.max(0.001, duration)) * 30;
+  let fillerPct = Math.max(0, Math.min(100, (1 - per30 / 6) * 100));
+  const fillerPoints = scale(fillerPct, 15);
+  const backendRaw = speechRatePoints + sentencePoints + lexPoints + silenceMod + fillerPoints;
+  let backendScore = Math.max(0, Math.min(60, Math.round(backendRaw)));
+  const panicCount = (d.silenceInsights || []).filter(p => (p.type || "").toLowerCase() === "panic_pause").length;
+  if(sentenceScoreRaw <= 45){ backendScore = Math.min(backendScore, 22); }
+  if(panicCount >= 2){ backendScore = Math.min(backendScore, 26); }
+  if(sentenceScoreRaw <= 45 && panicCount >= 2){ backendScore = Math.min(backendScore, 18); }
+  return backendScore;
+}
+
+/* ---------- Submit recording ---------- */
+submitBtn.addEventListener('click', async ()=>{
+  if (submitBtn.disabled) return;
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Analyzing...";
+  if(isRecording){ await stopRecordingUI(); }
+  if (!speechConfirmed) { alert("Please speak clearly before submitting."); return; }
+  console.log("DEBUG effectiveSpeechSeconds:", effectiveSpeechSeconds);
+  if (effectiveSpeechSeconds < 5) { alert("Please speak for at least 5 seconds so your confidence can be measured."); return; }
+  if (!rickySpeechDetected) { alert("❌ No clear human speech detected.\nPlease speak audibly before submitting."); return; }
+
+  document.getElementById("analysisLoader").classList.add("show");
+  const loaderMessages = ["Analyzing vocal stability...","Detecting confidence markers...","Evaluating speech clarity...","Running AI confidence model...","Preparing your report..."];
+  let msgIndex = 0;
+  const loaderText = document.querySelector(".loader-text");
+  const loaderInterval = setInterval(()=>{ msgIndex = (msgIndex + 1) % loaderMessages.length; loaderText.textContent = loaderMessages[msgIndex]; }, 1600);
+
+  let score = 60;
+  if (!recordedBlob) { alert("No audio recorded"); return; }
+
+  const formData = new FormData();
+  formData.append("audio", recordedBlob, "attempt.webm");
+  const response = await fetch("http://localhost:3001/api/transcribe", { method: "POST", body: formData });
+  if (!response.ok) { throw new Error("Backend transcribe failed"); }
+  const backendData = await response.json();
+
+  localStorage.setItem("bol_session_id", backendData.sessionId);
+
+  if (Array.isArray(backendData.fillers)) {
+    lastFillers = backendData.fillers.map(f => typeof f === "string" ? f : f.word).filter(Boolean);
+  } else { lastFillers = []; }
+
+  console.log("========= BOL DEBUG =========");
+  console.log("TOTAL UI TIME:", secondsElapsed);
+  console.log("EFFECTIVE SPEECH:", effectiveSpeechSeconds);
+  console.log("BACKEND AUDIO DURATION:", backendData.durationSeconds);
+  console.log("BACKEND WPM:", backendData.speechRate);
+  console.log("TOTAL WORDS:", backendData.totalWords);
+  console.log("PAUSES:", pauseEvents.length);
+  console.log("=============================");
+  console.log("silenceThreshold:", silenceThreshold);
+
+  let llmData = null;
+  const transcript =
+    (backendData?.sentenceCompletionStep2?.lexicalConfidence?.transcript) ||
+    (backendData?.transcript) || "";
+  lastTranscript = transcript;
+
+  const metrics = {
+    backend: backendData,
+    frontend: { effectiveSpeechSeconds, pauses: pauseEvents.length, onsetPenalty, loudnessPenalty }
+  };
+
+  if (!transcript || transcript.trim().length === 0) {
+    console.warn("No transcript found — skipping LLM.");
+  } else {
+    const llmResponse = await fetch("http://localhost:3001/api/llm-feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+     body: JSON.stringify({ 
+  transcript, 
+  metrics,
+  sessionId: backendData.sessionId
+})
+    });
+    if (!llmResponse.ok) { console.error("LLM call failed:", await llmResponse.text()); }
+    else {
+llmData = await llmResponse.json();
+
+window.bolMistakes = llmData.mistakes || [];
+
+console.log("LLM MISTAKES:", window.bolMistakes);
+
+    }
+  }
+
+  let backendScore = computeBackendScoreFromBackendResponse(backendData);
+  const wordCount = backendData.totalWords || 0;
+  if(wordCount < 35){ backendScore = Math.min(backendScore, 32); }
+  else if(wordCount < 70){ backendScore = Math.min(backendScore, 40); }
+  else if(wordCount > 130){ backendScore += 3; }
+
+  const lexicalLevel =
+    backendData?.sentenceCompletionStep2?.lexicalConfidence?.interpreted?.level ||
+    backendData?.lexicalConfidence?.interpreted?.level || "unknown";
+  if(lexicalLevel === "weak"){ backendScore = Math.min(backendScore, 34); }
+  else if(lexicalLevel === "mixed"){ backendScore = Math.min(backendScore, 48); }
+  else if(lexicalLevel === "strong"){ backendScore += 2; }
+
+  console.log("BACKEND DATA:", backendData);
+
+  let dg = null;
+  try {
+    if (typeof deepgramTranscribe === 'function') {
+      dg = await deepgramTranscribe(recordedBlob);
+      if (dg && dg.transcript) console.log("TRANSCRIPT:", dg.transcript);
+    }
+  } catch(err) { console.warn('Deepgram transcribe failed or missing:', err); }
+
+  const totalDuration = Math.round(secondsElapsed);
+  const effectiveDuration = Math.round(effectiveSpeechSeconds);
+  const onsetVar = energyVariance(onsetSamples || []);
+  const midVar = energyVariance(midSamples || []);
+  if(onsetSamples.length > 5 && midSamples.length > 5){
+    if (onsetVar < midVar * 0.9) onsetPenalty = 0;
+    else if (onsetVar < midVar * 1.2) onsetPenalty = 4;
+    else onsetPenalty = 8;
+  }
+  let openingScore = 0;
+  if (onsetPenalty === 0) openingScore = +6;
+  else if (onsetPenalty === 4) openingScore = +2;
+  else if (onsetPenalty >= 8) openingScore = -6;
+  score += openingScore;
+
+  loudnessPenalty = 0;
+  const avgEnergy = loudnessSamples.reduce((a,b)=>a+b,0) / Math.max(1, loudnessSamples.length);
+  const rollingVars = rollingVariance(loudnessSamples, 40);
+  const avgRollingVar = rollingVars.length ? rollingVars.reduce((a,b)=>a+b,0) / rollingVars.length : 0;
+  if(avgRollingVar < 40){ score += 8; }
+  else if(avgRollingVar < 70){ score += 5; }
+  else if(avgRollingVar < 110){ score += 2; }
+  else if(avgRollingVar > 180){ score -= 6; }
+
+  const getSegmentCount = () => 3;
+  function createSegments(durationSec, count) {
+    const len = durationSec / count; let segments = [];
+    for (let i = 0; i < count; i++) { segments.push({ start: i*len, end: (i+1)*len, energies: [], panicPauses:0, recoveredPauses:0, avgEnergy:0}); }
+    return segments;
+  }
+  function mapEnergyToSegments(segments, recoverySamples) {
+    recoverySamples.forEach(s => { const seg = segments.find(seg => s.time >= seg.start && s.time < seg.end); if (seg) seg.energies.push(s.energy); });
+  }
+  function mapPausesToSegments(segments, pauseEvents) {
+    pauseEvents.forEach(p => { const seg = segments.find(seg => p.time >= seg.start && p.time < seg.end); if (!seg) return; if (p.type === "panic") seg.panicPauses++; if (p.type === "recovered") seg.recoveredPauses++; });
+  }
+  function finalizeSegments(segments) { segments.forEach(seg => { if (seg.energies.length > 0) seg.avgEnergy = seg.energies.reduce((a,b)=>a+b,0)/seg.energies.length; }); }
+  function computeTrend(segments) {
+    let trend = [];
+    for (let i = 1; i < segments.length; i++) {
+      const prev = segments[i-1]; const curr = segments[i];
+      const energyDelta = curr.avgEnergy - prev.avgEnergy;
+      const panicDelta = curr.panicPauses - prev.panicPauses;
+      if (energyDelta > 2 && panicDelta <= 0) trend.push("up");
+      else if (energyDelta < -2 && panicDelta > 0) trend.push("down");
+      else trend.push("flat");
+    }
+    return trend;
+  }
+  function classifyTrajectory(trend) {
+    if (trend.every(t => t === "up")) return "strong_finish";
+    if (trend.every(t => t === "down")) return "panic_spiral";
+    if (trend[0] === "down" && trend.slice(1).every(t => t === "up")) return "nervous_but_recovered";
+    if (trend.includes("down") && trend[trend.length-1] === "down") return "lost_control";
+    if (trend.every(t => t === "flat")) return "stable_flat";
+    return "mixed";
+  }
+  function trajectoryScoreModifier(type) {
+    switch(type) {
+      case "nervous_but_recovered": return +4; case "strong_finish": return +3;
+      case "panic_spiral": return -4; case "lost_control": return -3;
+      case "stable_flat": return -1; default: return 0;
+    }
+  }
+
+  const segmentCount = getSegmentCount();
+  const segments = createSegments(totalDuration, segmentCount);
+  mapEnergyToSegments(segments, recoverySamples);
+  mapPausesToSegments(segments, pauseEvents);
+  finalizeSegments(segments);
+  const trend = computeTrend(segments);
+  const trajectory = classifyTrajectory(trend);
+
+  if(trajectory === "strong_finish"){ score += 8; }
+  else if(trajectory === "nervous_but_recovered"){ score += 6; }
+  else if(trajectory === "stable_flat"){ score -= 2; }
+  else if(trajectory === "lost_control"){ score -= 10; }
+  else if(trajectory === "panic_spiral"){ score -= 6; }
+
+  const upwardMoves = trend.filter(t => t === "up").length;
+  const downwardMoves = trend.filter(t => t === "down").length;
+  const segmentEnergies = segments.map(s => s.avgEnergy).filter(e => e > 0);
+  let consistencyPenalty = 0;
+  if(segmentEnergies.length >= 3){
+    const mean = segmentEnergies.reduce((a,b)=>a+b,0) / segmentEnergies.length;
+    const variance = segmentEnergies.reduce((a,b)=>a + Math.pow(b-mean,2),0) / segmentEnergies.length;
+    if(variance > 180){ consistencyPenalty = 10; }
+    else if(variance > 120){ consistencyPenalty = 6; }
+    else if(variance < 45){ score += 4; }
+  }
+  score -= consistencyPenalty;
+  if(upwardMoves >= 2 && trajectory !== "panic_spiral"){ score += 5; }
+  if(downwardMoves >= 2){ score -= 6; }
+
+  const frontendRaw = Math.max(30, Math.min(95, Math.round(score)));
+  let frontendContribution = Math.round(((frontendRaw - 30) / (95 - 30)) * 40);
+  let finalScore = backendScore + frontendContribution;
+
+  const speechDensity = effectiveSpeechSeconds / Math.max(1, secondsElapsed);
+  if(speechDensity < 0.55){ finalScore = Math.min(finalScore, 46); }
+  if(speechDensity < 0.40){ finalScore = Math.min(finalScore, 38); }
+  if(frontendRaw < 38){ finalScore = Math.min(finalScore, 32); }
+  finalScore = Math.max(30, Math.min(95, Math.round(finalScore)));
+
+  scoreValueEl.innerHTML = `${finalScore} <span>/100</span>`;
+  scoreLabelEl.textContent = (finalScore < 40 ? "Too nervous, too many pauses" : finalScore < 70 ? "Better pacing needed" : finalScore < 85 ? "Strong delivery, minor pauses" : "Confident & smooth");
+  if (scoreBarFillEl) scoreBarFillEl.style.width = `${finalScore}%`;
+  score = finalScore;
+
+  console.log("BACKEND SCORE:", backendScore, "FRONTEND raw:", frontendRaw, "FRONTEND contrib(0-40):", frontendContribution, "FINAL SCORE:", finalScore);
+
+  closeModal();
+  const trendDelta = trajectoryScoreModifier(trajectory);
+
+  let rhetoricalPauses = 0;
+  let panicPauses = 0;
+  (function classifyPauses() {
+    const PANIC_MIN_MS = 700, RHETORICAL_MIN_MS = 300, RHETORICAL_MAX_MS = 900;
+    const COGNITIVE_MIN_MS = 350, COGNITIVE_MAX_MS = 1500;
+    const ENERGY_DROP_RATIO_PANIC = 0.35, ENERGY_DROP_RATIO_RHET = 0.10;
+    const RECOVERY_SLOPE_FAST = 0.015, LOCAL_DENSITY_WINDOW = 1.2;
+    function samplesInWindow(centerSec, halfWindowSec) {
+      const start = centerSec - halfWindowSec; const end = centerSec + halfWindowSec;
+      return recoverySamples.filter(s => s.time >= start && s.time <= end).map(s => s.energy);
+    }
+    function mean(arr){ if(!arr || !arr.length) return 0; return arr.reduce((a,b)=>a+b,0)/arr.length; }
+    function variance(arr){ if(!arr || arr.length<2) return 0; const m = mean(arr); return arr.reduce((a,b)=>a+Math.pow(b-m,2),0)/arr.length; }
+    function slopeRightOf(centerSec, windowSec) {
+      const arr = recoverySamples.filter(s => s.time >= centerSec && s.time <= centerSec + windowSec);
+      if (arr.length < 3) return 0;
+      const first = arr[0], last = arr[arr.length-1];
+      return (last.energy - first.energy) / Math.max(0.001, (last.time - first.time));
+    }
+    pauseEvents.forEach(p => {
+      const dur = p.durationMs || 0;
+      const centerSec = (p.time || 0);
+      const pre = samplesInWindow(centerSec - 0.15, 0.45);
+      const post = samplesInWindow(centerSec + (dur/1000) + 0.05, 0.45);
+      const preMean = mean(pre); const postMean = mean(post);
+      const energyDropRatio = preMean <= 0 ? 0 : (preMean - postMean) / (preMean + 1);
+      const recoverySlope = slopeRightOf(centerSec + (dur/1000), 0.6);
+      const localCount = pauseEvents.filter(q => Math.abs((q.time||0) - centerSec) <= LOCAL_DENSITY_WINDOW).length;
+      p.type = 'unknown'; p.confidence = 0;
+      if ((dur >= PANIC_MIN_MS && energyDropRatio >= ENERGY_DROP_RATIO_PANIC) || (localCount >= 3 && dur >= 350)) { p.type = 'panic'; p.confidence = 0.9; return; }
+      if (dur >= RHETORICAL_MIN_MS && dur <= RHETORICAL_MAX_MS && energyDropRatio <= ENERGY_DROP_RATIO_RHET && recoverySlope >= RECOVERY_SLOPE_FAST) { p.type = 'rhetorical'; p.confidence = 0.85; return; }
+      if (dur >= COGNITIVE_MIN_MS && dur <= COGNITIVE_MAX_MS && energyDropRatio > ENERGY_DROP_RATIO_RHET && energyDropRatio < ENERGY_DROP_RATIO_PANIC) { p.type = 'cognitive'; p.confidence = 0.8; return; }
+      if (dur < RHETORICAL_MIN_MS) { p.type = 'micro'; p.confidence = 0.6; return; }
+      if (energyDropRatio >= ENERGY_DROP_RATIO_PANIC * 0.8 && dur >= 500) { p.type = 'panic'; p.confidence = 0.7; return; }
+      if (energyDropRatio <= ENERGY_DROP_RATIO_RHET && dur >= 300) { p.type = 'rhetorical'; p.confidence = 0.6; return; }
+      p.type = 'unknown'; p.confidence = 0.45;
+    });
+    window._pauseClassification = pauseEvents;
+    panicPauses = pauseEvents.filter(p => p.type === 'panic').length;
+    rhetoricalPauses = pauseEvents.filter(p => p.type === 'rhetorical').length;
+    window.cognitivePauses = pauseEvents.filter(p => p.type === 'cognitive').length;
+    window.microPauses = pauseEvents.filter(p => p.type === 'micro').length;
+  })();
+
+  const panicPauseCount = panicPauses;
+  if(panicPauseCount >= 3){ finalScore = Math.min(finalScore, 44); }
+  if(panicPauseCount >= 5){ finalScore = Math.min(finalScore, 38); }
+  finalScore = Math.max(30, Math.min(95, Math.round(finalScore)));
+
+  const backendWpm = Number(backendData?.speechRate || 0);
+  const backendTotalWords = Number(backendData?.totalWords || 0);
+
+
+
+  // backend score upadate //
+
+const { data: { user } } = await supabaseClient.auth.getUser();
+
+if (user) {
+
+ const insertData = {
+  user_id: user.id,
+  confidence_score: Math.round(finalScore),
+  speech_length: Math.round(totalDuration),
+  effective_duration: Math.round(effectiveDuration),
+  total_duration: Math.round(totalDuration),
+  pauses: pauseEvents.length,
+  wpm: Number(backendWpm) > 0 ? Math.round(Number(backendWpm)) : 0
+};
+
+  console.log("📤 Sending to Supabase:", insertData);
+
+  const { error } = await supabaseClient
+    .from('Attempts')
+    .insert([insertData]);
+
+  if (error) {
+    console.error("❌ Supabase insert error:", error);
+  } else {
+    console.log("✅ Attempt saved successfully");
+  }
+}
+
+
+  clearInterval(loaderInterval);
+  document.getElementById("analysisLoader").classList.remove("show");
+  submitBtn.disabled = false;
+  submitBtn.textContent = "Submit attempt";
+
+  if (typeof showResultScreen === 'function') showResultScreen(
+    score, totalDuration, effectiveDuration, pauseEvents.length, recordedBlob,
+    onsetPenalty, loudnessPenalty, rhetoricalPauses, panicPauses,
+    recoveredPauses, spiralPauses, trajectory, trendDelta,
+    backendWpm, backendTotalWords, backendScore, frontendContribution
+  );
+  else console.error("showResultScreen not defined");
+});
+
+/* ================================================================
+   animateCounter — unchanged
+   ================================================================ */
+function animateCounter(el, from, to, ms=900){
+  const start = performance.now();
+  function step(now){
+    const p = Math.min(1, (now - start) / ms);
+    const n = Math.floor(from + (to - from) * p);
+    el.textContent = n;
+    if(p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+/* ================================================================
+   animateRing — UPDATED for new #sr-ring-fill element
+   Radius = 80, circumference = 2*π*80 = 502.65
+   ================================================================ */
+function animateRing(percentage){
+  const ringFg = document.getElementById('sr-ring-fill');
+  if (!ringFg) return;
+  const circumference = 502.65;
+  const offset = Math.max(0, circumference - (circumference * (percentage / 100)));
+  ringFg.style.strokeDasharray = circumference;
+  void ringFg.offsetWidth; // reflow
+  ringFg.style.transition = 'stroke-dashoffset 1500ms cubic-bezier(.25,.46,.45,.94)';
+  ringFg.style.strokeDashoffset = offset;
+}
+
+/* ================================================================
+   computePacingLabel — unchanged
+   ================================================================ */
+function computePacingLabel(effectiveSeconds, backendWpm, totalWords){
+  let wpm = null;
+  if(backendWpm && !isNaN(backendWpm)){ wpm = Number(backendWpm); }
+  else if(totalWords && effectiveSeconds > 0){ wpm = (totalWords / effectiveSeconds) * 60; }
+  if(!wpm) return "—";
+  if(wpm < 70) return "Very slow";
+  if(wpm < 95) return "Slow / hesitant";
+  if(wpm < 120) return "Deliberate";
+  if(wpm < 150) return "Natural";
+  if(wpm < 170) return "Professional";
+  return "Rushed";
+}
+
+/* ================================================================
+   drawTimelineChart — generates plausible confidence curve
+   from the score, trajectory and session duration
+   ================================================================ */
+function drawTimelineChart(score, trajectory, totalSeconds){
+  const canvas = document.getElementById('sr-timeline-canvas');
+  if (!canvas) return;
+  const wrapper = canvas.parentElement;
+
+  function resize(){
+    canvas.width  = wrapper.clientWidth  * devicePixelRatio;
+    canvas.height = wrapper.clientHeight * devicePixelRatio;
+    canvas.style.width  = wrapper.clientWidth + 'px';
+    canvas.style.height = wrapper.clientHeight + 'px';
+    render();
+  }
+
+  // Build plausible data curve from trajectory & score
+  function buildData(){
+    const pts = 18;
+    const base = Math.max(35, score - 20);
+    const peak = Math.min(100, score + 5);
+    let arr = [];
+    for(let i = 0; i < pts; i++){
+      const t = i / (pts - 1);
+      let v;
+      if(trajectory === "strong_finish"){
+        v = base + (peak - base) * Math.pow(t, 0.6);
+      } else if(trajectory === "nervous_but_recovered"){
+        v = t < 0.35 ? base - 8 + t * 20 : base + (peak - base) * ((t - 0.35) / 0.65);
+      } else if(trajectory === "panic_spiral"){
+        v = peak - (peak - base) * Math.pow(t, 0.5);
+      } else if(trajectory === "lost_control"){
+        v = t < 0.5 ? base + (peak - base) * (t * 2) : peak - (peak - base) * ((t - 0.5) * 2);
+      } else {
+        v = score + Math.sin(t * Math.PI * 2) * 6;
+      }
+      // add small organic noise
+      v += (Math.sin(i * 1.3 + 0.7) * 3.5 + Math.cos(i * 0.8 + 1.1) * 2.5);
+      arr.push(Math.max(30, Math.min(100, Math.round(v))));
+    }
+    return arr;
+  }
+
+  const data = buildData();
+  const avg = data.reduce((a,b)=>a+b,0)/data.length;
+
+  function render(){
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+    const dpr = devicePixelRatio;
+    const PAD = { top: 14*dpr, right: 18*dpr, bottom: 28*dpr, left: 38*dpr };
+    ctx.clearRect(0,0,W,H);
+    const chartW = W - PAD.left - PAD.right;
+    const chartH = H - PAD.top - PAD.bottom;
+    const MIN = 25, MAX = 105;
+    function toX(i){ return PAD.left + (i/(data.length-1))*chartW; }
+    function toY(v){ return PAD.top + chartH - ((v-MIN)/(MAX-MIN))*chartH; }
+
+    // Grid lines
+    ctx.strokeStyle = 'rgba(30,37,53,0.9)';
+    ctx.lineWidth = 1*dpr;
+    [40,60,80,100].forEach(v=>{
+      const y = toY(v);
+      ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(W-PAD.right, y); ctx.stroke();
+    });
+
+    // Y labels
+    ctx.fillStyle = 'rgba(75,85,99,0.8)';
+    ctx.font = `${9*dpr}px IBM Plex Mono, monospace`;
+    ctx.textAlign = 'right';
+    [40,60,80,100].forEach(v=>{
+      ctx.fillText(v, PAD.left-6*dpr, toY(v)+3*dpr);
+    });
+
+    // X labels
+    ctx.textAlign = 'center';
+    ctx.fillStyle = 'rgba(75,85,99,0.8)';
+    ctx.font = `${9*dpr}px IBM Plex Mono, monospace`;
+    const segCount = Math.min(6, data.length);
+    for(let i=0;i<segCount;i++){
+      const idx = Math.round(i*(data.length-1)/(segCount-1));
+      const sec = Math.round(idx*(totalSeconds||60)/(data.length-1));
+      const label = Math.floor(sec/60)+':'+(sec%60).toString().padStart(2,'0');
+      ctx.fillText(label, toX(idx), H-8*dpr);
+    }
+
+    // Avg dashed
+    const avgY = toY(avg);
+    ctx.setLineDash([4*dpr,4*dpr]);
+    ctx.strokeStyle = 'rgba(75,85,99,0.5)';
+    ctx.lineWidth = 1*dpr;
+    ctx.beginPath(); ctx.moveTo(PAD.left,avgY); ctx.lineTo(W-PAD.right,avgY); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Area fill
+    ctx.beginPath();
+    data.forEach((v,i)=>{ i===0 ? ctx.moveTo(toX(i),toY(v)) : ctx.lineTo(toX(i),toY(v)); });
+    ctx.lineTo(toX(data.length-1), H-PAD.bottom);
+    ctx.lineTo(PAD.left, H-PAD.bottom);
+    ctx.closePath();
+    const grad = ctx.createLinearGradient(0,PAD.top,0,H-PAD.bottom);
+    grad.addColorStop(0,   'rgba(99,102,241,.20)');
+    grad.addColorStop(0.6, 'rgba(99,102,241,.06)');
+    grad.addColorStop(1,   'rgba(99,102,241,.00)');
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Main line
+    ctx.beginPath();
+    data.forEach((v,i)=>{
+      const x=toX(i), y=toY(v);
+      if(i===0){ ctx.moveTo(x,y); }
+      else {
+        const px=toX(i-1), py=toY(data[i-1]);
+        const cpx=(px+x)/2;
+        ctx.bezierCurveTo(cpx,py,cpx,y,x,y);
+      }
+    });
+    ctx.strokeStyle = '#6366f1';
+    ctx.lineWidth = 2*dpr;
+    ctx.shadowColor = 'rgba(99,102,241,.55)';
+    ctx.shadowBlur  = 7*dpr;
+    ctx.stroke();
+    ctx.shadowBlur  = 0;
+
+    // Dots
+    data.forEach((v,i)=>{
+      const x=toX(i), y=toY(v);
+      ctx.beginPath();
+      ctx.arc(x, y, 2.5*dpr, 0, Math.PI*2);
+      ctx.fillStyle   = '#818cf8';
+      ctx.shadowColor = 'rgba(99,102,241,.7)';
+      ctx.shadowBlur  = 5*dpr;
+      ctx.fill();
+      ctx.shadowBlur  = 0;
+    });
+
+    // Peak annotation
+    const peakIdx = data.indexOf(Math.max(...data));
+    const px=toX(peakIdx), py=toY(data[peakIdx]);
+    ctx.fillStyle = 'rgba(99,102,241,.15)';
+    ctx.beginPath();
+    if(ctx.roundRect){ ctx.roundRect(px-14*dpr, py-22*dpr, 28*dpr, 15*dpr, 3*dpr); }
+    else {
+      const rx=3*dpr, rw=28*dpr, rh=15*dpr;
+      ctx.rect(px-14*dpr, py-22*dpr, rw, rh);
+    }
+    ctx.fill();
+    ctx.fillStyle = '#a78bfa';
+    ctx.font = `500 ${9*dpr}px IBM Plex Mono, monospace`;
+    ctx.textAlign = 'center';
+    ctx.fillText(data[peakIdx], px, py-12*dpr);
+  }
+
+  window.addEventListener('resize', resize);
+  setTimeout(resize, 60);
+}
+
+/* ================================================================
+   buildSrWaveform — decorative visual waveform bars
+   ================================================================ */
+function buildSrWaveform(progress=0){
+  const container = document.getElementById('sr-waveform');
+  if(!container) return;
+  container.innerHTML = '';
+  const BARS = 72;
+  for(let i=0; i<BARS; i++){
+    const h = 20 + Math.abs(Math.sin(i*0.42+1.2)*80 + Math.sin(i*0.19+2.1)*40 + Math.sin(i*0.07+0.5)*30);
+    const bar = document.createElement('div');
+    bar.className = 'sr-waveform-bar';
+    const pct = i/BARS;
+    if(pct < progress) bar.classList.add('past');
+    if(Math.abs(pct - progress) < 0.018) bar.classList.add('active');
+    bar.style.height = Math.min(h, 90)+'%';
+    container.appendChild(bar);
+  }
+}
+
+/* ================================================================
+   Audio playback wiring for the new playback section
+   ================================================================ */
+function wireSrAudioPlayback(audioBlob){
+  const playBtn    = document.getElementById('playAudioBtnPolished');
+  const audioEl    = document.getElementById('attemptAudioPolished');
+  const progressFill = document.getElementById('sr-progress-fill');
+  const timeDisp   = document.getElementById('sr-time-display');
+  const playIconEl = document.getElementById('sr-play-icon');
+
+  if(!playBtn || !audioEl) return;
+
+  const pauseIconSVG = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+  const playIconSVG  = '<polygon points="5 3 19 12 5 21 5 3"/>';
+
+  if(audioBlob && audioBlob.size){
+    audioEl.src = URL.createObjectURL(audioBlob);
+  }
+
+  function fmtTime(s){
+    const m=Math.floor(s/60); const sec=Math.floor(s%60).toString().padStart(2,'0');
+    return m+':'+sec;
+  }
+
+  playBtn.onclick = ()=>{
+    if(audioEl.paused){ audioEl.play(); playIconEl.innerHTML = pauseIconSVG; }
+    else { audioEl.pause(); playIconEl.innerHTML = playIconSVG; }
+  };
+
+  audioEl.ontimeupdate = ()=>{
+    if(!audioEl.duration || isNaN(audioEl.duration)) return;
+    const pct = (audioEl.currentTime/audioEl.duration)*100;
+    if(progressFill) progressFill.style.width = pct+'%';
+    if(timeDisp) timeDisp.textContent = fmtTime(audioEl.currentTime);
+    // update waveform active bar
+    buildSrWaveform(audioEl.currentTime/audioEl.duration);
+  };
+
+  audioEl.onended = ()=>{
+    playIconEl.innerHTML = playIconSVG;
+    if(progressFill) progressFill.style.width='0%';
+    if(timeDisp) timeDisp.textContent='0:00';
+    buildSrWaveform(0);
+  };
+
+  const progressWrap = document.getElementById('sr-progress-wrap');
+  if(progressWrap){
+    progressWrap.addEventListener('click', (e)=>{
+      if(!audioEl.duration || isNaN(audioEl.duration)) return;
+      const rect = progressWrap.getBoundingClientRect();
+      const pct = (e.clientX - rect.left) / rect.width;
+      audioEl.currentTime = pct * audioEl.duration;
+    });
+  }
+}
+
+/* ================================================================
+   showResultScreen — UPDATED for new HTML structure
+   All existing variable names & logic preserved
+   ================================================================ */
+window.showResultScreen = function(
+  score,
+  totalSeconds,
+  effectiveSeconds,
+  pauses,
+  audioBlob,
+  onsetPenalty,
+  loudnessPenalty,
+  rhetoricalPauses,
+  panicPauses,
+  recoveredPauses,
+  spiralPauses,
+  trajectory,
+  trendDelta,
+  backendWpm,
+  backendTotalWords,
+  backendScore,
+  frontendContribution
+){
+  // Blur the page behind overlay
+  const pageEl = document.querySelector('.page');
+  if (pageEl) pageEl.classList.add('blurred');
+
+  // ── Format helpers ──
+  function formatTimeSecs(s){
+    const mm=String(Math.floor(s/60)).padStart(2,'0');
+    const ss=String(Math.floor(s%60)).padStart(2,'0');
+    return `${mm}:${ss}`;
+  }
+  if(effectiveSeconds > totalSeconds) effectiveSeconds = totalSeconds;
+
+  // ── Populate date in topbar ──
+  const dateEl = document.getElementById('srSessionDate');
+  if(dateEl){
+    const now = new Date();
+    dateEl.textContent = now.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})
+      + ' · ' + now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  }
+
+  // ── Score ring + counter ──
+  animateCounter(ringScoreEl, 0, score, 900);
+  animateRing(score);
+
+  // ── Badge ──
+  const badge   = document.getElementById('srBadge');
+  const badgeTxt= document.getElementById('srBadgeText');
+  const subtext = document.getElementById('srScoreSubtext');
+  if(badge && badgeTxt){
+    badge.className = 'sr-score-badge';
+    if(score >= 75){
+      badgeTxt.textContent = 'Confident Speaker';
+    } else if(score >= 55){
+      badgeTxt.textContent = 'Building Confidence';
+      badge.classList.add('sr-score-badge--warn');
+    } else {
+      badgeTxt.textContent = 'Needs Practice';
+      badge.classList.add('sr-score-badge--alert');
+    }
+  }
+  if(subtext) subtext.textContent = score >= 75
+    ? 'Top performer — strong delivery'
+    : score >= 55
+    ? 'Room to grow — keep practising'
+    : 'High nervousness detected — short daily drills help';
+
+  // ── Meta line ──
+  const metaEl = document.getElementById('srMetaLine');
+  if(metaEl){
+    const paceLabel = computePacingLabel(effectiveSeconds, backendWpm, backendTotalWords);
+    metaEl.textContent = `Attempt · ${paceLabel} · ${pauses} pause${pauses!==1?'s':''}`;
+  }
+
+  // ── Duration metric cards ──
+  const effEl  = document.getElementById('resultEffectiveDuration');
+  const totEl  = document.getElementById('resultTotalDuration');
+  const wpmEl  = document.getElementById('resultBackendWpm');
+  const pauseEl= document.getElementById('resultPauses');
+
+  if(effEl) effEl.textContent = formatTimeSecs(effectiveSeconds||0);
+  if(totEl) totEl.textContent = formatTimeSecs(totalSeconds||0);
+
+  const safeWpm = Number(backendWpm);
+  if(wpmEl){
+    if(!isNaN(safeWpm) && safeWpm > 0) wpmEl.textContent = `${Math.round(safeWpm)} wpm`;
+    else if(backendTotalWords && effectiveSeconds>0) wpmEl.textContent = `${Math.round((backendTotalWords/effectiveSeconds)*60)} wpm`;
+    else wpmEl.textContent = '—';
+  }
+  if(pauseEl) pauseEl.textContent = String(pauses);
+
+  // ── Metric bar widths ──
+  setTimeout(()=>{
+    const effBar   = document.getElementById('srEffBar');
+    const wpmBar   = document.getElementById('srWpmBar');
+    const pauseBar = document.getElementById('srPauseBar');
+    const effPct   = Math.min(100, Math.round((effectiveSeconds/Math.max(1,totalSeconds))*100));
+    const wpmPct   = safeWpm > 0 ? Math.min(100, Math.round((safeWpm/200)*100)) : 50;
+    const pausePct = Math.min(100, Math.round((pauses/10)*100));
+    if(effBar)   effBar.style.width   = effPct+'%';
+    if(wpmBar)   wpmBar.style.width   = wpmPct+'%';
+    if(pauseBar) pauseBar.style.width = pausePct+'%';
+  }, 300);
+
+  // ── Sub-score breakdown ──
+  const clarityScore = Math.min(100, Math.max(30, Math.round(score + (onsetPenalty <= 0 ? 6 : -onsetPenalty))));
+  const paceScore    = safeWpm>=115 && safeWpm<=155 ? Math.min(100,Math.round(score+8)) : Math.max(30,Math.round(score-10));
+  const flowScore    = panicPauses<=1 ? Math.min(100,Math.round(score+5)) : Math.max(30,Math.round(score-(panicPauses*4)));
+
+  const clEl = document.getElementById('srClarityScore');
+  const pcEl = document.getElementById('srPaceScore');
+  const flEl = document.getElementById('srFlowScore');
+  if(clEl) clEl.textContent = clarityScore;
+  if(pcEl) pcEl.textContent = paceScore;
+  if(flEl) flEl.textContent = flowScore;
+
+  setTimeout(()=>{
+    const cb = document.getElementById('srClarityBar');
+    const pb = document.getElementById('srPaceBar');
+    const fb = document.getElementById('srFlowBar');
+    if(cb) cb.style.width = clarityScore+'%';
+    if(pb) pb.style.width = paceScore+'%';
+    if(fb) fb.style.width = flowScore+'%';
+  }, 500);
+
+  // ── AI Feedback text ──
+  const feedbackEl = document.getElementById('resultFeedback');
+
+if(feedbackEl){
+
+  const mistakes = window.bolMistakes || [];
+
+  if(mistakes.length === 0){
+    feedbackEl.textContent = "No major confidence issues detected.";
+    return;
+  }
+
+  feedbackEl.innerHTML = mistakes.map(m => `
+    <div class="sr-mistake-card">
+
+      <div class="sr-mistake-title">
+        ${m.title}
+      </div>
+
+      <div class="sr-mistake-description">
+        ${m.description}
+      </div>
+
+    </div>
+  `).join('');
+
+}
+
+
+  // ── Trajectory row ──
+  const rowEl   = document.getElementById("trajectoryRow");
+  const arrowEl = document.getElementById("trajectoryArrow");
+  const textEl  = document.getElementById("trajectoryText");
+  const showTraj = effectiveSeconds >= 25 && trajectory !== "mixed";
+  if(rowEl) rowEl.className = 'sr-trajectory-row' + (showTraj ? '' : ' hidden');
+  if(showTraj && arrowEl && textEl){
+    arrowEl.className = 'sr-trajectory-arrow';
+    if(trajectory==="strong_finish"){ arrowEl.textContent="⬆️"; arrowEl.classList.add("up"); textEl.textContent="Improved steadily"; }
+    else if(trajectory==="nervous_but_recovered"){ arrowEl.textContent="⬆️"; arrowEl.classList.add("up"); textEl.textContent="Started nervous → recovered"; }
+    else if(trajectory==="panic_spiral"){ arrowEl.textContent="⬇️"; arrowEl.classList.add("down"); textEl.textContent="Confidence declined"; }
+    else if(trajectory==="lost_control"){ arrowEl.textContent="⬇️"; arrowEl.classList.add("down"); textEl.textContent="Lost momentum mid-way"; }
+    else if(trajectory==="stable_flat"){ arrowEl.textContent="➖"; arrowEl.classList.add("flat"); textEl.textContent="Stable but flat"; }
+    else { arrowEl.textContent="➖"; arrowEl.classList.add("flat"); textEl.textContent="Mixed pattern"; }
+  }
+
+  // ── Timeline chart ──
+  drawTimelineChart(score, trajectory, totalSeconds);
+
+  // ── Waveform + audio ──
+  buildSrWaveform(0);
+  wireSrAudioPlayback(audioBlob);
+
+  // ── Score panel pulse on high score ──
+  if(score >= 70){
+    const panel = document.getElementById('srScorePanel');
+    if(panel){ panel.classList.add('pulse'); setTimeout(()=>panel.classList.remove('pulse'),1800); }
+  }
+
+  // ── Save button ──
+  if(saveBtn){
+    saveBtn.onclick = ()=>{
+      saveBtn.textContent = '✓ Saved';
+      saveBtn.disabled = true;
+      setTimeout(()=>{ saveBtn.textContent='Save Attempt'; saveBtn.disabled=false; }, 1400);
+    };
+  }
+
+  // ── Show overlay ──
+  if(resultScreenEl){ resultScreenEl.classList.add('show'); resultScreenEl.setAttribute('aria-hidden','false'); }
+};
+
+/* ================================================================
+   Close / Retake / ESC — updated for new element structure
+   ================================================================ */
+function closeResultScreen(){
+  if(resultScreenEl){ resultScreenEl.classList.remove('show'); resultScreenEl.setAttribute('aria-hidden','true'); }
+  const pageEl = document.querySelector('.page'); if(pageEl) pageEl.classList.remove('blurred');
+}
+
+if(closeBtn) closeBtn.addEventListener('click', closeResultScreen);
+
+// Topbar × button also closes
+const srTopbarClose = document.getElementById('srTopbarClose');
+if(srTopbarClose) srTopbarClose.addEventListener('click', closeResultScreen);
+
+if(retakeBtn){
+  retakeBtn.addEventListener('click', ()=>{
+    closeResultScreen();
+    const rowEl=document.getElementById("trajectoryRow");
+    const arrowEl=document.getElementById("trajectoryArrow");
+    const textEl=document.getElementById("trajectoryText");
+    if(rowEl) rowEl.className='sr-trajectory-row hidden';
+    if(arrowEl){ arrowEl.textContent="—"; arrowEl.className="sr-trajectory-arrow"; }
+    if(textEl) textEl.textContent="—";
+    openModal();
+  });
+}
+
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
+    if(resultScreenEl && resultScreenEl.classList.contains('show')) closeResultScreen();
+    if(modal && modal.classList.contains('show')) closeModal();
+  }
+});
+
+/* ── Transcript toggle (existing logic, updated btn class) ── */
+if(transcriptBtn && transcriptContainer && transcriptText){
+  transcriptBtn.addEventListener("click",()=>{
+    const isHidden = transcriptContainer.style.display==="none" || transcriptContainer.style.display==="";
+    if(isHidden){
+      if(lastTranscript && lastTranscript.trim().length>0){
+        let highlighted = lastTranscript;
+        const uniqueFillers = [...new Set(lastFillers)].filter(w=>typeof w==="string" && w.trim().length>0);
+        uniqueFillers.forEach(word=>{
+          const escaped = word.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+          const regex = new RegExp(`\\b${escaped}\\b`,"gi");
+          highlighted = highlighted.replace(regex,`<span style="color:#f87171;font-weight:600">${word}</span>`);
+        });
+        transcriptText.innerHTML = highlighted;
+      } else {
+        transcriptText.textContent = "Transcript not available.";
+      }
+      transcriptContainer.style.display="block";
+      transcriptBtn.textContent="Hide Transcript";
+    } else {
+      transcriptContainer.style.display="none";
+      transcriptBtn.textContent="Access Transcript";
+    }
+  });
+}
+
+/* ── Improve button nav ── */
+const improveConfidenceBtn = document.getElementById("improveConfidenceBtn");
+
+if(improveConfidenceBtn)
+improveConfidenceBtn.addEventListener("click", ()=>{
+  const sessionId = localStorage.getItem("bol_session_id");
+
+  if(sessionId){
+    window.location.href = `improvement.html?session=${sessionId}`;
+  } else {
+    console.warn("Session ID not found.");
+  }
+});
+
+/* ── Auto-start when coming from improvement.html ── */
+window.addEventListener('load', async ()=>{
+  try {
+
+    if(sessionStorage.getItem('bol_from_improvement')){
+      sessionStorage.removeItem('bol_from_improvement');
+      if(typeof openModal==='function') openModal();
+      setTimeout(async()=>{
+        try {
+          if(typeof ensureMicPermission==='function' && typeof startRecordingUI==='function'){
+            const stream = await ensureMicPermission();
+            if(stream) startRecordingUI(stream);
+            else console.warn('Mic permission not granted or blocked.');
+          }
+        } catch(err){ console.error('Auto-start failed:',err); }
+      }, 320);
+    }
+  } catch(e){ console.error('Auto-start init error',e); }
+});
+
+  </script>
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="BOLauth.js"></script>
+
+</body>
+</html>

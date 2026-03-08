@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOL — Improvement Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="improvement.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <div class="logo-badge">BOL</div>
+      <div class="navbar-brand">
+        <span class="brand-name">Break Your Stage Fear</span>
+        <span class="brand-sep">/</span>
+        <span class="brand-page">Improvement Lab</span>
+      </div>
+    </div>
+    <div class="streak-card">
+  🔥 <span id="streak-count">0</span> Day Streak
+</div>
+    <div class="navbar-right">
+      <div class="session-dot"></div>
+      <span class="session-time">Feb 20, 2026 · 08:58 AM</span>
+      <button class="close-btn" aria-label="Close">&#x2715;</button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════ -->
+  <main class="page-container">
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+      <p class="section-label">IMPROVEMENT LAB</p>
+      <h1 class="page-title">Your Personalized Training Plan</h1>
+      <p class="page-subtitle">Based on your session analysis — targeted drills to close your performance gaps.</p>
+      <div class="divider"></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 1 — TOP 3 FOCUS AREAS
+    ═══════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-header">
+        <p class="section-label">FOCUS AREAS</p>
+        <p class="section-sub">three highest-impact areas identified from your session</p>
+      </div>
+
+       <div class="focus-list" id="dynamicFocusAreas">
+  <!-- Dynamic focus cards will render here -->
+</div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 2 — MICRO DRILLS
+    ═══════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-header">
+        <p class="section-label">MICRO DRILLS</p>
+        <p class="section-sub">Complete daily drills to build muscle memory and close your gaps</p>
+      </div>
+
+        <div class="drills-list" id="dynamicDrills">
+  <!-- Dynamic drill groups will render here -->
+</div>
+    
+    </section>
+
+    <!-- ════════════════════════════════════
+         SECTION 3 — SESSION PROGRESS
+    ═══════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-header">
+        <p class="section-label">SESSION PROGRESS</p>
+        <p class="section-sub">Track your drill completion for this session</p>
+      </div>
+
+      <div class="glass-card progress-card">
+        <div class="progress-card-top">
+          <div>
+            <h3 class="progress-title">Drills Completed</h3>
+         <span id="completed-count">0</span> /
+<span id="total-drills">0</span>
+          </div>
+          <div class="progress-pct-wrap">
+            <span class="progress-pct" id="progress-pct">0%</span>
+            <span class="progress-pct-label">Done</span>
+          </div>
+        </div>
+       <div class="progress-timeline" id="drillProgress"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 4 — BEFORE VS AFTER
+    ═══════════════════════════════════════════ -->
+    <section class="section">
+      <div class="section-header">
+        <p class="section-label">SCORE COMPARISON</p>
+        <p class="section-sub">Your confidence score progression</p>
+      </div>
+
+      <div class="before-after-wrap">
+        <div class="glass-card score-card score-card--before">
+          <p class="score-card-label">Previous Score</p>
+          <div class="score-ring score-ring--dim">
+           <span class="score-number" data-target="0" id="score-before">0</span>
+            <span class="score-denom">/100</span>
+          </div>
+          <p class="score-card-sub">Baseline session</p>
+        </div>
+
+        <div class="glass-card score-card score-card--after">
+          <p class="score-card-label">Latest Score</p>
+          <div class="score-ring score-ring--active">
+     <span class="score-number" data-target="0" id="score-after">0</span>
+            <span class="score-denom">/100</span>
+          </div>
+          <p class="score-card-sub">Feb 20, 2026</p>
+        </div>
+      </div>
+
+      <div class="improvement-strip">
+        <div class="improvement-strip-inner">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+          <span id="improvement-delta">+8 pts improvement</span>
+          <span class="improvement-pct">+21% from baseline</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 5 — 7-DAY ROADMAP
+         REMOVED — will be re-added in a future release
+    ═══════════════════════════════════════════ -->
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 6 — FINAL CTA
+    ═══════════════════════════════════════════ -->
+    <section class="section section--cta">
+      <div class="glass-card cta-card">
+        <div class="cta-glow"></div>
+        <div class="cta-content">
+          <p class="section-label">NEXT STEP</p>
+          <h2 class="cta-title">Ready to test everything?</h2>
+          <p class="cta-sub">Apply all three focus areas in a timed 60-second simulation. Your performance is scored in real time.</p>
+          <button class="btn-gradient btn-lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            Start 60s Stage Simulation
+          </button>
+        </div>
+      </div>
+
+      
+    </section>
+<!-- ═══════════════════════════════════════════
+     SECTION 7 — PROGRESS DASHBOARD LINK
+═══════════════════════════════════════════ -->
+<section class="section section--dashboard-nav">
+  <div class="glass-card dashboard-nav-card">
+    <div class="dashboard-nav-inner">
+      <div class="dashboard-nav-text">
+        <p class="section-label">YOUR JOURNEY</p>
+        <h3 class="dashboard-nav-title">See your full progress history</h3>
+        <p class="dashboard-nav-sub">Charts, session logs, and confidence trends across every attempt.</p>
+      </div>
+      <a href="dashboard.html" class="btn-dashboard-nav">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+        View Progress Dashboard
+      </a>
+    </div>
+  </div>
+ <div class="card feedback-card">
+    
+    <div class="card-text">
+        <span class="card-label">FEEDBACK</span>
+        <h3>Help improve BOL</h3>
+        <p>Your feedback helps us improve the speaking lab for students.</p>
+    </div>
+
+    <a href="https://forms.gle/tB1JFo36FDzjzg3U7" target="_blank">
+        <button class="primary-btn">
+            Give Feedback
+        </button>
+    </a>
+
+</div>
+</section>
+
+
+  </main>
+
+
+  
+
+<!-- metrices should be save in backend -->
+ <!-- 1️⃣ Load Supabase library FIRST -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- 3️⃣ THEN load improvement.js -->
+<script src="improvement.js"></script>
+</body>
+</html>

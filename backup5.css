@@ -1,0 +1,1332 @@
+/* bottun style ki gyi hai */
+/* === THEMED BUTTON FINISHES=== */
+
+/* Stylish Improve button — bigger presence, gradient, icon-like caret */
+#improveButton {
+  background: linear-gradient(90deg, rgba(96,165,250,0.14), rgba(124,58,237,0.10));
+  border: 1px solid rgba(96,165,250,0.32);
+  color: #e6f2ff;
+  font-weight:900;
+  letter-spacing: .2px;
+  padding:12px 18px;
+  border-radius:14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  box-shadow: 0 8px 30px rgba(37,99,235,0.08);
+  transition: transform .18s ease, box-shadow .22s ease, background .22s ease;
+  position:relative;
+}
+
+
+/* trajectory css is here */
+.trajectory-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #cbd5f5;
+}
+
+
+.trajectory-label {
+  font-weight: 600;
+}
+
+.trajectory-arrow {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.trajectory-arrow.up { color: #22c55e; }
+.trajectory-arrow.down { color: #ef4444; }
+.trajectory-arrow.flat { color: #94a3b8; }
+
+
+.trajectory-text {
+  font-weight: 600;
+}
+
+/* subtle caret on the right */
+#improveButton::after{
+  content: '⤴';
+  opacity:0.9;
+  font-weight:800;
+  margin-left:6px;
+  transform: translateY(-1px);
+  font-size:14px;
+}
+
+/* hover: lift + stronger glow */
+#improveButton:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 50px rgba(96,165,250,0.18);
+  background: linear-gradient(90deg, rgba(96,165,250,0.18), rgba(124,58,237,0.14));
+  border-color: rgba(96,165,250,0.48);
+}
+
+/* active press */
+#improveButton:active{ transform: translateY(-1px) scale(.995); }
+
+/* Make the button look more 'call-to-action' when attention class present */
+#improveButton.attention{
+  animation: improvePulse 1.4s infinite ease-in-out;
+  border-color: rgba(124,58,237,0.42);
+}
+
+/* RETAKE / CLOSE / SKIP — theme aligned, tactile, compact */
+#retakeBtnPolished,
+#closeResultBtn,
+#sessionSkipBtn {
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight:800;
+  font-size:14px;
+  cursor:pointer;
+  transition: transform .14s ease, box-shadow .14s ease, background .14s ease, border-color .14s ease;
+  border: 1px solid rgba(148,163,184,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.006));
+  color: var(--text);
+  box-shadow: 0 8px 20px rgba(2,6,23,0.45);
+}
+
+/* retake gets an energetic accent */
+#retakeBtnPolished {
+  background: linear-gradient(90deg, rgba(34,197,94,0.06), rgba(96,165,250,0.04));
+  border: 1px solid rgba(34,197,94,0.14);
+  color: #eafff0;
+}
+#retakeBtnPolished:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(34,197,94,0.10);
+  border-color: rgba(34,197,94,0.28);
+}
+
+/* close = muted, less aggressive */
+#closeResultBtn {
+  background: transparent;
+  border: 1px solid rgba(148,163,184,0.06);
+  color: #cbd5e1;
+  box-shadow: none;
+}
+#closeResultBtn:hover {
+  background: rgba(255,255,255,0.02);
+  transform: translateY(-2px);
+  border-color: rgba(148,163,184,0.12);
+}
+
+/* skip = ghost but visible and tactile */
+#sessionSkipBtn {
+  background: transparent;
+  border: 1px dashed rgba(148,163,184,0.06);
+  color: var(--muted);
+}
+#sessionSkipBtn:hover {
+  background: rgba(255,255,255,0.02);
+  color: var(--text);
+  transform: translateY(-2px);
+  border-color: rgba(96,165,250,0.08);
+}
+
+/* small active states for mobile feel */
+#retakeBtnPolished:active,
+#closeResultBtn:active,
+#sessionSkipBtn:active {
+  transform: translateY(0) scale(.985);
+}
+
+/* style for .btn.added (keep consistent) */
+.btn.added {
+  background: linear-gradient(90deg,#22c55e,#60a5fa);
+  color: #021020;
+  border: none;
+  box-shadow: 0 14px 34px rgba(34,197,94,0.12);
+  font-weight:900;
+}
+
+/* KEEP keyboard accessibility visible but subtle */
+#retakeBtnPolished:focus,
+#closeResultBtn:focus,
+#sessionSkipBtn:focus,
+#improveButton:focus {
+  outline: 3px solid rgba(96,165,250,0.12);
+  outline-offset: 3px;
+}
+
+/* small responsive tweak for session task controls on narrow screens */
+@media (max-width:520px){
+  #sessionPracticeBtn { padding:12px; font-size:15px; border-radius:12px; }
+  #sessionMarkBtn, #sessionSkipBtn { padding:10px; font-size:13px; border-radius:12px; }
+}
+
+/* improvement button */
+/* ==== Highlight Improve Button on Result Screen ==== */
+#improveButton {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(96,165,250,0.25);
+  color: #dbeafe;
+  font-weight: 700;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-top: 14px;
+  width: 100%;
+  cursor: pointer;
+  transition: 
+    background .25s ease,
+    box-shadow .25s ease,
+    transform .25s ease,
+    border-color .25s ease;
+  box-shadow: 0 0 0 rgba(96,165,250,0.4);
+}
+
+/* Hover effect */
+#improveButton:hover {
+  background: rgba(96,165,250,0.12);
+  border-color: rgba(96,165,250,0.55);
+  box-shadow: 0 0 18px rgba(96,165,250,0.35);
+  transform: translateY(-2px);
+}
+
+/* Click (active) feedback */
+#improveButton:active {
+  transform: scale(0.97);
+}
+
+/* Gentle pulse to draw attention */
+@keyframes improvePulse {
+  0% { box-shadow: 0 0 0 rgba(96,165,250,0.25); }
+  50% { box-shadow: 0 0 14px rgba(96,165,250,0.35); }
+  100% { box-shadow: 0 0 0 rgba(96,165,250,0.25); }
+}
+#improveButton.attention {
+  animation: improvePulse 2s infinite;
+}
+
+/* ===== Improvement panel (slide-in) — matches BOL theme ===== */
+.improve-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 420px;
+  max-width: calc(100% - 40px);
+  height: calc(84vh);
+  background: linear-gradient(180deg,#071026,#07101a);
+  border-radius: 14px;
+  border: 1px solid rgba(148,163,184,0.04);
+  box-shadow: 0 40px 120px rgba(2,6,23,0.7);
+  transform: translateY(30px) scale(.98);
+  opacity: 0;
+  transition: transform .36s cubic-bezier(.2,.9,.2,1), opacity .26s;
+  z-index: 1201;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  backdrop-filter: blur(6px) saturate(.95);
+}
+
+/* yaha par improvement panel ko fix kiya gya hai  */
+/* ensure improvement panel is above everything and clickable */
+.improve-panel {
+  z-index: 1400; /* make sure it's above result overlay (1000) */
+  pointer-events: auto;
+}
+
+/* when result overlay is visible, keep panel accessible */
+.result-screen.show + #improvePanel,
+#improvePanel { pointer-events: auto; }
+
+/* reduce visual footprint a touch so it doesn't feel like a block */
+.improve-panel { width: 420px; max-height: 84vh; }
+
+.improve-panel.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* panel header */
+.improve-panel-header {
+  display:flex;align-items:center;justify-content:space-between;padding:14px 14px;border-bottom:1px solid rgba(255,255,255,0.02);
+}
+.improve-panel-title { font-weight:800; font-size:15px; }
+.improve-close { background:transparent;border:none;color:var(--muted);font-weight:800;cursor:pointer;padding:6px 8px;border-radius:8px }
+
+/* content area */
+.improve-panel-body { overflow:auto;padding:12px 14px; display:flex;flex-direction:column; gap:12px; }
+
+/* sections */
+.improve-section { background:rgba(255,255,255,0.01); border-radius:10px; padding:10px; border:1px solid rgba(255,255,255,0.02); }
+.improve-section h4 { margin-bottom:8px; font-size:13px }
+.tip-list li { margin-bottom:8px; color:var(--muted); font-size:14px }
+
+/* breathing UI */
+.breath-box { display:flex;gap:10px;align-items:center; }
+.breath-circle { width:64px;height:64px;border-radius:999px;background:linear-gradient(90deg,#0f1724,#0b1220);display:flex;align-items:center;justify-content:center;font-weight:800;color:#cfe9ff;box-shadow:0 10px 30px rgba(37,99,235,0.06) }
+.breath-label { color:var(--muted);font-size:13px }
+
+/* 7-day plan list */
+.day-item { display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);background:transparent;margin-bottom:8px; }
+.day-item small { color:var(--muted) }
+
+/* gamification */
+.gamify { display:flex;gap:12px;align-items:center }
+.xp-box { flex:1; }
+.xp-bar { height:8px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden }
+.xp-fill { height:100%; width:0; background:linear-gradient(90deg,var(--accent2),var(--accent1)); transition:width .6s cubic-bezier(.22,.9,.3,1) }
+.level { font-weight:800; font-size:14px }
+
+/* history list */
+.history-list { max-height:140px; overflow:auto; display:flex;flex-direction:column; gap:8px; }
+.history-item { display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.02);background:transparent; font-size:13px }
+
+/* canvas chart */
+.improve-chart { width:100%; height:100px; background:transparent; border-radius:8px }
+
+/* compact mobile */
+@media (max-width:520px){
+  .improve-panel { right:12px; left:12px; width:auto; height:78vh; bottom:12px; }
+  .breath-circle { width:56px;height:56px }
+}
+
+/* aggressive: remove browser focus glow for these UI bits */
+.audio-player *:focus,
+.play-pill:focus,
+.audio-btn:focus,
+#playAudioBtnPolished:focus,
+button:focus,
+a:focus,
+input:focus,
+audio:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* For Firefox inner focus */
+button::-moz-focus-inner { border: 0; }
+
+/* prevent tap highlight on mobile */
+.audio-player * { -webkit-tap-highlight-color: transparent; }
+
+/* if you prefer to keep keyboard focus visible, switch to:
+   :focus:not(:focus-visible) { outline: none; box-shadow:none }
+   but you asked to hide it, so above removes both. */
+
+
+remove blue focus glow from custom audio controls
+.audio-player *:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* css of audio player  */
+.audio-player * {
+  -webkit-tap-highlight-color: transparent;
+}
+.audio-player {
+
+  margin-top:20px;
+
+  padding:18px 20px;
+
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.02)
+    );
+
+  backdrop-filter: blur(16px) saturate(1.6);
+
+  border-radius:18px;
+
+  border:1px solid rgba(255,255,255,0.06);
+
+  box-shadow:
+    0 25px 70px rgba(2,6,23,0.75),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+
+  transition: all .25s ease;
+}
+.audio-player:hover{
+
+  transform:translateY(-3px);
+
+  border-color:rgba(96,165,250,0.35);
+
+  box-shadow:
+    0 35px 90px rgba(37,99,235,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.audio-btn {
+
+  width:46px;
+  height:46px;
+
+  border-radius:999px;
+
+  background:
+    radial-gradient(circle at 30% 20%,
+      #7c3aed,
+      #2563eb
+    );
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-size:18px;
+
+  color:white;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 10px 30px rgba(37,99,235,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease;
+}
+
+.audio-btn:active {
+  transform: scale(0.92);
+}
+
+.audio-timeline {
+  flex: 1;
+  height: 5px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 5px;
+  overflow: hidden;
+}
+#audioProgress {
+
+  height:100%;
+  width:0;
+
+  background:
+    linear-gradient(90deg,
+      #2563eb,
+      #60a5fa,
+      #7c3aed
+    );
+
+  box-shadow:
+    0 0 12px rgba(96,165,250,0.6);
+}
+
+
+.audio-time {
+  font-size: 12px;
+  color: #d1d5db;
+  width: 40px;
+  text-align: right;
+}
+
+/* === EDIT START: Premium audio player (overrides previous rules) === */
+.audio-player {
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px) saturate(1.4);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+.audio-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #7c3aed, #2563eb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(37,99,235,0.45);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.audio-btn:active {
+
+  transform: scale(0.92);
+
+  box-shadow:
+    0 5px 15px rgba(37,99,235,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.audio-timeline {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.audio-time {
+  width: 48px;
+  text-align: right;
+  font-size: 12px;
+  color: #b7c1d1;
+}
+/* === EDIT END: Premium audio player === */
+
+/* ===== PAGE BLUR WHEN RESULT OPEN ===== */
+.page.blurred {
+  filter: blur(8px) saturate(.9) brightness(.55);
+  transition: filter 260ms cubic-bezier(.2,.9,.2,1);
+  pointer-events: none; /* makes underlying page inert while overlay is open */
+  user-select: none;
+}
+
+/* allow specific interactive elements to still be focusable if needed:
+   we will remove .blurred when reopening modal or when we want clicks */
+.page.blurred a,
+.page.blurred button {
+  pointer-events: none;
+}
+
+/* ===== Make record modal content center the mic reliably ===== */
+.record-modal .record-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ensure mic button visually centered & larger on small screens */
+.mic-button {
+  margin: 12px auto;
+  min-width: 120px;
+}
+
+/* ===== Bigger, colored result action buttons ===== */
+.play-pill {
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 12px;
+  background: linear-gradient(90deg,#111827,#0b1220);
+  color: #e6eefc;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 8px 20px rgba(2,6,23,0.6);
+}
+
+/* Make play pill more vivid when audio exists */
+.play-pill.available {
+  background: linear-gradient(90deg,#1f2937,#0f1724);
+  border: 1px solid rgba(96,165,250,0.18);
+  box-shadow: 0 10px 30px rgba(37,99,235,0.12);
+}
+
+/* action buttons (Save / Retake / Close) — bigger + color */
+.btn.primary {
+  font-size: 15px;
+  padding: 12px 16px;
+  letter-spacing: 0.01em;
+}
+
+.btn.ghost {
+  font-size: 15px;
+  padding: 10px 14px;
+}
+
+/* retake = subtle outline, close = muted dark, save = green */
+#retakeBtnPolished { background: transparent; color: #e6eefc; border: 1px solid rgba(148,163,184,0.06); }
+#closeResultBtn { background: transparent; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.02); }
+#saveBtn { background: linear-gradient(90deg,#10b981,#06b6d4); color: #021020; border: none; box-shadow: 0 12px 30px rgba(16,185,129,0.12); }
+
+/* slightly larger text in feedback area */
+.result-feedback { font-size: 15px; line-height:1.5; }
+
+/* ensure audio control shows nicely */
+#audioContainerPolished { width:100%; display:flex; align-items:center; gap:12px; }
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#020617;
+  --muted:#9ca3af;
+  --text:#e5e7eb;
+  --accent1:#60a5fa;
+  --accent2:#22c55e;
+  --card:#081226;
+}
+/* === EDIT START: Soft atmospheric gradient (body override) === */
+body{
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",sans-serif;
+  background: radial-gradient(circle at 15% 20%, rgba(99,102,241,0.18), transparent 60%),
+              radial-gradient(circle at 85% 80%, rgba(34,197,94,0.08), transparent 70%),
+              #020617;
+  color:var(--text);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+/* === EDIT END === */
+.page{max-width:1120px;margin:0 auto;padding:28px 20px 80px}
+.nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.nav-left{display:flex;gap:12px;align-items:center}
+.logo-circle{width:40px;height:40px;border-radius:999px;background:radial-gradient(circle at 30% 10%, #7fb7ff,#2563eb);display:flex;align-items:center;justify-content:center;font-weight:800;color:#07122a}
+.logo-text-main{font-weight:700;letter-spacing:.06em}
+.nav-tagline{font-size:12px;color:var(--muted)}
+
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.05fr);gap:32px;align-items:start}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(148,163,184,0.06);font-size:12px;color:var(--muted);margin-bottom:14px}
+.pill-dot{width:8px;height:8px;border-radius:999px;background:var(--accent2);box-shadow:0 0 10px rgba(34,197,94,.9)}
+
+.hero-title{font-size:clamp(30px,4.6vw,48px);line-height:1.02;font-weight:800;margin-bottom:8px}
+.hero-title .blue{color:var(--accent1)}
+.hero-subtitle{color:var(--muted);line-height:1.6;max-width:640px;margin-bottom:12px;font-size:15px}
+.hero-subtitle b{color:var(--text)}
+.hero-bullets{margin:14px 0 18px;padding-left:18px;color:var(--muted);list-style:disc}
+.hero-bullets li{margin-bottom:8px;font-size:14px}
+.hero-actions{display:flex;gap:12px;margin-bottom:8px}
+.primary-btn{background:linear-gradient(90deg,var(--accent1),#2563eb);border:none;color:white;padding:12px 18px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:0 12px 30px rgba(37,99,235,0.14)}
+.secondary-btn{background:transparent;border:1px solid rgba(148,163,184,0.06);color:var(--text);padding:10px 16px;border-radius:999px;cursor:pointer}
+
+.snapshot-card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border-radius:24px;padding:22px;border:1px solid rgba(148,163,184,0.06);box-shadow:0 28px 80px rgba(2,6,23,0.7)}
+.snapshot-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;color:var(--muted);font-size:13px}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.14);color:#bbf7d0;font-size:13px}
+.score-label{font-size:12px;color:var(--muted);margin-bottom:6px}
+.score-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.score-main{font-size:36px;font-weight:800}
+.score-main span{font-size:13px;color:var(--muted);font-weight:600;margin-left:6px}
+.score-bar{width:100%;height:8px;background:rgba(31,41,55,0.9);border-radius:999px;margin-bottom:14px;overflow:hidden}
+.score-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent2),#86efac,#60a5fa);width:78%}
+
+.metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.metric-card{background:rgba(255,255,255,0.01);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,0.02)}
+.metric-label{font-size:12px;color:var(--muted);margin-bottom:6px}
+.metric-main{font-size:14px;font-weight:700;color:var(--text)}
+.metric-tag{font-size:11px;padding:4px 8px;border-radius:999px;background:rgba(34,197,94,0.12);color:#bbf7d0;display:inline-block;margin-top:8px}
+
+.snapshot-footer{font-size:13px;color:var(--muted);border-top:1px dashed rgba(55,65,81,0.4);padding-top:10px;margin-top:8px}
+
+.section{margin-top:44px}
+.section-title{font-size:20px;font-weight:800;margin-bottom:8px}
+.section-subtitle{max-width:720px;color:var(--muted);margin-bottom:18px}
+.three-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.info-card{background:rgba(255,255,255,0.01);border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,0.02);font-size:14px;color:var(--muted)}
+.info-card-title{font-weight:700;color:var(--text);margin-bottom:6px}
+.info-step-label{font-size:11px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;font-weight:700}
+
+ul.future-list{padding-left:18px;color:var(--muted);margin-top:10px}
+ul.future-list li{margin-bottom:8px}
+
+.footer-line{margin-top:28px;font-size:12px;color:var(--muted);border-top:1px solid rgba(31,41,55,0.6);padding-top:12px}
+
+.record-modal{position:fixed;inset:0;z-index:900;display:none;align-items:center;justify-content:center}
+.record-modal.show{display:flex}
+.record-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px)}
+.record-modal-content{position:relative;max-width:520px;width:92%;background:linear-gradient(180deg,#071028,#071020);border-radius:18px;padding:20px;border:1px solid rgba(148,163,184,0.04);box-shadow:0 30px 80px rgba(2,6,23,0.85)}
+.record-modal-close{position:absolute;right:12px;top:10px;border:none;background:transparent;color:var(--muted);font-size:20px;cursor:pointer}
+.record-title{font-size:18px;font-weight:800;margin-bottom:6px}
+.record-subtitle{font-size:13px;color:var(--muted);margin-bottom:10px}
+.mic-button{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 16px;border-radius:999px;border:1px solid rgba(59,130,246,0.12);background:linear-gradient(180deg,#0d254a,#071028);cursor:pointer}
+.mic-button.recording{border-color:rgba(34,197,94,0.9);box-shadow:0 6px 30px rgba(34,197,94,0.06)}
+.mic-icon{font-size:26px}
+.mic-label{font-size:13px;color:var(--text)}
+.waveform{display:flex;justify-content:center;align-items:flex-end;gap:6px;height:50px;margin:14px 0}
+.waveform .bar{width:6px;height:10px;border-radius:999px;background:linear-gradient(to top,var(--accent2),var(--accent1));opacity:.24;transform-origin:bottom;transition:height .12s linear,opacity .12s linear}
+
+.record-suggestion{text-align:center;color:var(--text);min-height:18px;margin-bottom:8px}
+.record-timer{text-align:center;font-weight:800}
+.submit-btn{width:100%;padding:10px;border-radius:999px;border:none;background:linear-gradient(90deg,#2563eb,#22c55e);color:white;font-weight:800;cursor:pointer}
+.submit-btn:disabled{opacity:0.45;cursor:not-allowed}
+.result-screen{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:none;
+  align-items:flex-start;
+  justify-content:flex-start;
+
+  background:
+    radial-gradient(circle at 20% 10%, rgba(59,130,246,0.10), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(124,58,237,0.10), transparent 50%),
+    #020617;
+
+  padding:60px 40px;
+}
+
+.result-screen.show{
+  display:flex;
+}
+.result-inner{
+  width:100%;
+  max-width:1100px;
+  display:grid;
+  grid-template-columns:340px 1fr;
+  gap:28px;
+
+  align-items:center;
+  margin:0 auto;
+}
+.result-ring-wrap{
+  justify-self:start;
+}
+
+.result-card{
+  justify-self:stretch;
+}
+
+.result-ring-wrap{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+
+  border-radius:20px;
+
+  padding:28px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border:1px solid rgba(255,255,255,0.04);
+
+  box-shadow:0 30px 80px rgba(2,6,23,0.7);
+}
+.ring{width:160px;height:160px;position:relative; /* keep circle constrained */ }
+.ring svg{transform:rotate(-90deg); display:block;}
+.ring .bg{stroke:rgba(255,255,255,0.05);stroke-width:14;fill:none}
+.ring .fg {
+  fill: none;
+  stroke: url(#gradScore);
+  stroke-width: 10;
+  stroke-linecap: round;
+
+  /* rotation so ring top se start ho */
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+
+  /* ring math */
+  stroke-dasharray: 439;
+  stroke-dashoffset: 439;
+}
+
+.center-score{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;box-sizing:border-box;padding:8px;text-align:center;pointer-events:none}
+.center-score .num{font-size:34px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.center-score .label{font-size:12px;color:var(--muted)}
+
+.center-score .num {
+  font-size: 46px !important;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.center-score .label {
+  font-size: 13px !important;
+  color: #aab4c8 !important;
+  margin-top: 4px;
+}
+
+.ring {
+  overflow: hidden; /* stop center text visually escaping the ring */
+  border-radius: 999px;
+}
+.ring svg { display:block; }
+@media (max-width:420px){
+  .center-score .num { font-size:32px !important; }
+}
+.result-card{
+
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.01)
+    );
+
+  border-radius:20px;
+
+  padding:26px;
+
+  border:1px solid rgba(255,255,255,0.06);
+
+  box-shadow:
+    0 30px 90px rgba(2,6,23,0.75),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:18px;
+}
+.result-title{
+
+  font-weight:800;
+
+  font-size:22px;
+
+  letter-spacing:-0.01em;
+
+  color:#e6edf7;
+}
+
+.result-subtitle{
+
+  color:#94a3b8;
+
+  font-size:14px;
+
+  margin-top:-6px;
+}
+.metrics-row{
+
+  display:flex;
+
+  gap:14px;
+
+  margin-top:6px;
+
+  margin-bottom:6px;
+}
+
+.metric{
+  flex:1;
+
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.015)
+    );
+
+  padding:18px 16px;
+
+  border-radius:14px;
+
+  border:1px solid rgba(255,255,255,0.05);
+
+  box-shadow:
+    0 10px 30px rgba(2,6,23,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
+}
+.metric:hover{
+  transform:translateY(-4px);
+
+  border-color:rgba(96,165,250,0.35);
+
+  box-shadow:
+    0 18px 50px rgba(37,99,235,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.m-label{
+  font-size:12px;
+
+  color:#94a3b8;
+
+  margin-bottom:6px;
+
+  letter-spacing:.04em;
+
+  text-transform:uppercase;
+
+  font-weight:600;
+}
+
+.m-value{
+  font-weight:800;
+
+  font-size:20px;
+
+  color:#e6edf7;
+
+  letter-spacing:-0.02em;
+}
+
+
+.result-card {
+  padding: 22px !important;
+}
+
+.result-feedback {
+  margin-top: 16px !important;
+  line-height: 1.55 !important;
+}
+.result-feedback{
+
+  background:
+    linear-gradient(180deg,
+      rgba(37,99,235,0.08),
+      rgba(37,99,235,0.02)
+    );
+
+  padding:16px;
+
+  border-radius:14px;
+
+  border:1px solid rgba(96,165,250,0.18);
+
+  color:#dbeafe;
+
+  font-size:15px;
+
+  line-height:1.6;
+
+  margin-top:4px;
+}
+
+.audio-line{display:flex;gap:10px;align-items:center;margin-top:12px}
+.play-pill{padding:8px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+.result-actions{
+
+  display:flex;
+
+  gap:12px;
+
+  margin-top:12px;
+
+  padding-top:14px;
+
+  border-top:1px solid rgba(255,255,255,0.04);
+}
+.btn{padding:10px 14px;border-radius:999px;border:none;cursor:pointer}
+.btn.primary{background:linear-gradient(90deg,#2563eb,#22c55e);color:white}
+.btn.ghost{background:transparent;border:1px solid rgba(148,163,184,0.06);color:var(--text)}
+
+@media (max-width:920px){.hero-grid{grid-template-columns:1fr}.result-inner{grid-template-columns:1fr}.snapshot-card{margin-top:16px}}
+@media (max-width:520px){.three-grid{grid-template-columns:1fr}}
+
+.nav-username {
+  font-size: 15px;
+  color: #55f605;
+  margin-top: 2px;
+  letter-spacing: 0.3px;
+}
+
+.mic-button {
+  background: radial-gradient(circle at 40% 30%, #0d1c3b, #07111f);
+  box-shadow: 0 0 20px rgba(96,165,250,0.12);
+  transition: box-shadow .3s ease, transform .2s ease;
+}
+
+.mic-button.recording {
+  box-shadow: 0 0 30px rgba(34,197,94,0.45) !important;
+  transform: scale(1.04);
+}
+
+#improveButton {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(96,165,250,0.28) !important;
+}
+
+#improveButton.attention {
+  animation: improvePulse 1.4s infinite ease-in-out !important;
+}
+
+.tip-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two columns: immediate | deeper */
+  gap: 8px;
+}
+.tips-column { padding: 6px; }
+.tips-column h5 { margin: 0 0 8px 0; font-size:13px; color:#cfe9ff; font-weight:800; }
+.tips-column ul { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px }
+.tip-item {
+  background: rgba(255,255,255,0.01);
+  border: 1px solid rgba(255,255,255,0.02);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  display:flex; align-items:flex-start; gap:8px;
+}
+.tip-item .dot { width:8px;height:8px;border-radius:999px;margin-top:6px;flex-shrink:0 }
+.tip-immediate .dot { background: #22c55e; box-shadow:0 4px 12px rgba(34,197,94,0.07) }
+.tip-deeper .dot { background: #60a5fa; box-shadow:0 4px 12px rgba(96,165,250,0.06) }
+
+.btn.added {
+  background: linear-gradient(90deg,#22c55e,#60a5fa);
+  color: #021020;
+  border: none;
+  box-shadow: 0 12px 30px rgba(34,197,94,0.12), 0 0 18px rgba(96,165,250,0.08);
+  font-weight: 800;
+  transition: transform .12s ease, box-shadow .18s ease;
+}
+.btn.added:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(34,197,94,0.16), 0 0 30px rgba(96,165,250,0.12);
+}
+.btn.added:focus { outline: 2px solid rgba(96,165,250,0.16); }
+.analysis-loader{
+  position:fixed;
+  inset:0;
+  background: radial-gradient(circle at center, #0b1220, #060a14 70%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .3s ease;
+}
+.result-screen.show{
+  display:flex;
+}
+
+.analysis-loader.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* container keeps everything controlled */
+.loader-container{
+  position:relative;
+  width:130px;
+  height:130px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}.loader-ring{
+  position:absolute;
+  width:130px;
+  height:130px;
+  border-radius:50%;
+
+  background: conic-gradient(
+    from 0deg,
+    #3b82f6,
+    transparent 40%
+  );
+
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), white 0);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 6px), white 0);
+
+  animation:spin 2.4s linear infinite;
+  will-change: transform;
+}
+
+
+/* LOGO — never rotates */
+.loader-logo{
+  width:80px;
+  height:80px;
+  object-fit:contain;
+  z-index:2;
+}
+
+/* animation */
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* text */
+.loader-text{
+  margin-top:28px;
+  font-size:18px;
+  font-weight:600;
+  color:#e6edf7;
+  letter-spacing:.4px;
+}
+
+.loader-sub{
+  margin-top:8px;
+  font-size:14px;
+  color:#94a3b8;
+}
+.session-top-row{
+  display:grid;
+  grid-template-columns:340px 1fr;
+  gap:24px;
+  align-items:center;
+}
+
+/* =====================================================================
+   ACCOUNT SECTION PATCH — Tasks 1, 2, 3
+   Replaces previous .top-right / .account-box / .account-info rules
+   ===================================================================== */
+
+/* Outer wrapper: column stack so version-tag sits above account-box */
+.top-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* keeps the whole block right-aligned in the nav */
+  gap: 0;
+}
+
+/* Inner column block: version-tag → name/email+button, all left-aligned */
+.account-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* left-align version-tag, name, email with each other */
+  gap: 5px;
+}
+
+/* Version tag — top of the block */
+.version-tag {
+  font-size: 11px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Row: name+email on the left, logout button on the right */
+.account-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Name + email stacked tightly */
+.account-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Name — matches nav body text weight */
+.account-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #dde6f5;
+  line-height: 1.2;
+}
+
+/* Email — muted, softer weight */
+.account-email {
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(180, 200, 230, 0.45);
+  line-height: 1.2;
+}
+
+/* Logout button — unchanged size/padding, refined hover */
+.logout-btn {
+  padding: 5px 13px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 999px;
+  border: 1px solid rgba(120, 160, 255, 0.20);
+  background: rgba(120, 160, 255, 0.06);
+  color: rgba(180, 210, 255, 0.80);
+  cursor: pointer;
+  white-space: nowrap;
+  /* Task 3: smooth transition */
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    color 0.22s ease;
+}
+
+/* Task 3: subtle hover — border glow, slight background tint, no size change */
+.logout-btn:hover {
+  background: rgba(120, 160, 255, 0.13);
+  border-color: rgba(120, 160, 255, 0.42);
+  box-shadow: 0 0 10px rgba(100, 140, 255, 0.14);
+  color: rgba(210, 228, 255, 0.95);
+}
+
+.logout-btn:active {
+  background: rgba(120, 160, 255, 0.18);
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+
+/* mobile responsiveness */
+/* =============================================================
+   MOBILE RESPONSIVENESS ADDITIONS — backup5.css
+   Append these rules to the END of your existing backup5.css
+   Rules: no HTML changes, no JS selector changes, CSS only
+   Target: screens ≤ 768px  |  prevents horizontal scroll
+   ============================================================= */
+
+/* ── Global: prevent ALL horizontal overflow ── */
+@media (max-width: 768px) {
+
+  html, body {
+    overflow-x: hidden; /* hard-stop horizontal scroll */
+    width: 100%;
+  }
+
+  /* ── Page wrapper: tighten side padding ── */
+  .page {
+    padding: 16px 14px 60px; /* was 28px 20px 80px */
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV: stack brand block + account block vertically ── */
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  /* Right-side account block: full width, left-aligned */
+  .top-right {
+    width: 100%;
+    align-items: flex-start; /* already flex-column, just override end-align */
+  }
+
+  .account-block {
+    width: 100%;
+  }
+
+  /* Account box: wrap if name+email+button don't fit */
+  .account-box {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .account-name {
+    font-size: 12px;
+  }
+
+  .account-email {
+    font-size: 10px;
+  }
+
+  /* Logout button: keep compact */
+  .logout-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  /* ── HERO GRID: single column, text then snapshot ── */
+  .hero-grid {
+    grid-template-columns: 1fr; /* was 1.3fr 1.05fr */
+    gap: 24px;
+  }
+
+  .hero-title {
+    font-size: clamp(24px, 7vw, 36px);
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  /* Hero action buttons: stack on very small screens */
+  .hero-actions {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+    width: 100%;        /* full-width tappable buttons */
+    text-align: center;
+    padding: 13px 16px;
+  }
+
+  /* ── SNAPSHOT CARD: full width ── */
+  .snapshot-card {
+    margin-top: 0;
+    border-radius: 16px;
+    padding: 16px;
+  }
+
+  .score-main {
+    font-size: 28px;
+  }
+
+  /* Metric grid inside snapshot: 2 cols stay, just tighten */
+  .metric-grid {
+    gap: 8px;
+  }
+
+  .metric-card {
+    padding: 10px;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section {
+    margin-top: 32px;
+  }
+
+  .section-title {
+    font-size: 17px;
+  }
+
+  /* ── THREE GRID: already has 520px breakpoint, extend to 768px ── */
+  .three-grid {
+    grid-template-columns: 1fr; /* was repeat(3,…) */
+    gap: 10px;
+  }
+
+  /* How-it-works 3-col step grid */
+  div[style*="grid-template-columns:repeat(3"] {
+    /* inline-style grid — override via wrapper if possible;
+       if not overridable, the section still wraps via min-content */
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  /* ── RECORD MODAL: fit small screens ── */
+  .record-modal-content {
+    width: 94%;
+    padding: 16px 14px;
+    border-radius: 14px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .record-title {
+    font-size: 16px;
+  }
+
+  .submit-btn {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  /* ── ANALYSIS LOADER: safe on small screens ── */
+  .loader-text {
+    font-size: 15px;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .loader-sub {
+    font-size: 12px;
+    text-align: center;
+    padding: 0 20px;
+  }
+}
+
+/* ── Extra-small screens: 380px and below ── */
+@media (max-width: 380px) {
+
+  .logo-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .logo-text-main {
+    font-size: 14px;
+  }
+
+  .nav-tagline,
+  .nav-username {
+    font-size: 11px;
+  }
+
+  .hero-title {
+    font-size: 22px;
+  }
+}

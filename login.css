@@ -1,0 +1,1544 @@
+/* ===================================================================
+   BOL — Break Your Stage Fear
+   login.css · Scroll-driven layered animation experience
+   Font: Sora (display) + DM Mono (accent text)
+   Theme: Dark atmospheric · Blue-purple SaaS
+=================================================================== */
+
+/* ─── Design Tokens ────────────────────────────────────────────── */
+:root {
+  --bg:       #020617;
+  --muted:    #9ca3af;
+  --text:     #e5e7eb;
+  --accent1:  #60a5fa;
+  --accent2:  #22c55e;
+  --card:     #081226;
+
+  /* Extended palette */
+  --violet:      #818cf8;
+  --purple-deep: #7c3aed;
+  --teal:        #2dd4bf;
+  --amber:       #fbbf24;
+
+  /* Glass surfaces */
+  --glass-bg:     rgba(8, 18, 38, 0.70);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-blur:   blur(18px);
+
+  /* Typography */
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'SF Mono', monospace;
+
+  /* Animation */
+  --ease-reveal: cubic-bezier(0.22, 0.9, 0.3, 1);
+  --ease-lift:   cubic-bezier(0.34, 1.2, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-display);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.18), transparent 60%),
+    radial-gradient(circle at 85% 80%, rgba(34, 197, 94, 0.08),  transparent 70%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--font-display); cursor: pointer; border: none; background: none; }
+input  { font-family: var(--font-display); outline: none; }
+svg    { display: block; flex-shrink: 0; }
+
+
+/* ===================================================================
+   AMBIENT BACKGROUND ORBS
+   Fixed behind everything — give depth and atmosphere
+=================================================================== */
+
+.ambient-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  will-change: transform;
+  animation: orbDrift var(--dur, 20s) ease-in-out infinite;
+}
+
+.orb--violet {
+  width: 700px; height: 700px;
+  top: -20%; left: -15%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, transparent 70%);
+  --dur: 24s;
+  animation-delay: -3s;
+}
+.orb--blue {
+  width: 500px; height: 500px;
+  top: 35%; left: 50%;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.14) 0%, transparent 70%);
+  --dur: 18s;
+  animation-delay: -7s;
+}
+.orb--green {
+  width: 600px; height: 600px;
+  bottom: -15%; right: -10%;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.10) 0%, transparent 70%);
+  --dur: 28s;
+  animation-delay: -12s;
+}
+
+/* Organic drift — each orb moves on a unique elliptical path */
+@keyframes orbDrift {
+  0%   { transform: translate(0,    0)    scale(1);    }
+  25%  { transform: translate(30px, -40px) scale(1.04); }
+  50%  { transform: translate(-20px, 30px) scale(0.97); }
+  75%  { transform: translate(40px,  20px) scale(1.02); }
+  100% { transform: translate(0,    0)    scale(1);    }
+}
+
+
+/* ===================================================================
+   SECTION 1 · HERO
+=================================================================== */
+
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(20px, 5vw, 80px);
+  overflow: hidden;
+}
+
+/* ── Nav ── */
+.hero__nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px clamp(24px, 5vw, 56px);
+  /* Fade down after blobs settle */
+  opacity: 0;
+  animation: navIn 0.7s var(--ease-reveal) 0.4s forwards;
+}
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav__logo-mark {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: radial-gradient(circle at 30% 25%, #93c5fd, #1d4ed8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  font-weight: 800;
+  color: #060f24;
+  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.35);
+}
+
+.nav__wordmark {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text);
+}
+
+.nav__tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  padding: 4px 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Hero body — animated on load ── */
+.hero__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+  max-width: 800px;
+}
+
+/* Eyebrow */
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 16px;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.02);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  /* Staggered fade-up */
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeUp 0.7s var(--ease-reveal) 0.55s forwards;
+}
+
+.eyebrow__pulse {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent2);
+  box-shadow: 0 0 10px rgba(34,197,94,0.7);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(34,197,94,0.6); }
+  50%       { opacity: 0.7; box-shadow: 0 0 18px rgba(34,197,94,0.9); }
+}
+
+/* Headline — two-line cinematic */
+.hero__headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: clamp(48px, 9vw, 96px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+}
+
+/* Each line fades up individually — staggered via data-index */
+.hero__line {
+  display: block;
+  opacity: 0;
+  transform: translateY(32px) scale(0.97);
+  animation: headlineReveal 0.9s var(--ease-reveal) forwards;
+}
+
+.hero__line[data-index="0"] { animation-delay: 0.7s; }
+.hero__line[data-index="1"] { animation-delay: 0.88s; }
+
+/* Gradient accent line */
+.hero__line--gradient {
+  background: linear-gradient(130deg, var(--accent1) 0%, var(--violet) 50%, var(--purple-deep) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtext */
+.hero__sub {
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 1.4vw, 13.5px);
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: fadeUp 0.7s var(--ease-reveal) 1.1s forwards;
+}
+
+/* ── Scroll cue ── */
+.hero__scroll-cue {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease-reveal) 1.5s forwards;
+  /* Fades out as user scrolls — handled by JS */
+  transition: opacity 0.4s;
+}
+
+.scroll-cue__mouse {
+  width: 22px; height: 34px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 11px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.scroll-cue__wheel {
+  width: 3px; height: 7px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 2px;
+  animation: wheelScroll 1.8s ease-in-out infinite;
+}
+
+@keyframes wheelScroll {
+  0%, 100% { transform: translateY(0); opacity: 1;   }
+  60%       { transform: translateY(8px); opacity: 0; }
+}
+
+.scroll-cue__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(156,163,175,0.5);
+}
+
+/* Bottom gradient fade into next section */
+.hero__edge-fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+}
+
+
+/* ===================================================================
+   SECTION 2 · FEATURES
+=================================================================== */
+
+.features-section {
+  position: relative;
+  z-index: 1;
+  padding: 100px clamp(20px, 6vw, 100px) 80px;
+}
+
+/* Section label row */
+.features-section__label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 72px;
+
+  /* Pre-reveal state — set by JS before IntersectionObserver */
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease-reveal), transform 0.7s var(--ease-reveal);
+}
+
+.features-section__label.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-label__rule {
+  width: 80px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12));
+}
+.section-label__rule:last-child {
+  background: linear-gradient(90deg, rgba(255,255,255,0.12), transparent);
+}
+
+.section-label__text {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent1);
+}
+
+/* ── 2×2 card grid ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── Feature card ── */
+.feat-card {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  overflow: hidden;
+  cursor: default;
+
+  /* ── PRE-REVEAL STATE ── */
+  /* Left cards enter from bottom-left with negative rotation  */
+  /* Right cards enter from bottom-right with positive rotation */
+  opacity: 0;
+  transition:
+    opacity    0.75s var(--ease-reveal),
+    transform  0.75s var(--ease-reveal),
+    box-shadow 0.3s var(--ease-smooth);
+}
+
+/* Left-entry cards: tilt left, drift from bottom-left */
+.feat-card[data-dir="left"] {
+  transform: translateY(80px) translateX(-30px) rotate(-6deg);
+}
+
+/* Right-entry cards: tilt right, drift from bottom-right */
+.feat-card[data-dir="right"] {
+  transform: translateY(80px) translateX(30px) rotate(6deg);
+}
+
+/* ── REVEALED STATE — added by JS ── */
+.feat-card.show {
+  opacity: 1;
+  transform: translateY(0) translateX(0) rotate(0deg);
+  box-shadow:
+    0 24px 64px rgba(2, 6, 23, 0.6),
+    0 0 0 1px rgba(255,255,255,0.04) inset;
+}
+
+/* Stagger delays — controlled via data-delay attribute → JS sets style */
+/* (Delays applied in JS dynamically for precision) */
+
+/* Hover lift — only after .show applied */
+.feat-card.show:hover {
+  transform: translateY(-6px) rotate(0deg);
+  box-shadow:
+    0 36px 80px rgba(2, 6, 23, 0.7),
+    0 0 0 1px rgba(255,255,255,0.07) inset;
+}
+
+/* Inner glow accent — tinted per card */
+.feat-card__inner-glow {
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.feat-card__inner-glow--blue   { background: radial-gradient(circle, rgba(96,165,250,1), transparent 70%); }
+.feat-card__inner-glow--purple { background: radial-gradient(circle, rgba(129,140,248,1), transparent 70%); }
+.feat-card__inner-glow--teal   { background: radial-gradient(circle, rgba(45,212,191,1), transparent 70%); }
+.feat-card__inner-glow--amber  { background: radial-gradient(circle, rgba(251,191,36,1), transparent 70%); }
+
+/* Card head row */
+.feat-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.feat-card__num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(156,163,175,0.45);
+  letter-spacing: 0.1em;
+}
+
+.feat-card__icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent1);
+}
+
+/* Card title */
+.feat-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+/* Card description */
+.feat-card__desc {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* Chip tag */
+.feat-card__chip {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(156,163,175,0.5);
+  padding: 4px 10px;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.02);
+}
+
+
+/* ===================================================================
+   SECTION 3 · LOGIN
+=================================================================== */
+
+.login-section {
+  position: relative;
+  z-index: 1;
+  padding: 80px clamp(20px, 6vw, 100px) 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Node divider ── */
+.node-divider {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  max-width: 560px;
+  margin-bottom: 64px;
+}
+
+.node-divider__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.2), transparent);
+}
+
+.node-divider__circle {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(96,165,250,0.4);
+  background: rgba(96,165,250,0.15);
+  margin: 0 12px;
+  box-shadow: 0 0 12px rgba(96,165,250,0.3);
+}
+
+/* ── Login card wrap — pre/post reveal ── */
+.login-wrap {
+  width: 100%;
+  max-width: 440px;
+
+  /* Pre-reveal */
+  opacity: 0;
+  transform: translateY(60px) rotate(-2deg);
+  transition:
+    opacity  0.85s var(--ease-reveal),
+    transform 0.85s var(--ease-reveal);
+}
+
+.login-wrap.show {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+/* ── Glassmorphic card ── */
+.login-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  padding: 40px 36px;
+  box-shadow: 0 30px 80px rgba(2, 6, 23, 0.7);
+  overflow: hidden;
+}
+
+/* Top edge glow line */
+.login-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,0.55), rgba(96,165,250,0.35), transparent);
+}
+
+/* Aurora soft glow behind form */
+.login-card__aurora {
+  position: absolute;
+  top: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 320px; height: 200px;
+  background: radial-gradient(ellipse, rgba(99,102,241,0.12), transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+/* Card header */
+.login-card__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.login-card__logo-ring {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: radial-gradient(circle at 30% 25%, #93c5fd, #1d4ed8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: #06122a;
+  box-shadow: 0 8px 28px rgba(29,78,216,0.4);
+  flex-shrink: 0;
+}
+
+.login-card__title {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+
+.login-card__subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* ── Form ── */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-field__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+.form-field__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-field__forgot {
+  font-size: 12px;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+.form-field__forgot:hover { color: var(--accent1); }
+
+/* Input wrap */
+.form-field__wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.form-field__icon {
+  position: absolute;
+  left: 14px;
+  color: rgba(156,163,175,0.5);
+  pointer-events: none;
+  transition: color 0.2s;
+}
+
+.form-field__input {
+  width: 100%;
+  padding: 13px 14px 13px 42px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 14px;
+  transition:
+    border-color 0.2s var(--ease-smooth),
+    box-shadow   0.2s var(--ease-smooth),
+    background   0.2s;
+}
+.form-field__input::placeholder {
+  color: rgba(156,163,175,0.35);
+}
+.form-field__input:hover {
+  border-color: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04);
+}
+.form-field__input:focus {
+  border-color: rgba(96,165,250,0.5);
+  background: rgba(96,165,250,0.04);
+  box-shadow: 0 0 0 3px rgba(96,165,250,0.12), 0 0 20px rgba(96,165,250,0.07);
+}
+.form-field__wrap:focus-within .form-field__icon {
+  color: var(--accent1);
+}
+
+/* Error state */
+.form-field.has-error .form-field__input {
+  border-color: rgba(248,113,113,0.5);
+  box-shadow: 0 0 0 3px rgba(248,113,113,0.1);
+}
+
+/* Password right padding for toggle button */
+#passwordInput { padding-right: 44px; }
+
+/* Password visibility toggle */
+.form-field__toggle-pw {
+  position: absolute;
+  right: 13px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+.form-field__toggle-pw:hover { color: var(--text); }
+
+/* Field inline error */
+.form-field__error {
+  font-size: 12px;
+  color: #f87171;
+  display: block;
+  min-height: 16px;
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.form-field__error.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Global alert */
+.form-alert {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  background: rgba(248,113,113,0.07);
+  border: 1px solid rgba(248,113,113,0.22);
+  border-radius: 10px;
+  font-size: 13px;
+  color: #fca5a5;
+  animation: alertSlide 0.25s var(--ease-reveal) forwards;
+}
+@keyframes alertSlide {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Login button ── */
+.login-btn {
+  position: relative;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, var(--accent1), #2563eb);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.01em;
+  box-shadow: 0 10px 28px rgba(37,99,235,0.3), 0 0 0 1px rgba(255,255,255,0.08) inset;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.2s var(--ease-lift), box-shadow 0.2s var(--ease-smooth), filter 0.2s;
+}
+
+/* Shimmer sweep on hover */
+.login-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.55s var(--ease-smooth);
+}
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(37,99,235,0.4), 0 0 0 1px rgba(255,255,255,0.12) inset;
+  filter: brightness(1.07);
+}
+.login-btn:hover::before { left: 150%; }
+.login-btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 6px 18px rgba(37,99,235,0.22);
+}
+
+/* Loading state */
+.login-btn.loading .login-btn__label   { opacity: 0; }
+.login-btn.loading .login-btn__spinner { display: block; }
+
+.login-btn__label   { transition: opacity 0.15s; }
+.login-btn__spinner {
+  display: none;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.28);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+}
+@keyframes spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* Card footer note */
+.login-card__footer-note {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 24px;
+}
+.login-card__create-link {
+  color: var(--accent1);
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.login-card__create-link:hover { color: #93c5fd; text-decoration: underline; }
+
+/* ── Site footer ── */
+.site-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 56px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(156,163,175,0.35);
+}
+.site-footer__sep { opacity: 0.4; }
+
+
+/* ===================================================================
+   SHARED KEYFRAMES
+=================================================================== */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes headlineReveal {
+  from { opacity: 0; transform: translateY(32px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes navIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================================================================
+   AUTOCOMPLETE OVERRIDE
+=================================================================== */
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px rgba(8,18,38,0.95) inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+  caret-color: var(--text);
+  transition: background-color 9999s;
+}
+
+
+/* ===================================================================
+   RESPONSIVE
+=================================================================== */
+
+@media (max-width: 700px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .hero__headline {
+    font-size: clamp(38px, 11vw, 56px);
+  }
+
+  .hero__sub {
+    font-size: 10px;
+  }
+
+  .login-card {
+    padding: 32px 24px;
+  }
+
+  .features-section {
+    padding: 80px 20px 60px;
+  }
+
+  .login-section {
+    padding: 60px 20px 48px;
+  }
+
+  /* On mobile, all cards enter from below only (no side offset) */
+  .feat-card[data-dir="left"],
+  .feat-card[data-dir="right"] {
+    transform: translateY(60px) rotate(-4deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__nav { padding: 20px 20px; }
+
+  .feat-card { padding: 24px 20px; }
+
+  .site-footer { flex-direction: column; gap: 4px; text-align: center; }
+}
+
+
+
+/* signup modal overlay */
+ /* ── Modal overlay ── */
+    .signup-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(2, 6, 23, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.22, 0.9, 0.3, 1);
+    }
+    .signup-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── Modal card ── */
+    .signup-card {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: rgba(8, 18, 38, 0.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 22px;
+      padding: 40px 36px 36px;
+      box-shadow: 0 32px 80px rgba(2, 6, 23, 0.8), 0 0 0 1px rgba(99,102,241,0.12) inset;
+      transform: scale(0.92) translateY(24px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+    }
+    .signup-overlay.open .signup-card {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Top edge glow */
+    .signup-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 8%; right: 8%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(129,140,248,0.55), rgba(96,165,250,0.35), transparent);
+    }
+
+    /* Aurora */
+    .signup-card__aurora {
+      position: absolute;
+      top: -60px; left: 50%;
+      transform: translateX(-50%);
+      width: 320px; height: 180px;
+      background: radial-gradient(ellipse, rgba(129,140,248,0.10), transparent 70%);
+      filter: blur(30px);
+      pointer-events: none;
+    }
+
+    /* Close button */
+    .signup-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      color: rgba(156,163,175,0.7);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      z-index: 2;
+      font-family: 'Sora', system-ui, sans-serif;
+    }
+    .signup-close:hover {
+      background: rgba(255,255,255,0.08);
+      color: #e5e7eb;
+    }
+
+    /* Card header */
+    .signup-card__header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .signup-card__logo-ring {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 25%, #a5b4fc, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      color: #06122a;
+      box-shadow: 0 8px 28px rgba(79,70,229,0.4);
+      flex-shrink: 0;
+    }
+    .signup-card__title {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #e5e7eb;
+    }
+    .signup-card__subtitle {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-top: 3px;
+    }
+
+    /* Form */
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Input fields inside signup form */
+    .signup-form .form-field__input {
+      width: 100%;
+      padding: 13px 14px 13px 42px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      color: #e5e7eb;
+      font-size: 14px;
+      font-family: 'Sora', system-ui, sans-serif;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .signup-form .form-field__input::placeholder { color: rgba(156,163,175,0.35); }
+    .signup-form .form-field__input:hover {
+      border-color: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+    }
+    .signup-form .form-field__input:focus {
+      border-color: rgba(129,140,248,0.5);
+      background: rgba(129,140,248,0.04);
+      box-shadow: 0 0 0 3px rgba(129,140,248,0.12), 0 0 20px rgba(129,140,248,0.07);
+    }
+    .signup-form .form-field.has-error .form-field__input {
+      border-color: rgba(248,113,113,0.5);
+      box-shadow: 0 0 0 3px rgba(248,113,113,0.1);
+    }
+    .signup-form .form-field__wrap:focus-within .form-field__icon { color: #818cf8; }
+
+    /* Submit button */
+    .signup-btn {
+      position: relative;
+      width: 100%;
+      padding: 14px;
+      margin-top: 4px;
+      background: linear-gradient(90deg, #818cf8, #4f46e5);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Sora', system-ui, sans-serif;
+      color: #fff;
+      letter-spacing: 0.01em;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(79,70,229,0.3), 0 0 0 1px rgba(255,255,255,0.08) inset;
+      overflow: hidden;
+      isolation: isolate;
+      transition: transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1), box-shadow 0.2s, filter 0.2s;
+    }
+    .signup-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+      transform: skewX(-18deg);
+      transition: left 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .signup-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 44px rgba(79,70,229,0.4), 0 0 0 1px rgba(255,255,255,0.12) inset;
+      filter: brightness(1.07);
+    }
+    .signup-btn:hover::before { left: 150%; }
+    .signup-btn:active { transform: translateY(0) scale(0.98); }
+    .signup-btn.loading .signup-btn__label { opacity: 0; }
+    .signup-btn.loading .signup-btn__spinner { display: block; }
+    .signup-btn__label { transition: opacity 0.15s; }
+    .signup-btn__spinner {
+      display: none;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.28);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.65s linear infinite;
+    }
+
+    /* Footer note */
+    .signup-card__footer-note {
+      text-align: center;
+      font-size: 13px;
+      color: #9ca3af;
+      margin-top: 22px;
+    }
+    .signup-card__signin-link {
+      color: #818cf8;
+      font-weight: 500;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .signup-card__signin-link:hover { color: #a5b4fc; text-decoration: underline; }
+
+    /* Scrollbar */
+    .signup-card::-webkit-scrollbar { width: 4px; }
+    .signup-card::-webkit-scrollbar-track { background: transparent; }
+    .signup-card::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
+
+    @media (max-width: 480px) {
+      .signup-card { padding: 32px 24px 28px; }
+    }
+
+
+    /* =============================================================
+   MOBILE RESPONSIVENESS ADDITIONS — login.css
+   Append these rules to the END of your existing login.css
+   Rules: no HTML changes, no JS selector changes, CSS only
+   Target: screens ≤ 768px  |  prevents horizontal scroll
+   ============================================================= */
+
+/* ── Global: hard-stop horizontal overflow ── */
+@media (max-width: 768px) {
+
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* ── AMBIENT ORBS: scale down to prevent overflow ──
+     Orbs are position:fixed so they don't cause scroll,
+     but their blur radius can visually clip weirdly —
+     shrink them to safe sizes */
+  .orb--violet {
+    width: 360px;
+    height: 360px;
+    top: -10%;
+    left: -20%;
+  }
+
+  .orb--blue {
+    width: 260px;
+    height: 260px;
+    top: 30%;
+    left: 40%;
+  }
+
+  .orb--green {
+    width: 300px;
+    height: 300px;
+    bottom: -10%;
+    right: -15%;
+  }
+
+  /* ═══════════════════════════════════════
+     SECTION 1 · HERO
+  ═══════════════════════════════════════ */
+
+  .hero {
+    padding: 0 clamp(16px, 5vw, 32px);
+    /* Ensure hero text doesn't cause horizontal overflow */
+    overflow: hidden;
+  }
+
+  /* Nav: tighter padding, prevent overflow */
+  .hero__nav {
+    padding: 20px 20px;
+    /* Keep flex row — just tighten spacing */
+  }
+
+  .nav__logo-mark {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  .nav__wordmark {
+    font-size: 13px;
+  }
+
+  /* Beta tag: hide on very small nav to prevent overflow */
+  .nav__tag {
+    font-size: 10px;
+    padding: 3px 9px;
+  }
+
+  /* Hero body: tighter gap */
+  .hero__body {
+    gap: 20px;
+    max-width: 100%;
+    padding: 0 8px; /* extra inner padding to protect from edges */
+  }
+
+  /* Eyebrow pill: wrap text on very small screens */
+  .hero__eyebrow {
+    font-size: 10px;
+    padding: 5px 13px;
+    white-space: normal;    /* allow wrapping */
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+
+  /* Headline: clamp already handles font size,
+     but override letter-spacing to prevent overflow */
+  .hero__headline {
+    letter-spacing: -0.025em;  /* less tight on mobile */
+    gap: 2px;
+  }
+
+  /* Hero sub: allow wrapping, remove forced separators overflow */
+  .hero__sub {
+    font-size: 9.5px;
+    letter-spacing: 0.03em;
+    word-break: break-word;
+    /* The &ensp; separators can cause overflow — let line wrap */
+    white-space: normal;
+    line-height: 1.7;
+  }
+
+  /* Scroll cue: move up slightly so it doesn't get cut off */
+  .hero__scroll-cue {
+    bottom: 28px;
+  }
+
+  /* ═══════════════════════════════════════
+     SECTION 2 · FEATURES
+  ═══════════════════════════════════════ */
+
+  .features-section {
+    padding: 72px 16px 56px;
+  }
+
+  /* Section label: shrink rules on narrow screens */
+  .features-section__label {
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+
+  .section-label__rule {
+    width: 48px; /* was 80px — too wide at 360px */
+  }
+
+  .section-label__text {
+    font-size: 10.5px;
+    letter-spacing: 0.10em;
+    white-space: nowrap;
+  }
+
+  /* Cards grid: already has 700px→1col rule;
+     extend protection to full 768px range */
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 100%;
+  }
+
+  /* Cards: reduce padding, ensure full width */
+  .feat-card {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  /* On mobile, remove side-offset entrance animations —
+     cards already get this below 700px in the original CSS,
+     but repeat here for the 700–768px gap */
+  .feat-card[data-dir="left"],
+  .feat-card[data-dir="right"] {
+    transform: translateY(60px) rotate(-3deg);
+  }
+
+  /* Inner glow: slightly tighter */
+  .feat-card__inner-glow {
+    width: 120px;
+    height: 120px;
+    top: -30px;
+    right: -30px;
+  }
+
+  .feat-card__title {
+    font-size: 16px;
+  }
+
+  .feat-card__desc {
+    font-size: 13px;
+  }
+
+  .feat-card__icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* ═══════════════════════════════════════
+     SECTION 3 · LOGIN
+  ═══════════════════════════════════════ */
+
+  .login-section {
+    padding: 48px 16px 40px;
+  }
+
+  /* Node divider: scale down */
+  .node-divider {
+    max-width: 100%;
+    margin-bottom: 40px;
+  }
+
+  /* Login wrap: full width */
+  .login-wrap {
+    max-width: 100%;
+  }
+
+  /* Login card: tighter padding */
+  .login-card {
+    padding: 28px 20px 28px;
+    border-radius: 18px;
+  }
+
+  /* Card header: tighter gap */
+  .login-card__header {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .login-card__logo-ring {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+    border-radius: 10px;
+  }
+
+  .login-card__title {
+    font-size: 18px;
+  }
+
+  .login-card__subtitle {
+    font-size: 12px;
+  }
+
+  /* Form fields: comfortable tap targets */
+  .form-field__input {
+    font-size: 16px; /* prevents iOS zoom on focus (must be ≥ 16px) */
+    padding: 13px 14px 13px 42px;
+  }
+
+  /* Password field: keep right padding for toggle */
+  #passwordInput { padding-right: 44px; }
+
+  /* Login button: full width already, just ensure font size */
+  .login-btn {
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  /* Footer note */
+  .login-card__footer-note {
+    font-size: 12px;
+    margin-top: 20px;
+  }
+
+  /* Site footer: stack items vertically */
+  .site-footer {
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 36px;
+    text-align: center;
+  }
+
+  /* ═══════════════════════════════════════
+     SIGNUP MODAL
+  ═══════════════════════════════════════ */
+
+  /* Overlay: tighter padding so card doesn't clip edges */
+  .signup-overlay {
+    padding: 16px;
+    align-items: flex-end; /* slide up from bottom on mobile — feels native */
+  }
+
+  /* Card: full width, sheet style */
+  .signup-card {
+    max-width: 100%;
+    max-height: 88vh;         /* leave room to see overlay behind */
+    padding: 28px 18px 24px;
+    border-radius: 20px 20px 14px 14px; /* flat bottom corners for sheet feel */
+  }
+
+  /* Signup card header */
+  .signup-card__header {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .signup-card__logo-ring {
+    width: 38px;
+    height: 38px;
+    font-size: 17px;
+    border-radius: 10px;
+  }
+
+  .signup-card__title {
+    font-size: 18px;
+  }
+
+  .signup-card__subtitle {
+    font-size: 12px;
+  }
+
+  /* Signup form fields: prevent iOS zoom */
+  .signup-form .form-field__input {
+    font-size: 16px; /* ≥ 16px prevents iOS auto-zoom on focus */
+  }
+
+  /* Signup form gap: slightly tighter */
+  .signup-form {
+    gap: 14px;
+  }
+
+  /* Signup button */
+  .signup-btn {
+    font-size: 15px;
+    padding: 13px;
+  }
+
+  /* Footer note */
+  .signup-card__footer-note {
+    font-size: 12px;
+    margin-top: 16px;
+  }
+}
+
+/* ── 480px: extends the existing rule already in login.css ── */
+@media (max-width: 480px) {
+
+  /* Nav tag: hide entirely at very small width */
+  .nav__tag {
+    display: none;
+  }
+
+  /* Hero sub: break the long dot-separated string */
+  .hero__sub {
+    font-size: 9px;
+    /* The &ensp; · separators are in HTML — allow break after each */
+    word-spacing: -1px;
+  }
+
+  /* Feat cards: already 1col above, just tighten further */
+  .feat-card {
+    padding: 20px 16px;
+  }
+
+  .feat-card__title { font-size: 15px; }
+  .feat-card__desc  { font-size: 12.5px; }
+
+  /* Login card: tightest padding */
+  .login-card {
+    padding: 24px 16px 24px;
+  }
+
+  /* Signup card: already handled above, just confirm padding */
+  .signup-card {
+    padding: 24px 16px 22px;
+  }
+}
+
+/* ── 380px: extreme narrow ── */
+@media (max-width: 380px) {
+
+  .hero__nav {
+    padding: 16px 14px;
+  }
+
+  .nav__logo-mark {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .nav__wordmark {
+    font-size: 12px;
+  }
+
+  /* Eyebrow: hide the pulsing dot to save space */
+  .eyebrow__pulse {
+    display: none;
+  }
+
+  .hero__eyebrow {
+    font-size: 9px;
+    padding: 4px 10px;
+  }
+
+  /* Section label rule lines: even shorter */
+  .section-label__rule {
+    width: 28px;
+  }
+
+  .feat-card {
+    border-radius: 14px;
+  }
+
+  /* Login card: minimal padding */
+  .login-card {
+    padding: 20px 14px 20px;
+    border-radius: 14px;
+  }
+
+  .login-card__title  { font-size: 16px; }
+  .login-card__subtitle { font-size: 11px; }
+
+  /* Signup overlay: even tighter */
+  .signup-overlay { padding: 10px; }
+
+  .signup-card {
+    padding: 22px 14px 20px;
+    border-radius: 16px 16px 10px 10px;
+  }
+}
