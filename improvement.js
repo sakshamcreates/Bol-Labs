@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // ─────────────────────────────────────────────────────────────────
 async function loadSession(id, score) {
   try {
-    const res  = await fetch(`http://localhost:3001/api/session/${id}`);
+   fetch(`https://bol-backend-j3f2.onrender.com/api/session/${id}`)
     const data = await res.json();
 
     if (!data.ok) {
@@ -1060,10 +1060,10 @@ async function evaluateDrill(drillConfig, audioBlob) {
   try {
     const formData = new FormData();
     formData.append('audio', audioBlob, 'drill.webm');
-    const res = await fetch('http://localhost:3001/api/transcribe', {
-      method: 'POST',
-      body: formData
-    });
+   const res = await fetch('https://bol-backend-j3f2.onrender.com/api/transcribe', {
+  method: "POST",
+  body: formData
+});
     if (res.ok) backendData = await res.json();
   } catch (err) {
     console.warn('Drill backend call failed, using frontend signals:', err);
