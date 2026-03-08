@@ -362,24 +362,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 // ─────────────────────────────────────────────────────────────────
 async function loadSession(id, score) {
   try {
-   fetch(`https://bol-backend-j3f2.onrender.com/api/session/${id}`)
+
+    const res = await fetch(`https://bol-backend-j3f2.onrender.com/api/session/${id}`);
+
     const data = await res.json();
 
-    if (!data.ok) {
-      console.error('Session fetch failed');
+    if (!data || !data.session) {
+      console.error("Session fetch failed");
       return;
     }
 
-    console.log('SESSION DATA:', data.session);
+    console.log("SESSION DATA:", data.session);
 
-    // FIXED #7 — populateImprovement called exactly once with (session, score)
     populateImprovement(data.session, score);
 
   } catch (err) {
-    console.error('Session load error:', err);
+    console.error("Session load error:", err);
   }
 }
-
 /* ═══════════════════════════════════════════════════════════════
    RENDER FOCUS AREAS
 ═══════════════════════════════════════════════════════════════ */
