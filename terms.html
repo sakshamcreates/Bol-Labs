@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — BOL</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Backgrounds */
+      --bg-root:       #070b12;
+      --bg-deep:       #050810;
+      --bg-card:       #0c1221;
+      --bg-card-hover: #0f1629;
+      --bg-card-alt:   #0a1019;
+
+      /* Borders */
+      --border-ghost:  rgba(255,255,255,0.055);
+      --border-soft:   rgba(255,255,255,0.09);
+      --border-blue:   rgba(67,97,238,0.3);
+
+      /* Brand */
+      --blue:          #4361ee;
+      --blue-light:    #7a98f8;
+      --purple:        #7048e8;
+      --teal:          #4cc9f0;
+      --orange:        #ff4d1f;
+
+      /* Gradients */
+      --grad-brand:    linear-gradient(135deg, #4361ee 0%, #7048e8 100%);
+      --grad-brand-45: linear-gradient(45deg,  #4361ee 0%, #7048e8 100%);
+      --grad-glow-b:   radial-gradient(ellipse at center, rgba(67,97,238,0.14) 0%, transparent 68%);
+      --grad-glow-p:   radial-gradient(ellipse at center, rgba(112,72,232,0.09) 0%, transparent 68%);
+
+      /* Text */
+      --text-1: #eef2ff;
+      --text-2: #8a96b0;
+      --text-3: #546078;
+
+      /* Type */
+      --f-head: 'Bricolage Grotesque', sans-serif;
+      --f-body: 'DM Sans', sans-serif;
+      --f-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+
+      /* Radius */
+      --r-sm:  8px;
+      --r-md:  12px;
+      --r-lg:  16px;
+      --r-xl:  20px;
+      --r-2xl: 24px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-root);
+      color: var(--text-1);
+      font-family: var(--f-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─────────────────────────────────────────
+       LAYOUT HELPERS
+    ───────────────────────────────────────── */
+    .wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Section eye-brow label: "— SECTION NAME" */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--grad-brand);
+      flex-shrink: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       NAVBAR
+    ───────────────────────────────────────── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(7,11,18,0.8);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border-ghost);
+      transition: background 0.25s;
+    }
+    .navbar.scrolled {
+      background: rgba(7,11,18,0.97);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 7px;
+      background: var(--grad-brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--f-head);
+      font-weight: 800;
+      font-size: 16px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .logo-name {
+      font-family: var(--f-head);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    .nav-links a {
+      font-size: 14.5px;
+      font-weight: 400;
+      color: var(--text-2);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-1); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 17px;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--r-sm);
+      font-family: var(--f-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-1);
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 20px;
+      border-radius: var(--r-sm);
+      background: var(--grad-brand);
+      font-family: var(--f-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      transition: all 0.22s;
+      white-space: nowrap;
+    }
+    .btn-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(67,97,238,0.42);
+    }
+    .btn-cta .arrow { font-size: 16px; font-weight: 400; line-height: 1; }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      position: relative;
+      padding: 152px 2rem 96px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Radial glows */
+    .hero .glow-1 {
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 700px;
+      background: var(--grad-glow-b);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero .glow-2 {
+      position: absolute;
+      top: 40px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 500px;
+      background: var(--grad-glow-p);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(67,97,238,0.28);
+      background: rgba(7, 18, 4, 0.018);
+      font-family: var(--f-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 2rem;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      box-shadow: 0 0 6px var(--blue-light);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--blue-light); }
+      50%       { opacity: 0.5; box-shadow: 0 0 12px var(--blue-light); }
+    }
+
+    .hero-title {
+      font-family: var(--f-head);
+      font-size: clamp(52px, 8vw, 88px);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.02;
+      color: var(--text-1);
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px);
+      font-weight: 400;
+      color: var(--text-2);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.65;
+    }
+
+    .hero-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 7px 15px;
+      border: 1px solid var(--border-ghost);
+      border-radius: var(--r-sm);
+      background: rgba(81, 24, 152, 0);
+      font-family: var(--f-mono);
+      font-size: 11.5px;
+      letter-spacing: 0.05em;
+      color: var(--text-3);
+    }
+    .meta-pip {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--teal);
+      opacity: 0.8;
+    }
+
+    /* ─────────────────────────────────────────
+       SUMMARY CARDS  (4-col glass grid)
+    ───────────────────────────────────────── */
+    .summary-section {
+      padding: 0 0 80px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    /* Gradient border trick via background-clip */
+    .sum-card {
+      position: relative;
+      padding: 1.65rem;
+      border-radius: var(--r-lg);
+      border: 1px solid transparent;
+      /* Two-layer background: inner fill + outer gradient border */
+      background:
+        linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+        linear-gradient(140deg, rgba(67,97,238,0.01), rgba(112,72,232,0.01)) border-box;
+      cursor: default;
+      transition:
+        transform    0.32s cubic-bezier(0.34,1.5,0.64,1),
+        box-shadow   0.28s ease,
+        background   0.28s ease;
+      overflow: hidden;
+    }
+
+    /* Bottom accent bar */
+    .sum-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--grad-brand);
+      opacity: 0;
+      transition: opacity 0.28s ease;
+    }
+
+    .sum-card:hover {
+      transform: translateY(-7px);
+      box-shadow:
+        0 24px 48px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(67,97,238,0.18),
+        0 0 32px rgba(67,97,238,0.08);
+      background:
+        linear-gradient(var(--bg-card-hover), var(--bg-card-hover)) padding-box,
+        linear-gradient(140deg, rgba(67,97,238,0.5), rgba(112,72,232,0.5)) border-box;
+    }
+    .sum-card:hover::after { opacity: 1; }
+
+    .sum-icon {
+      width: 40px; height: 40px;
+      border-radius: var(--r-sm);
+      background: rgba(67,97,238,0.11);
+      border: 1px solid rgba(67,97,238,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 1.1rem;
+    }
+
+    .sum-title {
+      font-family: var(--f-head);
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--text-1);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.45rem;
+    }
+
+    .sum-text {
+      font-size: 13.5px;
+      color: var(--text-2);
+      line-height: 1.58;
+    }
+
+    /* ─────────────────────────────────────────
+       TERMS CARDS  (2-col grid)
+    ───────────────────────────────────────── */
+    .terms-section { padding: 0 0 80px; }
+
+    .terms-head {
+      margin-bottom: 2.8rem;
+    }
+    .terms-head .eyebrow { margin-bottom: 1rem; }
+
+    .terms-heading {
+      font-family: var(--f-head);
+      font-size: clamp(32px, 4.5vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.028em;
+      line-height: 1.08;
+    }
+
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .t-card {
+      position: relative;
+      padding: 1.8rem 2rem;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border-ghost);
+      background: var(--bg-card);
+      overflow: hidden;
+      transition:
+        transform  0.26s cubic-bezier(0.4,0,0.2,1),
+        box-shadow 0.26s ease,
+        border-color 0.26s ease,
+        background 0.26s ease;
+    }
+
+    /* Left accent stripe */
+    .t-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--grad-brand);
+      border-radius: 0 3px 3px 0;
+      transition: height 0.32s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .t-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(67,97,238,0.18);
+      background: var(--bg-card-hover);
+      box-shadow:
+        0 16px 36px rgba(0,0,0,0.38),
+        0 0 20px rgba(67,97,238,0.06);
+    }
+    .t-card:hover::before { height: 100%; }
+
+    .t-num {
+      font-family: var(--f-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      opacity: 0.6;
+      margin-bottom: 0.6rem;
+    }
+
+    .t-title {
+      font-family: var(--f-head);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-1);
+      letter-spacing: -0.015em;
+      margin-bottom: 0.65rem;
+    }
+
+    .t-body {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.68;
+    }
+
+    /* ─────────────────────────────────────────
+       CONTACT CARD
+    ───────────────────────────────────────── */
+    .contact-section { padding: 0 0 100px; }
+
+    .contact-card {
+      position: relative;
+      border-radius: var(--r-2xl);
+      border: 1px solid rgba(67,97,238,0.22);
+      background: var(--bg-card);
+      padding: 3.5rem 2.5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Deep glow behind card */
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(67,97,238,0.11) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Top gradient line */
+    .contact-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 15%; right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(67,97,238,0.6), rgba(112,72,232,0.6), transparent);
+    }
+
+    .contact-card > * { position: relative; z-index: 1; }
+
+    .cc-eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cc-title {
+      font-family: var(--f-head);
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.85rem;
+    }
+
+    .cc-sub {
+      font-size: 15.5px;
+      color: var(--text-2);
+      margin-bottom: 0.55rem;
+    }
+
+    .cc-email {
+      display: block;
+      font-family: var(--f-mono);
+      font-size: 15.5px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--blue-light);
+      margin-bottom: 2.4rem;
+      transition: opacity 0.2s;
+    }
+    .cc-email:hover { opacity: 0.75; }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 26px;
+      border-radius: var(--r-md);
+      background: var(--grad-brand);
+      font-family: var(--f-body);
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 0.22s;
+    }
+    .btn-contact:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(67,97,238,0.48);
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--border-ghost);
+      padding: 3.2rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 3rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .footer-brand { flex-shrink: 0; }
+    .footer-brand .nav-logo { margin-bottom: 0.8rem; }
+    .footer-tagline {
+      font-size: 13.5px;
+      color: var(--text-3);
+      max-width: 200px;
+      line-height: 1.55;
+    }
+
+    .footer-cols {
+      display: flex;
+      gap: 4rem;
+    }
+
+    .fc-title {
+      font-family: var(--f-head);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 0.9rem;
+    }
+    .fc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .fc-list a {
+      font-size: 13.5px;
+      color: var(--text-3);
+      transition: color 0.2s;
+    }
+    .fc-list a:hover { color: var(--text-2); }
+    .fc-list a.active { color: var(--blue-light); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-ghost);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-3);
+    }
+    .footer-legal {
+      display: flex;
+      gap: 1.4rem;
+    }
+    .footer-legal a {
+      font-size: 13px;
+      color: var(--text-3);
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: var(--text-2); }
+    .footer-legal a.active { color: var(--blue-light); }
+
+    /* ─────────────────────────────────────────
+       SCROLL REVEAL
+    ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .summary-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .terms-grid  { grid-template-columns: 1fr; }
+      .footer-top  { flex-direction: column; }
+      .footer-cols { gap: 2rem; flex-wrap: wrap; }
+      .hero { padding: 120px 1.25rem 72px; }
+      .contact-card { padding: 2.4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <a href="/" class="nav-logo">
+      <div class="logo-mark">B</div>
+      <span class="logo-name">BOL</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="BOL.html#features">Features</a></li>
+      <li><a href="view demoreport.html">How It Works</a></li>
+      <li><a href="BOL.html#DASHBOARD">Dashboard</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Legal
+    </div>
+
+    <h1 class="hero-title">Terms of Service</h1>
+
+    <p class="hero-sub">
+      These terms explain the rules, responsibilities, and limitations when using BOL.
+    </p>
+
+    <div class="hero-meta">
+      <span class="meta-pip"></span>
+      Last Updated: June 2026
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       SUMMARY CARDS
+  ═══════════════════════════════════════ -->
+  <section class="summary-section">
+    <div class="wrap">
+      <div class="summary-grid">
+
+        <div class="sum-card reveal reveal-d1">
+          <div class="sum-icon">⚖️</div>
+          <div class="sum-title">Fair Usage</div>
+          <div class="sum-text">Users must use BOL responsibly and only for its intended purpose as a speaking-confidence platform.</div>
+        </div>
+
+        <div class="sum-card reveal reveal-d2">
+          <div class="sum-icon">🤖</div>
+          <div class="sum-title">AI Feedback</div>
+          <div class="sum-text">Feedback may not always be accurate. AI-generated insights are estimates, not definitive assessments.</div>
+        </div>
+
+        <div class="sum-card reveal reveal-d3">
+          <div class="sum-icon">🎙️</div>
+          <div class="sum-title">User Content</div>
+          <div class="sum-text">Users remain responsible for what they submit, record, and share while using the platform.</div>
+        </div>
+
+        <div class="sum-card reveal reveal-d4">
+          <div class="sum-icon">🔧</div>
+          <div class="sum-title">Platform Rights</div>
+          <div class="sum-text">BOL may update, modify, or change features and services at any time without prior notice.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       TERMS CARDS
+  ═══════════════════════════════════════ -->
+  <section class="terms-section">
+    <div class="wrap">
+
+      <div class="terms-head reveal">
+        <div class="eyebrow">The Full Terms</div>
+        <h2 class="terms-heading">What You Need to Know</h2>
+      </div>
+
+      <div class="terms-grid">
+
+        <div class="t-card reveal reveal-d1">
+          <div class="t-num">01 — Using BOL</div>
+          <div class="t-title">Using BOL</div>
+          <div class="t-body">BOL is a communication and speaking-confidence training platform designed to help users improve their delivery, pace, and vocal performance. Access is granted for personal, educational use only.</div>
+        </div>
+
+        <div class="t-card reveal reveal-d2">
+          <div class="t-num">02 — Responsibilities</div>
+          <div class="t-title">User Responsibilities</div>
+          <div class="t-body">Users must not abuse, misuse, or attempt to disrupt the platform in any way. This includes unauthorized access, automated scraping, or any activity that degrades the experience for others.</div>
+        </div>
+
+        <div class="t-card reveal reveal-d1">
+          <div class="t-num">03 — Audio</div>
+          <div class="t-title">Audio & Speech Analysis</div>
+          <div class="t-body">BOL may process recordings, transcripts, and speech metrics to provide personalized feedback. By using the platform, you consent to this processing solely for the purpose of delivering your results.</div>
+        </div>
+
+        <div class="t-card reveal reveal-d2">
+          <div class="t-num">04 — AI Feedback</div>
+          <div class="t-title">AI Feedback Disclaimer</div>
+          <div class="t-body">AI-generated feedback may occasionally be inaccurate, incomplete, or incorrect. BOL's feedback is a guidance tool — not a definitive or clinical assessment of your speaking ability.</div>
+        </div>
+
+        <div class="t-card reveal reveal-d1">
+          <div class="t-num">05 — Scores</div>
+          <div class="t-title">Confidence Score Disclaimer</div>
+          <div class="t-body">Confidence scores are estimates generated by software and should not be treated as objective measures of a person's abilities. They reflect measurable delivery patterns, not personal worth or intelligence.</div>
+        </div>
+
+        <div class="t-card reveal reveal-d2">
+          <div class="t-num">06 — Education</div>
+          <div class="t-title">Educational Use Only</div>
+          <div class="t-body">BOL is an educational and coaching tool. It is not medical, psychological, therapeutic, or mental-health advice. If you have concerns about anxiety or mental health, please consult a qualified professional.</div>
+        </div>
+
+        <div class="t-card reveal reveal-d1">
+          <div class="t-num">07 — IP</div>
+          <div class="t-title">Intellectual Property</div>
+          <div class="t-body">The BOL platform, branding, design, and software belong to BOL. You may not copy, reproduce, or distribute any part of the platform without explicit written permission.</div>
+        </div>
+
+        <div class="t-card reveal reveal-d2">
+          <div class="t-num">08 — Accounts</div>
+          <div class="t-title">Account Restrictions</div>
+          <div class="t-body">BOL may suspend or restrict access in cases of misuse or violation of these terms. Accounts found engaging in harmful activity may be terminated without prior notice.</div>
+        </div>
+
+        <div class="t-card reveal reveal-d1">
+          <div class="t-num">09 — Updates</div>
+          <div class="t-title">Service Changes</div>
+          <div class="t-body">Features and services may change over time. BOL reserves the right to modify, add, or remove functionality at any point. Continued use of the platform constitutes acceptance of any changes.</div>
+        </div>
+
+        <div class="t-card reveal reveal-d2">
+          <div class="t-num">10 — Liability</div>
+          <div class="t-title">Limitation of Liability</div>
+          <div class="t-body">BOL is provided "as is" without guarantees of uninterrupted operation or perfect accuracy. BOL is not liable for any outcomes, decisions, or consequences arising from the use of the platform.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       CONTACT CARD
+  ═══════════════════════════════════════ -->
+  <section class="contact-section">
+    <div class="wrap">
+      <div class="contact-card reveal">
+
+        <div class="cc-eyebrow">
+          <span class="eyebrow">Support</span>
+        </div>
+
+        <h2 class="cc-title">Questions About These Terms?</h2>
+        <p class="cc-sub">For questions regarding these Terms of Service, contact:</p>
+        <a href="mailto:sakshamsingh1940@gmail.com" class="cc-email">
+          sakshamsingh1940@gmail.com
+        </a>
+
+        <div>
+          <a href="mailto:sakshamsingh1940@gmail.com" class="btn-contact">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Contact Support
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <div class="logo-mark">B</div>
+            <span class="logo-name">BOL</span>
+          </a>
+          <p class="footer-tagline">Speaking confidence training, powered by real data.</p>
+        </div>
+
+        <div class="footer-cols">
+          <div>
+            <div class="fc-title">Product</div>
+            <ul class="fc-list">
+              <li><a href="BOL.html#features">Features</a></li>
+              <li><a href="view demoreport.html">How It Works</a></li>
+              <li><a href="BOL.html#dashboard">Dashboard</a></li>
+              
+            </ul>
+          </div>
+          
+          <div>
+            <div class="fc-title">Legal</div>
+            <ul class="fc-list">
+              <li><a href="#" class="active">Terms</a></li>
+              <li><a href="privacy.html">Privacy</a></li>
+              <li><a href="changelog.html">changelog</a></li>
+              <li><a href="status.html">status</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="fc-title">company</div>
+            <ul class="fc-list">
+                <li><a href="suport.htm">support</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 BOL. All rights reserved.</p>
+        <div class="footer-legal">
+          
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════ -->
+  <script>
+    /* ── Navbar scroll effect ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 24);
+    }, { passive: true });
+
+    /* ── Scroll reveal via IntersectionObserver ── */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>

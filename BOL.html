@@ -1,473 +1,2442 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>BOL — Break Your Stage Fear</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <link rel="stylesheet" href="backup5.css">
-  <link rel="stylesheet" href="result-screen-1.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BOL — Break Your Stage Fear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="result-screen-1.css">
+<style>
+/* ─── VARIABLES ─── */
+:root{
+  --bg:#050C18;--s1:#0B1526;--s2:#101D30;--s3:#162038;
+  --b1:rgba(255,255,255,0.07);--b2:rgba(255,255,255,0.12);--b3:rgba(255,255,255,0.18);
+  --t1:#E8EDF8;--t2:#8A97B5;--t3:#4A5672;
+  --blue:#3B82F6;--blue-l:#60A5FA;--blue-d:#1D4ED8;
+  --purple:#7C3AED;--purple-l:#A78BFA;
+  --green:#10B981;--green-l:#34D399;--red:#EF4444;
+  --r:14px;--r-lg:20px;--r-xl:24px;
+  --fh:'Bricolage Grotesque',sans-serif;
+  --fb:'DM Sans',sans-serif;
+  --fm:'JetBrains Mono',monospace;
+  --sh:0 32px 80px rgba(0,0,0,0.55);
+  --sh-sm:0 8px 24px rgba(0,0,0,0.35);
+}
+
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--t1);min-height:100vh;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 700px 600px at 10% 0%,rgba(59,130,246,.09),transparent),
+    radial-gradient(ellipse 600px 500px at 90% 100%,rgba(124,58,237,.07),transparent)}
+.container{max-width:1160px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* ─── NAV ─── */
+nav{position:sticky;top:0;z-index:200;
+  backdrop-filter:blur(20px) saturate(1.5);
+  background:rgba(5,12,24,.88);
+  border-bottom:1px solid var(--b1)}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 24px;height:62px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo{width:34px;height:34px;border-radius:9px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-weight:800;font-size:15px;color:#fff}
+.nav-name{font-family:var(--fh);font-weight:700;font-size:17px;color:var(--t1)}
+
+.nav-end{display:flex;align-items:center;gap:10px}
+.btn-ghost{background:transparent;border:1px solid var(--b2);color:var(--t2);
+  padding:7px 16px;border-radius:8px;font-family:var(--fb);font-size:13px;font-weight:500;
+  cursor:pointer;transition:all .18s;text-decoration:none;display:inline-flex;align-items:center}
+.btn-ghost:hover{border-color:var(--b3);color:var(--t1);background:rgba(255,255,255,.03)}
+.btn-cta{background:linear-gradient(135deg,var(--blue),#6366F1);border:none;color:#fff;
+  padding:8px 18px;border-radius:8px;font-family:var(--fb);font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;
+  box-shadow:0 4px 20px rgba(59,130,246,.3)}
+.btn-cta:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(59,130,246,.4)}
+.btn-cta svg{width:14px;height:14px}
+
+/* ─── HERO ─── */
+.hero{padding:72px 0 0}
+.hero-content{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding-bottom:48px}
+.hero-left{}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
+  border-radius:999px;border:1px solid rgba(59,130,246,.25);
+  background:rgba(59,130,246,.08);
+  font-family:var(--fm);font-size:11px;color:var(--blue-l);margin-bottom:18px}
+.hero-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--red);
+  box-shadow:0 0 8px rgba(239,68,68,.8)}
+.hero-title{font-family:var(--fh);font-size:clamp(38px,5.2vw,62px);font-weight:800;
+  line-height:1.08;letter-spacing:-.025em;margin-bottom:18px;color:var(--t1)}
+.hero-title em{font-style:normal;color:var(--red);font-weight:800}
+.hero-sub{color:var(--t2);font-size:16px;line-height:1.7;max-width:480px;margin-bottom:32px}
+.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--blue),#6366F1);border:none;color:#fff;
+  padding:13px 26px;border-radius:10px;font-family:var(--fb);font-size:15px;font-weight:600;
+  cursor:pointer;transition:all .2s;box-shadow:0 8px 28px rgba(59,130,246,.3);text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(59,130,246,.42)}
+.btn-secondary{background:transparent;border:1px solid var(--b2);color:var(--t1);
+  padding:13px 22px;border-radius:10px;font-family:var(--fb);font-size:14px;font-weight:500;
+  cursor:pointer;transition:all .18s;text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.btn-secondary:hover{border-color:rgba(59,130,246,.35);background:rgba(59,130,246,.06)}
+
+/* ─── CONFIDENCE CARD ─── */
+.hero-card{background:linear-gradient(145deg,rgba(11,21,38,.97),rgba(16,29,48,.95));
+  border:1px solid var(--b2);border-radius:var(--r-xl);padding:28px;
+  box-shadow:0 48px 100px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.06);
+  position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(59,130,246,.45),rgba(124,58,237,.3),transparent)}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.card-title{font-family:var(--fh);font-weight:700;font-size:14px;color:var(--t1)}
+.card-badge{display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:6px;
+  background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);
+  font-family:var(--fm);font-size:10px;color:#6EE7B7}
+.badge-dot{width:4px;height:4px;border-radius:50%;background:var(--green);
+  animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 8px rgba(16,185,129,.8)}50%{opacity:.6;box-shadow:0 0 12px rgba(16,185,129,1.2)}}
+
+/* Score ring + meta */
+.score-section{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;
+  margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--b1)}
+.ring{position:relative;width:88px;height:88px;flex-shrink:0}
+.ring svg{transform:rotate(-90deg);display:block}
+.ring-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.ring-num{font-family:var(--fh);font-weight:800;font-size:24px;line-height:1}
+.ring-sub{font-family:var(--fm);font-size:10px;color:var(--t3);margin-top:2px}
+.meta-content{}
+.meta-title{font-family:var(--fh);font-weight:700;font-size:15px;margin-bottom:4px;color:var(--t1)}
+.meta-desc{font-size:12px;color:var(--t2);line-height:1.5;margin-bottom:12px}
+.progress-bar{height:4px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--purple));
+  border-radius:999px;width:0;transition:width 1.4s cubic-bezier(.25,.46,.45,.94)}
+
+/* Metrics pills */
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.metric-pill{background:rgba(255,255,255,.025);border:1px solid var(--b1);border-radius:10px;
+  padding:12px 14px;transition:border-color .18s}
+.metric-pill:hover{border-color:rgba(59,130,246,.2)}
+.metric-label{font-family:var(--fm);font-size:9px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.metric-value{font-family:var(--fh);font-weight:700;font-size:15px;line-height:1}
+.metric-hint{font-size:10px;color:var(--t3);margin-top:2px}
+.val-green{color:var(--green-l)}.val-blue{color:var(--blue-l)}.val-amber{color:#FBBF24}
+
+/* Mini progress bars */
+.chart-label{font-family:var(--fm);font-size:10px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.08em;margin-top:16px;margin-bottom:10px}
+.mini-bars{display:flex;align-items:flex-end;gap:2px;height:28px}
+.bar{flex:1;border-radius:2px 2px 0 0;background:rgba(59,130,246,.25);transition:all .2s;cursor:default}
+.bar.active{background:linear-gradient(to top,var(--blue),var(--blue-l))}
+
+/* ─── TRANSITION SEPARATOR ─── */
+.separator{padding:18px 0;border-top:1px solid var(--b1);border-bottom:1px solid var(--b1);
+  background:rgba(255,255,255,.01);margin:40px 0;overflow:hidden}
+.sep-track{display:flex;gap:48px;width:max-content;animation:slide 28s linear infinite}
+@keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.sep-item{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.sep-emoji{font-size:14px}.sep-text{font-size:12px;color:var(--t2)}
+
+/* ─── SECTIONS ─── */
+.section{padding:64px 0;position:relative;z-index:1}
+.section-alt{background:rgba(255,255,255,.015);border-top:1px solid var(--b1);border-bottom:1px solid var(--b1)}
+.section-header{margin-bottom:48px}
+.section-header.center{text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--fm);font-size:10px;color:var(--blue-l);
+  text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;font-weight:600}
+.eyebrow::before{content:'';width:16px;height:1px;background:var(--blue-l)}
+.section-h{font-family:var(--fh);font-size:clamp(28px,3.6vw,42px);font-weight:800;
+  letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.section-p{color:var(--t2);font-size:15px;line-height:1.7;max-width:560px}
+.section-header.center .section-p{margin:0 auto}
+
+/* ─── PROBLEM GRID ─── */
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.prob-stack{display:flex;flex-direction:column;gap:12px}
+.prob-item{background:rgba(255,255,255,.02);border:1px solid var(--b1);border-radius:var(--r);
+  padding:16px;display:flex;gap:12px;align-items:flex-start;transition:all .2s}
+.prob-item:hover{border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.03)}
+.prob-ico{width:32px;height:32px;border-radius:8px;background:rgba(239,68,68,.1);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.prob-text{flex:1}
+.prob-title{font-weight:600;font-size:13px;margin-bottom:3px;color:var(--t1)}
+.prob-desc{font-size:12px;color:var(--t2);line-height:1.5}
+.solution-panel{background:linear-gradient(135deg,rgba(59,130,246,.09),rgba(124,58,237,.07));
+  border:1px solid rgba(59,130,246,.2);border-radius:var(--r-lg);padding:24px}
+.sol-tag{font-family:var(--fm);font-size:10px;color:var(--blue-l);
+  text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-weight:600}
+.sol-title{font-family:var(--fh);font-size:18px;font-weight:700;line-height:1.35;margin-bottom:12px}
+.sol-text{font-size:13px;color:var(--t2);line-height:1.65}
+
+/* ─── USE CASES ─── */
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.case-card{background:rgba(255,255,255,.02);border:1px solid var(--b1);border-radius:var(--r-lg);
+  padding:20px;transition:all .22s;cursor:default}
+.case-card:hover{border-color:rgba(59,130,246,.28);background:rgba(59,130,246,.04);
+  transform:translateY(-4px);box-shadow:0 24px 56px rgba(0,0,0,.35)}
+.case-ico{font-size:24px;margin-bottom:12px}
+.case-title{font-family:var(--fh);font-weight:700;font-size:15px;margin-bottom:6px}
+.case-text{font-size:12px;color:var(--t2);line-height:1.6}
+.case-tag{display:inline-block;margin-top:10px;padding:3px 7px;border-radius:4px;
+  background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.15);
+  font-family:var(--fm);font-size:9px;color:var(--blue-l)}
+
+/* ─── MEASURES ─── */
+.measures{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--b1);border:1px solid var(--b1);border-radius:var(--r-lg);overflow:hidden}
+.measure-card{background:var(--bg);padding:20px;transition:background .18s}
+.measure-card:hover{background:rgba(59,130,246,.04)}
+.m-ico{width:36px;height:36px;border-radius:9px;
+  background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(124,58,237,.1));
+  border:1px solid rgba(59,130,246,.18);
+  display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:10px}
+.m-title{font-family:var(--fh);font-weight:700;font-size:13px;margin-bottom:6px}
+.m-text{font-size:11px;color:var(--t2);line-height:1.6}
+
+/* ─── CIRCULAR JOURNEY (replaces steps) ─── */
+.journey-wrapper{position:relative;display:flex;align-items:center;justify-content:center;
+  margin-top:48px;padding:20px 0 40px}
+.journey-svg{width:100%;max-width:680px;display:block;margin:0 auto}
+
+/* ─── DASHBOARD PREVIEW ─── */
+.preview-frame{background:linear-gradient(145deg,rgba(11,21,38,.95),rgba(16,29,48,.9));
+  border:1px solid var(--b2);border-radius:var(--r-xl);overflow:hidden;margin-top:40px;
+  box-shadow:var(--sh)}
+.frame-header{padding:12px 18px;border-bottom:1px solid var(--b1);
+  display:flex;align-items:center;justify-content:space-between}
+.frame-dots{display:flex;gap:5px}
+.dot{width:9px;height:9px;border-radius:50%}
+.dot:nth-child(1){background:#EF4444}.dot:nth-child(2){background:#F59E0B}.dot:nth-child(3){background:#10B981}
+.frame-url{font-family:var(--fm);font-size:10px;color:var(--t3);
+  background:rgba(255,255,255,.04);padding:3px 10px;border-radius:5px}
+.frame-body{padding:20px;display:grid;grid-template-columns:220px 1fr;gap:20px}
+.sidebar-content{}
+.sidebar-h{font-family:var(--fm);font-size:9px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;font-weight:600}
+.session-list{display:flex;flex-direction:column;gap:6px}
+.session-item{padding:10px;border-radius:10px;border:1px solid var(--b1);
+  background:rgba(255,255,255,.02);cursor:pointer;transition:all .18s}
+.session-item.active{border-color:rgba(59,130,246,.3);background:rgba(59,130,246,.07)}
+.sess-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.sess-date{font-family:var(--fm);font-size:10px;color:var(--t3)}
+.sess-score{font-family:var(--fh);font-weight:700;font-size:12px}
+.sess-track{height:2px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;margin-top:4px}
+.sess-fill{height:100%;background:linear-gradient(90deg,var(--blue),#6366F1);border-radius:999px}
+.main-content{}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.kpi-card{background:rgba(255,255,255,.025);border:1px solid var(--b1);border-radius:11px;padding:14px}
+.kpi-label{font-family:var(--fm);font-size:9px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-weight:600}
+.kpi-value{font-family:var(--fh);font-weight:800;font-size:24px;margin-bottom:2px}
+.kpi-delta{font-size:10px}
+.up{color:var(--green-l)}.dn{color:var(--red)}
+.chart-card{background:rgba(255,255,255,.025);border:1px solid var(--b1);border-radius:11px;padding:14px}
+.chart-h{font-family:var(--fm);font-size:9px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;font-weight:600}
+.chart{display:flex;align-items:flex-end;gap:3px;height:60px}
+.chart-bar{flex:1;border-radius:2px 2px 0 0;background:rgba(59,130,246,.2);transition:all .2s}
+.chart-bar.peak{background:linear-gradient(to top,var(--blue),var(--blue-l))}
+
+/* ─── COMPARISON TABLE ─── */
+.compare-table{width:100%;border-collapse:collapse;margin-top:40px;
+  border:1px solid var(--b1);border-radius:var(--r-lg);overflow:hidden}
+.compare-table th{padding:13px 16px;text-align:left;
+  background:rgba(255,255,255,.02);font-family:var(--fh);font-weight:700;font-size:12px;
+  border-bottom:1px solid var(--b1)}
+.compare-table th.bol{background:rgba(59,130,246,.09);color:var(--blue-l);
+  border-left:2px solid var(--blue)}
+.compare-table td{padding:12px 16px;border-bottom:1px solid var(--b1);
+  font-size:12px;color:var(--t2)}
+.compare-table td.bol{background:rgba(59,130,246,.04);border-left:2px solid rgba(59,130,246,.25);color:var(--t1)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table td:first-child{color:var(--t1);font-weight:500}
+.chk{color:var(--green-l);font-size:14px}.crs{color:var(--red)}.prt{color:#FBBF24;font-size:11px}
+.compare-table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r-lg);}
+.compare-table-wrap .compare-table{border-radius:0;margin-top:40px;}
+
+/* ─── TESTIMONIALS — DYNAMIC ─── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.testi-card{background:rgba(255,255,255,.025);border:1px solid var(--b1);border-radius:var(--r-lg);
+  padding:20px;transition:border-color .3s,box-shadow .3s}
+.testi-card.testi-glowing{
+  border-color:rgba(59,130,246,.35);
+  box-shadow:0 0 28px rgba(59,130,246,.12),0 8px 32px rgba(0,0,0,.3)}
+.testi-card-inner{transition:opacity .35s ease,transform .35s ease}
+.testi-card-inner.testi-fade-out{opacity:0;transform:translateY(6px)}
+.testi-card-inner.testi-fade-in{opacity:1;transform:translateY(0)}
+.stars{color:#FBBF24;font-size:12px;letter-spacing:1px;margin-bottom:12px}
+.testi-text{font-size:12.5px;color:var(--t2);line-height:1.7;margin-bottom:14px}
+.author{display:flex;align-items:center;gap:10px}
+.avatar{width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-weight:700;font-size:12px;color:#fff;flex-shrink:0;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.avatar.avatar-pop{transform:scale(1.18)}
+.av-1{background:linear-gradient(135deg,var(--blue),#6366F1)}
+.av-2{background:linear-gradient(135deg,var(--purple),#EC4899)}
+.av-3{background:linear-gradient(135deg,var(--green),#0EA5E9)}
+.av-4{background:linear-gradient(135deg,#F59E0B,#EF4444)}
+.av-5{background:linear-gradient(135deg,#06B6D4,#7C3AED)}
+.author-name{font-weight:600;font-size:12px;line-height:1}
+.author-role{font-size:10px;color:var(--t3);margin-top:1px}
+
+/* ─── CTA FINAL ─── */
+.cta-final{padding:64px 0 80px}
+.cta-box{background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(124,58,237,.08));
+  border:1px solid rgba(59,130,246,.2);border-radius:var(--r-xl);
+  padding:60px 36px;text-align:center;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,.55),transparent)}
+.cta-glow{position:absolute;width:350px;height:350px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,.08),transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-h{font-family:var(--fh);font-size:clamp(28px,3.8vw,40px);font-weight:800;
+  letter-spacing:-.02em;margin-bottom:12px;position:relative;z-index:1}
+.cta-p{color:var(--t2);font-size:15px;max-width:420px;margin:0 auto 28px;
+  line-height:1.7;position:relative;z-index:1}
+.cta-btns{display:flex;gap:12px;justify-content:center;align-items:center;
+  flex-wrap:wrap;position:relative;z-index:1;margin-bottom:10px}
+.cta-note{margin-top:10px;font-size:11px;color:var(--t3);position:relative;z-index:1}
+
+/* ─── FOOTER ─── */
+footer{border-top:1px solid var(--b1);padding:48px 0 32px}
+.footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;margin-bottom:36px}
+.footer-brand-h{font-family:var(--fh);font-weight:800;font-size:18px;margin-bottom:8px}
+.footer-brand-t{font-size:12px;color:var(--t3);line-height:1.7;max-width:200px}
+.footer-col-h{font-weight:600;font-size:12px;color:var(--t1);margin-bottom:12px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:12px;color:var(--t3);text-decoration:none;transition:color .18s}
+.footer-links a:hover{color:var(--t2)}
+.footer-bottom{padding-top:18px;border-top:1px solid var(--b1);
+  display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:11px;color:var(--t3)}
+.footer-built{font-family:var(--fm);font-size:10px;color:var(--t3)}
+.footer-built span{color:var(--blue-l)}
+
+/* ─── ANIMATIONS ─── */
+.fade-in{opacity:0;transform:translateY(24px);animation:fadeIn .6s ease forwards}
+@keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
+.fade-in:nth-child(1){animation-delay:.05s}
+.fade-in:nth-child(2){animation-delay:.1s}
+.fade-in:nth-child(3){animation-delay:.15s}
+.fade-in:nth-child(4){animation-delay:.2s}
+.fade-in:nth-child(5){animation-delay:.25s}
+.fade-in:nth-child(6){animation-delay:.3s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .hero-content{grid-template-columns:1fr;gap:44px}
+  .problem-grid{grid-template-columns:1fr;gap:48px}
+  .cases-grid{grid-template-columns:repeat(2,1fr)}
+  .measures{grid-template-columns:repeat(2,1fr)}
+  .frame-body{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:768px){
+ 
+  .hero{padding:52px 0 0}
+  .cases-grid{grid-template-columns:1fr}
+  .measures{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .compare-table{font-size:11px}
+  .compare-table td,.compare-table th{padding:8px 12px}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:6px;text-align:center}
+}
+@media(max-width:520px){
+  .hero-actions{flex-direction:column}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center}
+  .cases-grid{grid-template-columns:1fr}
+  .cta-btns{flex-direction:column}
+  .cta-btns .btn-primary,.cta-btns .btn-secondary{width:100%;justify-content:center}
+  .sep-track{gap:24px}
+}
+
+/* ─── 420px and below ─── */
+@media(max-width:420px){
+  /* Hero title — reduce minimum so it doesn't blow out narrow viewports */
+  .hero-title{font-size:clamp(28px,8.5vw,38px)}
+
+  /* Nav CTA — collapse to icon-only to prevent overflow */
+  .btn-cta{font-size:0;padding:8px 10px;gap:0;min-width:34px;justify-content:center}
+  .btn-cta svg{width:16px;height:16px}
+
+  /* Confidence card metric pills — single column on 320px */
+  .metrics-grid{grid-template-columns:1fr}
+
+  /* Hero card score section — prevent ring from being squeezed */
+  .score-section{grid-template-columns:1fr;gap:14px;text-align:center}
+  .ring{margin:0 auto}
+
+  /* Journey SVG — constrain height on narrow screens */
+  .journey-svg{max-width:100%}
+
+  /* Modal — tighter padding on tiny screens */
+  .record-modal-content{padding:16px 14px}
+  .record-title{font-size:16px}
+
+  /* Footer — reduce gap */
+  .footer-grid{gap:20px}
+
+  /* Section headings */
+  .section-h{font-size:clamp(22px,6.5vw,34px)}
+}
+
+/* ─── 360px and below ─── */
+@media(max-width:360px){
+  .container{padding:0 16px}
+  .hero{padding:44px 0 0}
+  .hero-sub{font-size:14px}
+  .btn-primary{font-size:14px;padding:12px 20px}
+  .metric-value{font-size:13px}
+  .kpi-value{font-size:20px}
+  .cta-h{font-size:clamp(22px,7vw,32px)}
+  .cta-box{padding:40px 20px}
+}
+@keyframes centerPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+/* ─── CIRCULAR JOURNEY SVG ANIMS ─── */
+@keyframes ringDraw {
+  from { stroke-dashoffset: 1508; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes nodePop {
+  0%   { opacity:0; transform:scale(0.6); }
+  70%  { opacity:1; transform:scale(1.06); }
+  100% { opacity:1; transform:scale(1); }
+}
+@keyframes orbitGlow {
+  0%   { stroke-dashoffset: 1508; }
+  100% { stroke-dashoffset: -1508; }
+}
+@keyframes labelSlide {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.journey-ring-track {
+  fill:none;
+  stroke:rgba(59,130,246,0.10);
+  stroke-width:1.5;
+}
+.journey-ring-draw {
+  fill:none;
+  stroke:url(#jRingGrad);
+  stroke-width:1.5;
+  stroke-dasharray:1508;
+  stroke-dashoffset:1508;
+  stroke-linecap:round;
+}
+.journey-ring-draw.animate {
+  animation: ringDraw 1.2s cubic-bezier(.4,0,.2,1) forwards;
+}
+.journey-orbit {
+  fill:none;
+  stroke:rgba(59,130,246,0.55);
+  stroke-width:1.5;
+  stroke-dasharray:40 1468;
+  stroke-linecap:round;
+  opacity:0;
+}
+.journey-orbit.animate {
+  opacity:1;
+  animation: orbitGlow 4s linear infinite;
+}
+.journey-node {
+  opacity:0;
+  transform-origin:center;
+}
+.journey-node.animate-1 { animation: nodePop 0.5s cubic-bezier(.34,1.56,.64,1) 1.35s forwards; }
+.journey-node.animate-2 { animation: nodePop 0.5s cubic-bezier(.34,1.56,.64,1) 1.65s forwards; }
+.journey-node.animate-3 { animation: nodePop 0.5s cubic-bezier(.34,1.56,.64,1) 1.95s forwards; }
+.journey-node.animate-4 { animation: nodePop 0.5s cubic-bezier(.34,1.56,.64,1) 2.25s forwards; }
+.journey-label {
+  opacity:0;
+}
+.journey-label.animate-1 { animation: labelSlide 0.45s ease 1.55s forwards; }
+.journey-label.animate-2 { animation: labelSlide 0.45s ease 1.85s forwards; }
+.journey-label.animate-3 { animation: labelSlide 0.45s ease 2.15s forwards; }
+.journey-label.animate-4 { animation: labelSlide 0.45s ease 2.45s forwards; }
+.journey-center-text {
+  opacity:0;
+  animation:
+    labelSlide 0.5s ease 2.6s forwards,
+    centerPulse 4s ease-in-out infinite 3.2s;
+  transform-origin:center;
+}
+#orbitArrow polygon{
+  filter:
+    drop-shadow(0 0 8px #60A5FA)
+    drop-shadow(0 0 18px #60A5FA);
+}
+@media(prefers-reduced-motion:reduce){
+  .journey-ring-draw,.journey-orbit,.journey-node,.journey-label,.journey-center-text {
+    animation:none !important;
+    opacity:1 !important;
+    stroke-dashoffset:0 !important;
+  }
+}
+.record-modal{
+  position:fixed;
+  inset:0;
+  z-index:9000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+.record-modal.show{
+  display:flex;
+}
+
+.record-modal-backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  backdrop-filter:blur(4px);
+}
+
+.record-modal-content{
+  position:relative;
+  max-width:520px;
+  width:92%;
+  background:linear-gradient(180deg,#071028,#071020);
+  border-radius:18px;
+  padding:20px;
+  border:1px solid rgba(148,163,184,0.04);
+  box-shadow:0 30px 80px rgba(2,6,23,0.85);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.record-modal-close{
+  position:absolute;
+  right:12px;
+  top:10px;
+  border:none;
+  background:transparent;
+  color:#9ca3af;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.record-title{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:6px;
+}
+
+.record-subtitle{
+  font-size:13px;
+  color:#9ca3af;
+  margin-bottom:10px;
+}
+
+
+/* ─── MODAL MIC WRAP ─── */
+.mic-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 154px;
+  height: 154px;
+  flex-shrink: 0;
+  margin: 16px auto 8px;
+}
+
+/* ─── MODAL RINGS — scoped to .mic-wrap to prevent .ring collision with hero card ─── */
+.mic-wrap .ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s;
+}
+.mic-wrap .ring-1 { width: 154px; height: 154px; }
+.mic-wrap .ring-2 { width: 133px; height: 133px; }
+.mic-wrap .ring-3 { width: 114px; height: 114px; }
+
+.mic-wrap.recording .ring-1 {
+  opacity: 1;
+  border-color: rgba(30,201,122,0.15);
+  animation: rp 2.6s ease-out infinite 0s;
+}
+.mic-wrap.recording .ring-2 {
+  opacity: 1;
+  border-color: rgba(30,201,122,0.26);
+  animation: rp 2.6s ease-out infinite .32s;
+}
+.mic-wrap.recording .ring-3 {
+  opacity: 1;
+  border-color: rgba(30,201,122,0.40);
+  animation: rp 2.6s ease-out infinite .64s;
+}
+@keyframes rp {
+  0%   { transform: scale(.9); opacity: 0; }
+  18%  { opacity: 1; }
+  100% { transform: scale(1.07); opacity: 0; }
+}
+
+/* ─── MODAL MIC BUTTON ─── */
+.mic-btn {
+  position: relative;
+  z-index: 2;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background:
+    radial-gradient(circle at 38% 32%, rgba(255,255,255,0.07) 0%, transparent 55%),
+    linear-gradient(160deg, #131c2e 0%, #0a1018 100%);
+  border: 1.5px solid rgba(255,255,255,0.09);
+  box-shadow:
+    0 20px 48px rgba(0,0,0,0.70),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+  cursor: pointer;
+  transition: border-color .38s cubic-bezier(.4,0,.2,1),
+              box-shadow .38s cubic-bezier(.4,0,.2,1),
+              transform .38s cubic-bezier(.4,0,.2,1),
+              background .38s cubic-bezier(.4,0,.2,1);
+  user-select: none;
+  font-family: inherit;
+  will-change: transform;
+}
+
+.mic-btn:hover {
+  border-color: rgba(74,127,255,0.52);
+  background:
+    radial-gradient(circle at 38% 32%, rgba(74,127,255,0.12) 0%, transparent 55%),
+    linear-gradient(160deg, #17243c 0%, #10182a 100%);
+  transform: scale(1.06) translateY(-2px);
+  box-shadow:
+    0 0 0 11px rgba(74,127,255,0.09),
+    0 0 52px rgba(74,127,255,0.20),
+    0 28px 64px rgba(0,0,0,0.8),
+    inset 0 1px 0 rgba(255,255,255,0.09);
+}
+.mic-btn:active {
+  transform: scale(.97) translateY(0);
+}
+.mic-btn.recording {
+  border-color: rgba(30,201,122,0.5);
+  background:
+    radial-gradient(circle at 38% 32%, rgba(30,201,122,0.12) 0%, transparent 55%),
+    linear-gradient(160deg, #0c1d18 0%, #081410 100%);
+  box-shadow:
+    0 0 0 11px rgba(30,201,122,0.07),
+    0 0 60px rgba(30,201,122,0.22),
+    0 20px 56px rgba(0,0,0,0.8),
+    inset 0 1px 0 rgba(30,201,122,0.14);
+}
+.mic-btn.recording:hover {
+  border-color: rgba(30,201,122,0.68);
+  transform: scale(1.04) translateY(-1px);
+  box-shadow:
+    0 0 0 13px rgba(30,201,122,0.09),
+    0 0 72px rgba(30,201,122,0.28),
+    0 28px 64px rgba(0,0,0,0.85),
+    inset 0 1px 0 rgba(30,201,122,0.17);
+}
+
+/* ─── MODAL MIC ICON ─── */
+.mic-icon {
+  font-size: 38px;
+  line-height: 1;
+  display: block;
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,0.55));
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+}
+.mic-btn:hover .mic-icon {
+  transform: scale(1.1);
+}
+.mic-btn.recording .mic-icon {
+  filter: drop-shadow(0 0 12px rgba(30,201,122,0.55));
+  animation: mic-breathe 2.1s ease-in-out infinite;
+}
+@keyframes mic-breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.07); }
+}
+
+/* ─── MODAL MIC LABEL ─── */
+.mic-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--t2, rgba(138,151,181,1));
+  text-align: center;
+  max-width: 80px;
+  line-height: 1.4;
+  transition: color .3s;
+}
+.mic-btn.recording .mic-label {
+  color: #1ec97a;
+}
+
+
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   7. WAVEFORM — premium AI voice bars
+   ═══════════════════════════════════════════════════════════════════ */
+.waveform{
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:7px;
+  height:65px;
+  width:90px;
+  margin:10px auto 14px;
+}
+
+.waveform .bar {
+  /* Geometry */
+  width: 3px;
+  min-height: 8px;
+  height: 5px;             /* JS overrides this live */
+  flex-shrink: 0;
+  border-radius: 999px;
+
+  /* Blue → indigo → soft violet gradient */
+  background: linear-gradient(
+    to top,
+    rgba(59, 130, 246, 0.60)   0%,
+    rgba(99, 102, 241, 0.85)  45%,
+    rgba(139, 92, 246, 0.70) 100%
+  );
+
+  /* Resting glow */
+  box-shadow:
+    0  0  4px rgba(99,102,241,0.22),
+    0  0  8px rgba(99,102,241,0.10);
+
+  /* JS changes height and opacity — keep the transition smooth */
+  transition:
+    height  0.28s cubic-bezier(0.22,1,0.36,1),
+    opacity 0.28s ease,
+    box-shadow 0.45s ease;
+
+  opacity: 0.32;             /* JS overrides this live (0.28–0.98) */
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   BOL — MIC ICON DOMINANCE PATCH
+   Add these rules AFTER bol-mic-redesign.css.
+   They override only what's needed to push the icon forward
+   and pull the rings back.
+   ═══════════════════════════════════════════════════════════════════ */
+
+
+/* ─────────────────────────────────────────────────────────────────
+   1. ICON — larger, brighter, sharper edge definition
+   ───────────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────────
+   END OF DOMINANCE PATCH
+   ───────────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────────
+   8. SUBMIT BUTTON — refine to match the new premium feel
+   (optional: only overrides the gradient direction + refinement)
+   ───────────────────────────────────────────────────────────────── */
+
+.submit-btn {
+  width: 100%;
+  padding: 11px 0;
+  border-radius: 10px;        /* slightly less rounded than pill — feels more deliberate */
+  border: 1px solid rgba(99,102,241,0.35);
+  background: linear-gradient(
+    135deg,
+    rgba(37,99,235,0.92) 0%,
+    rgba(99,102,241,0.95) 50%,
+    rgba(109,40,217,0.90) 100%
+  );
+  color: rgba(255,255,255,0.95);
+  font-family: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease, box-shadow 0.25s ease;
+  box-shadow:
+    0  4px  16px rgba(99,102,241,0.28),
+    0  1px  0   rgba(255,255,255,0.08) inset;
+  margin-top: 4px;
+}
+
+.submit-btn:not(:disabled):hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow:
+    0  8px  28px rgba(99,102,241,0.40),
+    0  1px  0   rgba(255,255,255,0.10) inset;
+}
+
+.submit-btn:disabled {
+  opacity: 0.30;
+  cursor: not-allowed;
+  filter: saturate(0.4);
+}
+
+
+/* ─── ANALYSIS LOADER — PREMIUM REBUILD ─── */
+/* REPLACE WITH */
+.analysis-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(5, 12, 24, 0.97);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  animation: loaderFadeIn 0.35s ease forwards;
+  /* Single composited layer for the entire loader */
+  isolation: isolate;
+}
+
+
+.analysis-loader.show {
+  display: flex;
+}
+
+@keyframes loaderFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Scene container: positions all rings + logo as one unit ── */
+.loader-scene {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* One promoted layer owns the whole scene */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ── Ambient ring: subtle outer halo, purely decorative depth ── */
+.loader-ring-ambient {
+  position: absolute;
+  inset: -14px;                          /* 168px total */
+  border-radius: 50%;
+  border: 1px solid rgba(99, 102, 241, 0.10);
+  pointer-events: none;
+}
+
+/* ── Ring track: the fixed grey background circle ── */
+.loader-ring-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: transparent;
+  /* Static track painted once */
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+/* ──────────────────────────────────────────────────────────
+   THE SPINNER — GPU-only animation, zero repaint
+   
+   Technique: conic-gradient mask on a pseudo-element.
+   The gradient is rasterized once at layer creation.
+   Only transform:rotate() runs — compositor thread only.
+   No border-color changes, no layout, no paint per frame.
+   ────────────────────────────────────────────────────────── */
+.loader-ring-spinner {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  /* No separate will-change — inherits parent's composited layer */
+}
+
+.loader-ring-spinner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+
+  /* 
+    Conic gradient: 
+    - Arc from indigo → violet → transparent
+    - ~75% arc visible, 25% fade-out tail
+    This is PAINTED ONCE. Only the parent's rotation changes.
+  */
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(99, 102, 241, 0.15) 20deg,
+    rgba(99, 102, 241, 0.55) 80deg,
+    #6366f1 160deg,
+    #7c3aed 240deg,
+    rgba(124, 58, 237, 0.0) 270deg,
+    transparent 271deg
+  );
+
+  /* Mask out center to create ring shape — no border tricks */
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3px),
+    #fff calc(100% - 3px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3px),
+    #fff calc(100% - 3px)
+  );
+}
+
+/* The rotation animation — ONLY transform, ONLY compositor */
+.analysis-loader.show .loader-ring-spinner {
+  animation: spinnerRotate 1.1s linear infinite;
+}
+
+@keyframes spinnerRotate {
+  from { transform: rotate(0deg) translateZ(0); }
+  to   { transform: rotate(360deg) translateZ(0); }
+}
+
+/* ── Logo lockup — primary visual anchor ── */
+.loader-logo-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Isolated from spinner layer to avoid triggering repaint */
+  isolation: isolate;
+}
+/* FIND and REPLACE the entire .loader-logo-mark rule */
+
+
+.loader-logo-mark {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* opacity animation only — compositor thread, zero repaint */
+  animation: logoBreathe 3.2s ease-in-out infinite;
+  /* No will-change here — it's inside loader-scene's layer */
+}
+
+.loader-waveform-img {
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  display: block;
+  /* No filter, no drop-shadow — eliminates CPU filter pipeline */
+  /* The image's natural colors are sufficient on the dark bg */
+}
+
+/* UPDATE the keyframe — scale causes box-shadow repaint, opacity does not */
+@keyframes logoBreathe {
+  0%, 100% { opacity: 0.88; }
+  50%       { opacity: 1.0;  }
+}
+/* ── Primary label — "what is happening" ── */
+.loader-label {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #e0e7ff;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Subtitle — rotating status messages ── */
+.loader-sublabel {
+  font-family: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  color: rgba(139, 148, 176, 0.80);
+  letter-spacing: 0.04em;
+  margin: -14px 0 0; /* tightens gap between label + sublabel */
+  text-align: center;
+  /* Soft fade when JS swaps the text */
+  transition: opacity 0.4s ease;
+}
+
+/* ── Reduced motion: respect OS preference ── */
+@media (prefers-reduced-motion: reduce) {
+  .loader-ring-spinner,
+  .loader-logo-mark {
+    animation: none !important;
+  }
+  .loader-ring-spinner {
+    /* Static arc, still visually communicates "in progress" */
+    transform: rotate(45deg) translateZ(0);
+  }
+}
+/* ─── NAV PATCHES ─── */
+.nav-founder-tag{
+  font-family:var(--fm);font-size:10px;color:var(--t3);
+  letter-spacing:.06em;margin-left:8px;white-space:nowrap;
+  opacity:1;border-left:1px solid rgba(255,255,255,0.10);padding-left:8px;
+}
+
+
+.nav-auth-state{display:flex;align-items:center;}
+.nav-auth-state--hidden{display:none!important;}
+.nav-user-block{display:flex;align-items:center;gap:10px;}
+.nav-user-info{display:flex;flex-direction:column;align-items:flex-end;gap:1px;}
+.nav-user-name{
+  font-family:var(--fh);font-weight:600;font-size:12px;
+  color:var(--t1);line-height:1.2;
+}
+
+
+.nav-user-email{
+  font-family:var(--fm);font-size:9px;color:var(--t3);letter-spacing:.03em;
+}
+@media(max-width:960px){
+  .nav-founder-tag{display:none;}
+}
+@media(max-width:600px){
+  .nav-user-email{display:none;}
+}
+
+
+
+</style>
 </head>
 <body>
-  <div class="page">
-    <!-- NAV -->
-    <header class="nav">
-      <div class="nav-left">
-        <div class="logo-circle">B</div>
-        <div>
-          <div class="logo-text-main">BOL</div>
-          <div class="nav-tagline">Real-time speaking confidence lab</div>
-          <div class="nav-username">Founder: Saksham Singh </div>
+<div class="page">
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <div class="nav-logo">B</div>
+      <span class="nav-name">BOL</span>
+      <span class="nav-founder-tag">Founder&nbsp;&middot;&nbsp;Saksham Singh</span>
+    </a>
+
+    <div class="nav-end">
+      <div id="nav-auth-logged-out" class="nav-auth-state">
+        <a class="btn-ghost" href="index.html" id="navLoginBtn">Log in</a>
+      </div>
+      <div id="nav-auth-logged-in" class="nav-auth-state nav-auth-state--hidden">
+        <div class="nav-user-block">
+          <div class="nav-user-info">
+            <span class="nav-user-name" id="navUserName"></span>
+            <span class="nav-user-email" id="navUserEmail"></span>
+          </div>
+          <button class="btn-ghost" id="navLogoutBtn">Logout</button>
         </div>
       </div>
-    <div class="top-right">
-        <div class="account-block">       
-  <span class="version-tag">Prototype v1</span>
- <div class="account-box">
-  <div class="account-info">
-    <div id="userNameDisplay" class="account-name"></div>
-    <div id="userEmail" class="account-email"></div>
+     
+      <a class="btn-cta" href="dashboard.html">track your improvement
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
   </div>
-  <button id="logoutBtn" class="logout-btn">Logout</button>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          Speaking Confidence Lab
+        </div>
+        <h1 class="hero-title">Break Your Stage Fear<br>Before It Breaks Your<em>Future.</em></h1>
+        <p class="hero-sub">BOL measures your speaking confidence across several parameters which includes pace, pauses, and vocal stability. Get a real score. See exactly what to fix. Practice with data. Pass with confidence.</p>
+        <div class="hero-actions">
+        <button id="recordTestBtn" class="btn-primary" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            </svg>
+           start speaking
+         </button>
+      <a class="btn-secondary" href="view%20demoreport.html">See How It Works</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="card-header">
+          <span class="card-title">Confidence Report</span>
+          <span class="card-badge">
+            <span class="badge-dot"></span>
+            Live Session
+          </span>
+        </div>
+
+        <div class="score-section">
+          <div class="ring">
+            <svg width="88" height="88" viewBox="0 0 88 88">
+              <circle cx="44" cy="44" r="40" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="8"/>
+              <circle id="mainRing" cx="44" cy="44" r="40" fill="none"
+                stroke="url(#ringGrad)" stroke-width="8" stroke-linecap="round"
+                stroke-dasharray="251.3" stroke-dashoffset="251.3"/>
+              <defs>
+                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#3B82F6"/>
+                  <stop offset="100%" stop-color="#7C3AED"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="ring-center">
+              <span class="ring-num">76</span>
+              <span class="ring-sub">/100</span>
+            </div>
+          </div>
+          <div class="meta-content">
+            <div class="meta-title">Confidence Score</div>
+            <div class="meta-desc">Strong delivery. Reduce pauses by 2 in next attempt.</div>
+            <div class="progress-bar"><div class="progress-fill" id="progressBar"></div></div>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-pill">
+            <div class="metric-label">Speaking Pace</div>
+            <div class="metric-value val-blue">138<span style="font-size:12px;margin-left:2px">wpm</span></div>
+            <div class="metric-hint">Optimal range</div>
+          </div>
+          <div class="metric-pill">
+            <div class="metric-label">Pauses Detected</div>
+            <div class="metric-value val-green">4</div>
+            <div class="metric-hint">Balanced</div>
+          </div>
+          <div class="metric-pill">
+            <div class="metric-label">Voice Stability</div>
+            <div class="metric-value val-green">High</div>
+            <div class="metric-hint">Consistent</div>
+          </div>
+          <div class="metric-pill">
+            <div class="metric-label">Active Speech</div>
+            <div class="metric-value val-amber">45s</div>
+            <div class="metric-hint">of 50s total</div>
+          </div>
+        </div>
+
+        <div class="chart-label">Session progression</div>
+        <div class="mini-bars" id="miniChart"></div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- SEPARATOR -->
+<div class="separator">
+  <div class="sep-track" id="sepTrack"></div>
 </div>
+
+<!-- THE PROBLEM -->
+<div class="container">
+  <section class="section" id="problem">
+    <div class="problem-grid">
+      <div>
+        <div class="section-header">
+          <div class="eyebrow">The Problem</div>
+          <h2 class="section-h">Most speakers never measure their delivery.</h2>
+          <p class="section-p">You practice. You feel ready. Then you stand up and stumble. No data. No feedback. No way to improve systematically.</p>
+        </div>
+        <div class="prob-stack">
+          <div class="prob-item">
+            <div class="prob-ico">🪞</div>
+            <div class="prob-text">
+              <div class="prob-title">Mirrors don't measure anything.</div>
+              <div class="prob-desc">You see your face. You don't see your pace, pauses, or confidence level.</div>
+            </div>
+          </div>
+          <div class="prob-item">
+            <div class="prob-ico">👥</div>
+            <div class="prob-text">
+              <div class="prob-title">Friends give you biased feedback.</div>
+              <div class="prob-desc">"You were great!" tells you nothing. Social politeness defeats honesty.</div>
+            </div>
+          </div>
+          <div class="prob-item">
+            <div class="prob-ico">📉</div>
+            <div class="prob-text">
+              <div class="prob-title">You discover weaknesses on stage.</div>
+              <div class="prob-desc">By the time you're in a viva, it's too late. No way to adjust or recover.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution-panel">
+        <div class="sol-tag">BOL's Approach</div>
+        <div class="sol-title">Stop practicing blindly. Start measuring your delivery.</div>
+        <div class="sol-text">
+          BOL listens to your voice. Analyzes your pace, pauses, stability, and flow. Gives you a numeric confidence score — 0 to 100 — backed by real data from your actual recording.<br><br>
+          You see exactly which metrics are holding your score down. You know precisely what to adjust. Next session, you measure again. You watch your score move. That's the difference between practice and improvement.
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- USE CASES -->
+<div class="section-alt">
+  <div class="container">
+    <section class="section">
+      <div class="section-header center">
+        <div class="eyebrow">For Every Speaking Situation</div>
+        <h2 class="section-h">Vivas. Interviews. Pitches. Presentations.</h2>
+        <p class="section-p">BOL works before any high-stakes speaking moment.</p>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card fade-in">
+          <div class="case-ico">📋</div>
+          <div class="case-title">Viva Exams</div>
+          <div class="case-text">Practice answers until your confidence score is consistent. Know you're ready before you walk in.</div>
+          <span class="case-tag">Academic</span>
+        </div>
+        <div class="case-card fade-in">
+          <div class="case-ico">💼</div>
+          <div class="case-title">Job Interviews</div>
+          <div class="case-text">HR and technical rounds. Group discussions. BOL trains the delivery that separates you from other candidates.</div>
+          <span class="case-tag">Career</span>
+        </div>
+        <div class="case-card fade-in">
+          <div class="case-ico">🚀</div>
+          <div class="case-title">Pitches & Demos</div>
+          <div class="case-text">Your opening 90 seconds matter most. Refine it. Score it. Perfect it before the real audience.</div>
+          <span class="case-tag">Business</span>
+        </div>
+        <div class="case-card fade-in">
+          <div class="case-ico">🎓</div>
+          <div class="case-title">Class Presentations</div>
+          <div class="case-text">Turn nervousness into measurable improvement. See your confidence grow across sessions.</div>
+          <span class="case-tag">Academic</span>
+        </div>
+        <div class="case-card fade-in">
+          <div class="case-ico">🎙️</div>
+          <div class="case-title">Public Speaking</div>
+          <div class="case-text">From conference talks to toasts. Build a baseline. Track progress. Own the room.</div>
+          <span class="case-tag">Stage</span>
+        </div>
+        <div class="case-card fade-in">
+          <div class="case-ico">⚡</div>
+          <div class="case-title">Debate & Arguments</div>
+          <div class="case-text">Speed, clarity, and pacing. BOL measures exactly what debate judges reward.</div>
+          <span class="case-tag">Competition</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- WHAT WE MEASURE -->
+<div class="container">
+  <section class="section" id="features">
+    <div class="section-header">
+      <div class="eyebrow">Eight Dimensions of Delivery</div>
+      <h2 class="section-h">What Gets Scored</h2>
+      <p class="section-p">Every session. Every metric. All feeding into one confidence number.</p>
+    </div>
+    <div class="measures">
+      <div class="measure-card">
+        <div class="m-ico">📊</div>
+        <div class="m-title">Confidence Score</div>
+        <div class="m-text">0–100 composite. The single number that tells you how ready you are.</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">⏸</div>
+        <div class="m-title">Pause Analysis</div>
+        <div class="m-text">Rhetorical pauses vs. panic pauses. Which are holding you back?</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">⚡</div>
+        <div class="m-title">Speaking Pace</div>
+        <div class="m-text">120–155 wpm is optimal. Too fast? Too slow? BOL tells you.</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">🎯</div>
+        <div class="m-title">Voice Stability</div>
+        <div class="m-text">Nervous speakers show volume variance. BOL detects it.</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">🔤</div>
+        <div class="m-title">Filler Words</div>
+        <div class="m-text">Umm, uhh, like, basically. Every one is flagged.</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">⏱</div>
+        <div class="m-title">Active Speech Time</div>
+        <div class="m-text">How much are you actually speaking vs. silent?</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">💬</div>
+        <div class="m-title">Speech Flow</div>
+        <div class="m-text">Sentence completion. Trailing words. Authority vs. hedging.</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">📈</div>
+        <div class="m-title">Progress Tracking</div>
+        <div class="m-text">Every session logged. See your trajectory. Adjust your practice.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- HOW IT WORKS — CIRCULAR JOURNEY -->
+<div class="section-alt">
+  <div class="container">
+    <section class="section" id="how">
+      <div class="section-header center">
+        <div class="eyebrow">How It Works</div>
+        <h2 class="section-h">Record. Measure. Improve. Repeat.</h2>
+        <p class="section-p">30 seconds to first result. No equipment. No coaching. No waiting.</p>
+      </div>
+
+      <div class="journey-wrapper">
+        <svg class="journey-svg" viewBox="0 0 680 500" xmlns="http://www.w3.org/2000/svg" id="journeySvg" aria-label="Circular process: Record, Analyze, Score, Retest">
+          <defs>
+            <linearGradient id="jRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3B82F6"/>
+              <stop offset="50%" stop-color="#7C3AED"/>
+              <stop offset="100%" stop-color="#3B82F6"/>
+            </linearGradient>
+            <linearGradient id="jNode1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3B82F6"/>
+              <stop offset="100%" stop-color="#6366F1"/>
+            </linearGradient>
+            <linearGradient id="jNode2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7C3AED"/>
+              <stop offset="100%" stop-color="#A855F7"/>
+            </linearGradient>
+            <linearGradient id="jNode3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0EA5E9"/>
+              <stop offset="100%" stop-color="#3B82F6"/>
+            </linearGradient>
+            <linearGradient id="jNode4Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#10B981"/>
+              <stop offset="100%" stop-color="#0EA5E9"/>
+            </linearGradient>
+            <filter id="nodeGlow">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+          </defs>
+
+          <!-- Background track ring -->
+          <circle cx="340" cy="250" r="174" class="journey-ring-track"/>
+          <!-- Animated draw ring -->
+          <circle cx="340" cy="250" r="174" class="journey-ring-draw" id="jRingDraw"/>
+          <path
+  id="orbitPath"
+  d="
+  M 340 76
+  A 174 174 0 1 1 339.9 76
+  "
+  fill="none"
+/>
+          <!-- Orbiting glow -->
+          <circle cx="340" cy="250" r="174" class="journey-orbit" id="jOrbit"/>
+          <g id="orbitArrow">
+
+  <polygon
+    points="0,-6 12,0 0,6"
+    fill="#60A5FA">
+
+    <animateMotion
+      dur="10s"
+      repeatCount="indefinite"
+      rotate="auto">
+
+      <mpath href="#orbitPath"/>
+
+    </animateMotion>
+
+  </polygon>
+
+</g>
+
+          <!-- Center BOL Engine -->
+<g class="journey-center-text" id="jCenterText">
+
+  <circle cx="340" cy="250" r="58"
+          fill="rgba(59,130,246,0.06)"
+          stroke="rgba(59,130,246,0.18)"
+          stroke-width="1.2"/>
+
+  <circle cx="340" cy="250" r="44"
+          fill="rgba(255,255,255,0.015)"
+          stroke="rgba(255,255,255,0.05)"
+          stroke-width="1"/>
+
+  <text x="340"
+        y="242"
+        text-anchor="middle"
+        font-family="'Bricolage Grotesque',sans-serif"
+        font-weight="800"
+        font-size="20"
+        fill="#E8EDF8">
+        Confidence
+  </text>
+
+  <text x="340"
+        y="264"
+        text-anchor="middle"
+        font-family="'JetBrains Mono',monospace"
+        font-size="11"
+        fill="#60A5FA"
+        letter-spacing="2">
+        ENGINE
+  </text>
+
+</g>
+
+          <!-- NODE 01 — TOP — Record Response -->
+          <g class="journey-node animate-1" id="jNode1">
+            <circle cx="340" cy="76" r="38" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.2)" stroke-width="1"/>
+            <circle cx="340" cy="76" r="28" fill="url(#jNode1Grad)" filter="url(#nodeGlow)"/>
+            <g transform="translate(340,76)" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round">
+              <rect x="-5" y="-11" width="10" height="16" rx="5" fill="rgba(255,255,255,0.15)" stroke="white"/>
+              <path d="M-9 6c0 5 18 5 18 0"/>
+              <line x1="0" y1="11" x2="0" y2="14"/>
+            </g>
+          </g>
+          <!-- Label 01 -->
+          <g class="journey-label animate-1" id="jLabel1">
+            <text x="340" y="124" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#4A5672" letter-spacing="1">01</text>
+            <text x="340" y="140" text-anchor="middle" font-family="'Bricolage Grotesque',sans-serif" font-weight="700" font-size="13" fill="#E8EDF8">Record Response</text>
+            <text x="340" y="155" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="11" fill="#8A97B5">30–60 seconds, any topic</text>
+          </g>
+
+          <!-- NODE 02 — RIGHT — BOL Analyzes -->
+          <g class="journey-node animate-2" id="jNode2">
+            <circle cx="514" cy="250" r="38" fill="rgba(124,58,237,0.08)" stroke="rgba(124,58,237,0.2)" stroke-width="1"/>
+            <circle cx="514" cy="250" r="28" fill="url(#jNode2Grad)" filter="url(#nodeGlow)"/>
+            <g transform="translate(514,250)" fill="white">
+              <rect x="-11" y="-10" width="4" height="20" rx="2"/>
+              <rect x="-4" y="-14" width="4" height="28" rx="2"/>
+              <rect x="3" y="-7" width="4" height="14" rx="2"/>
+              <rect x="10" y="-11" width="4" height="22" rx="2" opacity="0.7"/>
+            </g>
+          </g>
+          <!-- Label 02 -->
+          <g class="journey-label animate-2" id="jLabel2">
+            <text x="590" y="243" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="10" fill="#4A5672" letter-spacing="1">02</text>
+            <text x="590" y="259" text-anchor="start" font-family="'Bricolage Grotesque',sans-serif" font-weight="700" font-size="13" fill="#E8EDF8">BOL Analysis</text>
+            <text x="590" y="274" text-anchor="start" font-family="'DM Sans',sans-serif" font-size="11" fill="#8A97B5">real-time data</text>
+          </g>
+
+          <!-- NODE 03 — BOTTOM — Get Your Score -->
+          <g class="journey-node animate-3" id="jNode3">
+            <circle cx="340" cy="424" r="38" fill="rgba(14,165,233,0.08)" stroke="rgba(14,165,233,0.2)" stroke-width="1"/>
+            <circle cx="340" cy="424" r="28" fill="url(#jNode3Grad)" filter="url(#nodeGlow)"/>
+            <text x="340" y="431" text-anchor="middle" font-family="'Bricolage Grotesque',sans-serif" font-weight="800" font-size="18" fill="white">0-100</text>
+          </g>
+          <!-- Label 03 -->
+          <g class="journey-label animate-3" id="jLabel3">
+            <text x="340" y="476" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#4A5672" letter-spacing="1">03</text>
+            <text x="340" y="492" text-anchor="middle" font-family="'Bricolage Grotesque',sans-serif" font-weight="700" font-size="13" fill="#E8EDF8">Get Your Score</text>
+          </g>
+
+          <!-- NODE 04 — LEFT — Practice & Retest -->
+          <g class="journey-node animate-4" id="jNode4">
+            <circle cx="166" cy="250" r="38" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.2)" stroke-width="1"/>
+            <circle cx="166" cy="250" r="28" fill="url(#jNode4Grad)" filter="url(#nodeGlow)"/>
+            <g transform="translate(166,250)" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M-10 -4 A12 12 0 1 1 10 6"/>
+              <polyline points="10,0 10,7 17,7" transform="rotate(-15,10,4)"/>
+            </g>
+          </g>
+          <!-- Label 04 -->
+          <g class="journey-label animate-4" id="jLabel4">
+            <text x="88" y="243" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="10" fill="#4A5672" letter-spacing="1">04</text>
+            <text x="88" y="259" text-anchor="end" font-family="'Bricolage Grotesque',sans-serif" font-weight="700" font-size="13" fill="#E8EDF8">Drill & Review</text>
+            <text x="88" y="274" text-anchor="end" font-family="'DM Sans',sans-serif" font-size="11" fill="#8A97B5">Watch your score climb</text>
+          </g>
+
+          <!-- Subtle connector dots at cardinal points on ring -->
+          <circle cx="340" cy="76" r="3" fill="rgba(59,130,246,0.6)" class="journey-node animate-1"/>
+          <circle cx="514" cy="250" r="3" fill="rgba(124,58,237,0.6)" class="journey-node animate-2"/>
+          <circle cx="340" cy="424" r="3" fill="rgba(14,165,233,0.6)" class="journey-node animate-3"/>
+          <circle cx="166" cy="250" r="3" fill="rgba(16,185,129,0.6)" class="journey-node animate-4"/>
+        </svg>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- DASHBOARD PREVIEW -->
+<div class="container">
+  <section class="section" id="dashboard">
+    <div class="section-header">
+      <div class="eyebrow">Your Progress Dashboard</div>
+      <h2 class="section-h">Track every session. See your trajectory.</h2>
+      <p class="section-p">All your sessions in one place. Trends visible. Improvement quantifiable.</p>
+    </div>
+
+    <div class="preview-frame">
+      <div class="frame-header">
+        <div class="frame-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <div class="frame-url">bolcoach.com</div>
+        <div style="width:60px"></div>
+      </div>
+      <div class="frame-body">
+        <div class="sidebar-content">
+          <div class="sidebar-h">Recent Sessions</div>
+          <div class="session-list">
+            <div class="session-item active">
+              <div class="sess-top">
+                <span class="sess-date">Today, 3:42 PM</span>
+                <span class="sess-score up">81</span>
+              </div>
+              <div class="sess-track"><div class="sess-fill" style="width:81%"></div></div>
+            </div>
+            <div class="session-item">
+              <div class="sess-top">
+                <span class="sess-date">Yesterday</span>
+                <span class="sess-score up">76</span>
+              </div>
+              <div class="sess-track"><div class="sess-fill" style="width:76%"></div></div>
+            </div>
+            <div class="session-item">
+              <div class="sess-top">
+                <span class="sess-date">2 days ago</span>
+                <span class="sess-score">71</span>
+              </div>
+              <div class="sess-track"><div class="sess-fill" style="width:71%"></div></div>
+            </div>
+            <div class="session-item">
+              <div class="sess-top">
+                <span class="sess-date">4 days ago</span>
+                <span class="sess-score">68</span>
+              </div>
+              <div class="sess-track"><div class="sess-fill" style="width:68%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-content">
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-label">Current Score</div>
+              <div class="kpi-value up">81</div>
+              <div class="kpi-delta up">↑ +13 in 4 days</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Avg. Pace</div>
+              <div class="kpi-value">135</div>
+              <div class="kpi-delta up">In optimal range</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Panic Pauses</div>
+              <div class="kpi-value">2</div>
+              <div class="kpi-delta up">↓ Down from 6</div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-h">Confidence — Last 10 Sessions</div>
+            <div class="chart" id="dashChart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- COMPARISON -->
+<div class="section-alt">
+  <div class="container">
+    <section class="section">
+      <div class="section-header center">
+        <div class="eyebrow">Why BOL</div>
+        <h2 class="section-h">Different from everything else.</h2>
+        <p class="section-p">The difference isn't effort. It's measurement.</p>
+      </div>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Mirror Practice</th>
+            <th>Friend Feedback</th>
+            <th class="bol">BOL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Objective feedback</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="prt">Rarely</span></td>
+            <td class="bol"><span class="chk">✓</span> Always</td>
+          </tr>
+          <tr>
+            <td>Confidence score</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+            <td class="bol"><span class="chk">✓</span> 0–100</td>
+          </tr>
+          <tr>
+            <td>Progress tracking</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+            <td class="bol"><span class="chk">✓</span> Full history</td>
+          </tr>
+          <tr>
+            <td>Actionable feedback</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="prt">Vague</span></td>
+            <td class="bol"><span class="chk">✓</span> Specific metrics</td>
+          </tr>
+          <tr>
+            <td>Available 24/7</td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="crs">✗</span></td>
+            <td class="bol"><span class="chk">✓</span> Always ready</td>
+          </tr>
+        </tbody>
+      </table>
+        </div><!-- /compare-table-wrap -->
+    </section>
+  </div>
+</div>
+
+<!-- TESTIMONIALS — DYNAMIC -->
+<div class="container">
+  <section class="section">
+    <div class="section-header center">
+      <div class="eyebrow">Real Speakers. Real Results.</div>
+      <h2 class="section-h">Early User Feedback</h2>
+      <p class="section-p">What happens when measurement replaces guessing.</p>
+    </div>
+
+    <div class="testi-grid" id="testiGrid">
+      <div class="testi-card" id="tcard-0">
+        <div class="testi-card-inner">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text"></p>
+          <div class="author">
+            <div class="avatar av-1"></div>
+            <div>
+              <div class="author-name"></div>
+              <div class="author-role"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card" id="tcard-1">
+        <div class="testi-card-inner">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text"></p>
+          <div class="author">
+            <div class="avatar av-2"></div>
+            <div>
+              <div class="author-name"></div>
+              <div class="author-role"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card" id="tcard-2">
+        <div class="testi-card-inner">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text"></p>
+          <div class="author">
+            <div class="avatar av-3"></div>
+            <div>
+              <div class="author-name"></div>
+              <div class="author-role"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FINAL CTA -->
+<div class="container">
+  <div class="cta-final">
+    <div class="cta-box">
+      <div class="cta-glow"></div>
+      <h2 class="cta-h">Ready to measure your speaking confidence?</h2>
+      <p class="cta-p">Get a real confidence score. See your metrics. Know exactly what to fix. Start improving.</p>
+      <div class="cta-btns">
+     <button class="btn-primary" type="button" id="ctaRecordBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          </svg>
+          Start speaking
+        </button>
+
+       <a class="btn-secondary" href="view demoreport.html">See How It Works</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-h">BOL</div>
+        <div class="footer-brand-t">Speaking Confidence Lab. Measure your delivery. Reduce your stage fear. Own the room.</div>
+      </div>
+      <div>
+        <div class="footer-col-h">Product</div>
+        <ul class="footer-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="view demoreport.html">How It Works</a></li>
+          <li><a href="#dashboard">Dashboard</a></li>
+      
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-h">Resources</div>
+        <ul class="footer-links">
+         
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="support.htm">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-h">Legal</div>
+        <ul class="footer-links">
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="status.html">Status</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 BOL · Break Your Stage Fear.</div>
+      <div class="footer-built">founder <span><b>Saksham Singh</b></span></div>
+    </div>
+  </div>
+</footer>
+</div><!-- /page -->
+
+<!-- Hidden fallback elements for OLD FILE score display references -->
+<div style="display:none">
+  <div id="scoreValue"></div>
+  <div id="scoreLabel"></div>
+  <div id="scoreBarFill"></div>
+  <div id="userNameDisplay"></div>
+  <div id="userEmail"></div>
+  <button id="logoutBtn"></button>
+</div>
+
+<!-- RECORD MODAL -->
+<div id="recordModal" class="record-modal" aria-hidden="true">
+  <div class="record-modal-backdrop"></div>
+  <div class="record-modal-content">
+    <button id="closeModalBtn" class="record-modal-close" aria-label="Close">&times;</button>
+    <h2 class="record-title">Record your voice</h2>
+    <p class="record-subtitle">Speak for 30–60 seconds about yourself, your viva, or your project.</p>
+   <div class="mic-wrap" id="micWrap">
+  <div class="ring ring-1"></div>
+  <div class="ring ring-2"></div>
+  <div class="ring ring-3"></div>
+  <button id="micButton" class="mic-btn" aria-pressed="false">
+    <span class="mic-icon">🎙️</span>
+    <span id="micLabel" class="mic-label">Begin calmly</span>
+  </button>
+</div>
+    <div id="waveform" class="waveform">
+      <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    </div>
+    <p id="suggestionText" class="record-suggestion"></p>
+    <div id="timerDisplay" class="record-timer">00:00</div>
+    <button id="submitRecordingBtn" class="submit-btn" disabled>Submit attempt</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     NEW RESULT SCREEN — test3.html structure, indigo/purple theme
+     ============================================================ -->
+<div id="resultScreen" class="result-screen" aria-hidden="true">
+  <div class="sr-page-wrap">
+
+    <!-- TOPBAR -->
+    <header class="sr-topbar">
+      <div class="sr-topbar__brand">
+        <div class="sr-topbar__logo">BOL</div>
+        <span class="sr-topbar__name">Break Your Stage Fear</span>
+        <span class="sr-topbar__breadcrumb">&nbsp;/&nbsp;<span>Session Report</span></span>
+      </div>
+      <div class="sr-topbar__meta">
+        <span class="sr-topbar__status-dot"></span>
+        <span class="sr-topbar__date" id="srSessionDate">—</span>
+        <button id="srTopbarClose" class="sr-close-btn" aria-label="Close">✕</button>
+      </div>
     </header>
 
-    <!-- HERO + SNAPSHOT -->
-    <main class="hero-grid">
-      <section>
-        <div class="pill"><div class="pill-dot"></div><span>Built for students who freeze on stage</span></div>
-        <h1 class="hero-title">Break your <span class="blue">stage fear</span> before it <br/> breaks your future.</h1>
-        <p class="hero-subtitle">
-          If your voice shakes the moment you touch the mic, you're not alone — but you've got no excuse to stay the same.
-          <b>BOL trains your speaking confidence like a gym workout</b>: focused drills, instant metrics, and clear next steps to make your delivery reliable under pressure.
-        </p>
-        <ul class="hero-bullets">
-          <li>30–60s focused drills that mimic viva, pitch, or HR rounds.</li>
-          <li>Instant numeric confidence score plus plain-language suggestions.</li>
-          <li>Practice plans so each attempt actually improves your stage presence.</li>
-        </ul>
-        <div class="hero-actions">
-          <button id="recordTestBtn" class="primary-btn">Record 30-sec Test</button>
-          <button class="secondary-btn">Watch 15-sec demo</button>
-        </div>
-        <p style="color:var(--muted);margin-top:12px;font-size:13px;max-width:680px">
-          Stop practicing in front of mirrors. Stop begging friends for fake reassurance. Test yourself against numbers that don't lie — then fix the exact weak points that make you freeze.
-        </p>
-        <div style="margin-top:18px;color:var(--muted);line-height:1.5;max-width:720px">
-          <strong style="color:var(--text)">What you get immediately:</strong>
-          <ul style="margin-top:8px;padding-left:18px;color:var(--muted);">
-            <li>Confidence score (0–100) with a breakdown of timing, pauses, and volume.</li>
-            <li>Actionable micro-feedback: one-line coaching you can apply instantly.</li>
-            <li>Audio playback for self-review and comparison between attempts.</li>
-          </ul>
-        </div>
-      </section>
+    <!-- SCROLLABLE CONTENT -->
+    <div class="sr-scroll-body">
+      <main class="sr-page">
 
-      <aside class="snapshot-card">
-        <div class="snapshot-header">
-          <div>
-            <div style="font-size:13px;font-weight:700">Live Confidence Snapshot</div>
-            <div style="font-size:12px;color:var(--muted)">1-minute self-intro analyzed by BOL</div>
-          </div>
-          <div class="badge"><span style="width:9px;height:9px;border-radius:999px;background:#16a34a;display:inline-block"></span> Stage-ready</div>
-        </div>
-        <div class="score-label">Confidence score</div>
-        <div class="score-row">
-          <div class="score-main" id="scoreValue">78 <span>/100</span></div>
-          <div id="scoreLabel" style="font-size:13px;color:#86efac;font-weight:700">Good, can still improve</div>
-        </div>
-        <div class="score-bar"><div class="score-bar-fill" id="scoreBarFill"></div></div>
-        <div class="metric-grid">
-          <div class="metric-card">
-            <div class="metric-label">Speaking length</div>
-            <div class="metric-main">42 sec</div>
-            <div class="metric-tag">Ideal pace</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-label">Pauses</div>
-            <div class="metric-main">3 pauses</div>
-            <div class="metric-tag">Balanced</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-label">Volume</div>
-            <div class="metric-main">Stable · Clear</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-label">Overall feel</div>
-            <div class="metric-main">Confident, slightly fast</div>
-          </div>
-        </div>
-        <div class="snapshot-footer">
-          "Slow down just 5–10% and hold eye contact longer in your opening line." <span style="color:var(--accent1);cursor:pointer">BOL feedback engine</span>
-        </div>
-      </aside>
-    </main>
+        <!-- ── PERFORMANCE OVERVIEW ── -->
+        <section class="sr-fade-up sr-fade-up--1">
+          <div class="sr-section-label">Performance Overview</div>
+          <div class="sr-hero">
 
-    <!-- WHY -->
-    <section class="section">
-      <h2 class="section-title">Why BOL is different from a mirror practice.</h2>
-      <p class="section-subtitle">Mirrors don't give feedback. Friends sugarcoat. BOL tells you exactly how your speaking <b>sounds</b> — in numbers and simple language — so you know what to fix.</p>
-      <div class="three-grid" style="margin-top:6px">
-        <div class="info-card">
-          <div class="info-card-title">Practice like it's the real stage.</div>
-          <p>30–60 second focused drills. Pick a topic, hit record, and speak. BOL treats every attempt like a mini-presentation — not casual timepass — so your brain learns under pressure, just like the real viva or pitch.</p>
-          <p style="margin-top:8px;color:var(--muted);font-size:13px">Use the timer and audio playback to simulate stage stress and improve under realistic conditions.</p>
-        </div>
-        <div class="info-card">
-          <div class="info-card-title">Instant, honest feedback.</div>
-          <p>No buttering, only breakdown. You get a confidence score plus a breakdown of timing, pauses and average loudness. You see why you sound underconfident — not just a random number that tells you nothing.</p>
-          <p style="margin-top:8px;color:var(--muted);font-size:13px">Feedback is designed to be actionable: one tweak per attempt so progress compounds fast.</p>
-        </div>
-        <div class="info-card">
-          <div class="info-card-title">Built for students & speakers.</div>
-          <p>Whether it's a college viva, placement interview, or tech-fest pitch, BOL helps you test your delivery before you walk into the room — so you don't freeze when it actually matters.</p>
-          <p style="margin-top:8px;color:var(--muted);font-size:13px">Works on laptop or phone: quick daily drills fit into study schedules and do not require a coach.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section class="section">
-      <h2 class="section-title">How this prototype actually works.</h2>
-      <p class="section-subtitle">This is not a random-number generator. The demo analyzes measurable parts of your audio in the browser — then converts them into a confidence estimate.</p>
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:12px">
-        <div class="info-card">
-          <div class="info-step-label">Step 1</div>
-          <div class="info-card-title">You speak for 30–60 seconds.</div>
-          <p>Talk about yourself, your project, or any topic. BOL records your voice, tracks how long you speak, and when you pause — just like a real viva or HR round.</p>
-        </div>
-        <div class="info-card">
-          <div class="info-step-label">Step 2</div>
-          <div class="info-card-title">We analyze timing, pauses & volume.</div>
-          <p>The system calculates speaking length, silence gaps, and average loudness. These are combined in a scoring formula to estimate your confidence level on a 0–100 scale.</p>
-        </div>
-        <div class="info-card">
-          <div class="info-step-label">Step 3</div>
-          <div class="info-card-title">You get a score and clear next steps.</div>
-          <p>You see your confidence score plus plain-language advice: slow down, reduce fillers, increase volume, or pause less — so every attempt becomes one step closer to stage-ready.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FUTURE -->
-    <section class="section">
-      <h2 class="section-title">Future: from prototype to full AI speaking coach.</h2>
-      <p class="section-subtitle">This tech-fest version is a working prototype. The long-term vision is a full-stack AI coach that tracks your progress over months and prepares you for any stage.</p>
-      <ul class="future-list">
-        <li>Emotion & stress detection directly from your voice (so the app notices panic before you do).</li>
-        <li>Filler-word detection like "umm", "uhh", "aa", "that", "actually", "I like".</li>
-        <li>Personalized practice plans for interviews, group discussions, and presentations.</li>
-        <li>Mobile app for daily 5-minute speaking workouts and streak-based progress tracking.</li>
-      </ul>
-      <p class="footer-line">BOL — Break Your Stage Fear. Tech-fest prototype v1 · Built by a student who was tired of shaking on stage. Prototype uses duration, pauses & visual volume only. Future versions add AI emotion & filler-word detection.</p>
-    </section>
-  </div>
-
-  <!-- RECORD MODAL -->
-  <div id="recordModal" class="record-modal" aria-hidden="true">
-    <div class="record-modal-backdrop"></div>
-    <div class="record-modal-content">
-      <button id="closeModalBtn" class="record-modal-close" aria-label="Close">&times;</button>
-      <h2 class="record-title">Record your voice</h2>
-      <p class="record-subtitle">Speak for 30–60 seconds about yourself, your viva, or your project.</p>
-      <button id="micButton" class="mic-button" aria-pressed="false">
-        <span class="mic-icon">🎙️</span>
-        <span id="micLabel" class="mic-label">Begin calmly</span>
-      </button>
-      <div id="waveform" class="waveform">
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      </div>
-      <p id="suggestionText" class="record-suggestion"></p>
-      <div id="timerDisplay" class="record-timer">00:00</div>
-      <button id="submitRecordingBtn" class="submit-btn" disabled>Submit attempt</button>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       NEW RESULT SCREEN — test3.html structure, indigo/purple theme
-       ============================================================ -->
-  <div id="resultScreen" class="result-screen" aria-hidden="true">
-    <div class="sr-page-wrap">
-
-      <!-- TOPBAR -->
-      <header class="sr-topbar">
-        <div class="sr-topbar__brand">
-          <div class="sr-topbar__logo">BOL</div>
-          <span class="sr-topbar__name">Break Your Stage Fear</span>
-          <span class="sr-topbar__breadcrumb">&nbsp;/&nbsp;<span>Session Report</span></span>
-        </div>
-        <div class="sr-topbar__meta">
-          <span class="sr-topbar__status-dot"></span>
-          <span class="sr-topbar__date" id="srSessionDate">—</span>
-          <button id="srTopbarClose" class="sr-close-btn" aria-label="Close">✕</button>
-        </div>
-      </header>
-
-      <!-- SCROLLABLE CONTENT -->
-      <div class="sr-scroll-body">
-        <main class="sr-page">
-
-          <!-- ── PERFORMANCE OVERVIEW ── -->
-          <section class="sr-fade-up sr-fade-up--1">
-            <div class="sr-section-label">Performance Overview</div>
-            <div class="sr-hero">
-
-              <!-- Score Ring Panel -->
-              <div class="sr-score-panel" id="srScorePanel">
-                <div class="sr-score-ring-wrapper">
-                  <svg class="sr-score-ring-svg" viewBox="0 0 180 180">
-                    <defs>
-                      <linearGradient id="srGradScore" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%"   stop-color="#6366f1"/>
-                        <stop offset="100%" stop-color="#7c3aed"/>
-                      </linearGradient>
-                    </defs>
-                    <circle class="sr-score-ring-bg"   cx="90" cy="90" r="80"/>
-                    <circle class="sr-score-ring-fill" id="sr-ring-fill" cx="90" cy="90" r="80"/>
-                  </svg>
-                  <div class="sr-score-ring-inner">
-                    <span class="sr-score-number" id="ringScore">0</span>
-                    <span class="sr-score-max">/100</span>
-                  </div>
-                </div>
-                <span class="sr-score-label-text">Confidence Score</span>
-                <div class="sr-score-status">
-                  <div class="sr-score-badge" id="srBadge">
-                    <span class="sr-score-badge-dot"></span>
-                    <span id="srBadgeText">Calculating…</span>
-                  </div>
-                  <span class="sr-score-subtext" id="srScoreSubtext">Based on pacing, pauses &amp; vocal delivery</span>
+            <!-- Score Ring Panel -->
+            <div class="sr-score-panel" id="srScorePanel">
+              <div class="sr-score-ring-wrapper">
+                <svg class="sr-score-ring-svg" viewBox="0 0 180 180">
+                  <defs>
+                    <linearGradient id="srGradScore" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%"   stop-color="#6366f1"/>
+                      <stop offset="100%" stop-color="#7c3aed"/>
+                    </linearGradient>
+                  </defs>
+                  <circle class="sr-score-ring-bg"   cx="90" cy="90" r="80"/>
+                  <circle class="sr-score-ring-fill" id="sr-ring-fill" cx="90" cy="90" r="80"/>
+                </svg>
+                <div class="sr-score-ring-inner">
+                  <span class="sr-score-number" id="ringScore">0</span>
+                  <span class="sr-score-max">/100</span>
                 </div>
               </div>
-
-              <!-- Metrics Panel -->
-              <div class="sr-metrics-panel">
-                <div class="sr-metrics-header">
-                  <div class="sr-metrics-title">Session Summary</div>
-                  <div class="sr-metrics-subtitle" id="srMetaLine">Analyzing your speaking delivery…</div>
+              <span class="sr-score-label-text">Confidence Score</span>
+              <div class="sr-score-status">
+                <div class="sr-score-badge" id="srBadge">
+                  <span class="sr-score-badge-dot"></span>
+                  <span id="srBadgeText">Calculating…</span>
                 </div>
-                <div class="sr-metrics-grid">
+                <span class="sr-score-subtext" id="srScoreSubtext">Based on pacing, pauses &amp; vocal delivery</span>
+              </div>
+            </div>
 
-                  <div class="sr-metric-card">
-                    <div class="sr-metric-card__icon-row">
-                      <div class="sr-metric-card__icon">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                      </div>
-                      <span class="sr-metric-card__trend sr-metric-card__trend--up">Active</span>
+            <!-- Metrics Panel -->
+            <div class="sr-metrics-panel">
+              <div class="sr-metrics-header">
+                <div class="sr-metrics-title">Session Summary</div>
+                <div class="sr-metrics-subtitle" id="srMetaLine">Analyzing your speaking delivery…</div>
+              </div>
+              <div class="sr-metrics-grid">
+
+                <div class="sr-metric-card">
+                  <div class="sr-metric-card__icon-row">
+                    <div class="sr-metric-card__icon">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
-                    <div><span class="sr-metric-card__value" id="resultEffectiveDuration">00:00</span></div>
-                    <div class="sr-metric-card__label">Active Speech Duration</div>
-                    <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srEffBar"></div></div>
+                    <span class="sr-metric-card__trend sr-metric-card__trend--up">Active</span>
                   </div>
+                  <div><span class="sr-metric-card__value" id="resultEffectiveDuration">00:00</span></div>
+                  <div class="sr-metric-card__label">Active Speech Duration</div>
+                  <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srEffBar"></div></div>
+                </div>
 
-                  <div class="sr-metric-card">
-                    <div class="sr-metric-card__icon-row">
-                      <div class="sr-metric-card__icon">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                      </div>
-                      <span class="sr-metric-card__trend sr-metric-card__trend--neutral">Total</span>
+                <div class="sr-metric-card">
+                  <div class="sr-metric-card__icon-row">
+                    <div class="sr-metric-card__icon">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                     </div>
-                    <div><span class="sr-metric-card__value" id="resultTotalDuration">00:00</span></div>
-                    <div class="sr-metric-card__label">Total Session Duration</div>
-                    <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srTotBar" style="width:100%"></div></div>
+                    <span class="sr-metric-card__trend sr-metric-card__trend--neutral">Total</span>
                   </div>
+                  <div><span class="sr-metric-card__value" id="resultTotalDuration">00:00</span></div>
+                  <div class="sr-metric-card__label">Total Session Duration</div>
+                  <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srTotBar" style="width:100%"></div></div>
+                </div>
 
-                  <div class="sr-metric-card">
-                    <div class="sr-metric-card__icon-row">
-                      <div class="sr-metric-card__icon">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
-                      </div>
-                      <span class="sr-metric-card__trend sr-metric-card__trend--up" id="srWpmTrend">Rate</span>
+                <div class="sr-metric-card">
+                  <div class="sr-metric-card__icon-row">
+                    <div class="sr-metric-card__icon">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
                     </div>
-                    <div><span class="sr-metric-card__value" id="resultBackendWpm">—</span></div>
-                    <div class="sr-metric-card__label">Speech Rate</div>
-                    <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srWpmBar"></div></div>
+                    <span class="sr-metric-card__trend sr-metric-card__trend--up" id="srWpmTrend">Rate</span>
                   </div>
+                  <div><span class="sr-metric-card__value" id="resultBackendWpm">—</span></div>
+                  <div class="sr-metric-card__label">Speech Rate</div>
+                  <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srWpmBar"></div></div>
+                </div>
 
-                  <div class="sr-metric-card">
-                    <div class="sr-metric-card__icon-row">
-                      <div class="sr-metric-card__icon">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg>
-                      </div>
-                      <span class="sr-metric-card__trend sr-metric-card__trend--neutral">Detected</span>
+                <div class="sr-metric-card">
+                  <div class="sr-metric-card__icon-row">
+                    <div class="sr-metric-card__icon">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg>
                     </div>
-                    <div>
-                      <span class="sr-metric-card__value"><span id="resultPauses">0</span><span class="sr-metric-card__unit"> pauses</span></span>
-                    </div>
-                    <div class="sr-metric-card__label">Total Pauses Detected</div>
-                    <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srPauseBar"></div></div>
+                    <span class="sr-metric-card__trend sr-metric-card__trend--neutral">Detected</span>
                   </div>
+                  <div>
+                    <span class="sr-metric-card__value"><span id="resultPauses">0</span><span class="sr-metric-card__unit"> pauses</span></span>
+                  </div>
+                  <div class="sr-metric-card__label">Total Pauses Detected</div>
+                  <div class="sr-metric-card__bar"><div class="sr-metric-card__bar-fill" id="srPauseBar"></div></div>
+                </div>
 
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── TEMPORAL ANALYSIS ── -->
+        <section class="sr-fade-up sr-fade-up--2">
+          <div class="sr-section-label">Temporal Analysis</div>
+          <div class="sr-timeline-card sr-card">
+            <div class="sr-timeline-header">
+              <div class="sr-timeline-header-left">
+                <div class="sr-card__title" style="margin-bottom:0;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  Confidence Timeline
+                </div>
+                <span style="font-size:11px;color:var(--sr-text-muted);">Confidence progression modelled from vocal analysis</span>
+              </div>
+              <div class="sr-timeline-legend">
+                <div class="sr-legend-item"><div class="sr-legend-dot"></div>Session Score</div>
+                <div class="sr-legend-item">
+                  <div style="width:14px;height:1px;background:var(--sr-text-muted);border-top:1px dashed var(--sr-text-muted);"></div>
+                  Avg Baseline
                 </div>
               </div>
             </div>
-          </section>
+            <div class="sr-chart-canvas-wrap">
+              <canvas id="sr-timeline-canvas"></canvas>
+            </div>
+          </div>
+        </section>
 
-          <!-- ── TEMPORAL ANALYSIS ── -->
-          <section class="sr-fade-up sr-fade-up--2">
-            <div class="sr-section-label">Temporal Analysis</div>
-            <div class="sr-timeline-card sr-card">
-              <div class="sr-timeline-header">
-                <div class="sr-timeline-header-left">
-                  <div class="sr-card__title" style="margin-bottom:0;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                    Confidence Timeline
-                  </div>
-                  <span style="font-size:11px;color:var(--sr-text-muted);">Confidence progression modelled from vocal analysis</span>
+        <!-- ── AUDIO PLAYBACK ── -->
+        <section class="sr-fade-up sr-fade-up--3">
+          <div class="sr-section-label">Recording</div>
+          <div class="sr-playback-card sr-card">
+            <div class="sr-card__title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              Attempt Recording
+            </div>
+
+            <!-- Decorative waveform -->
+            <div class="sr-playback-waveform" id="sr-waveform"></div>
+
+            <div class="sr-playback-inner">
+              <button class="sr-playback-btn" id="playAudioBtnPolished" aria-label="Play / Pause">
+                <svg id="sr-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </button>
+              <div class="sr-playback-track">
+                <div class="sr-playback-meta">
+                  <span class="sr-playback-title">Your Attempt</span>
+                  <span class="sr-playback-time" id="sr-time-display">0:00</span>
                 </div>
-                <div class="sr-timeline-legend">
-                  <div class="sr-legend-item"><div class="sr-legend-dot"></div>Session Score</div>
-                  <div class="sr-legend-item">
-                    <div style="width:14px;height:1px;background:var(--sr-text-muted);border-top:1px dashed var(--sr-text-muted);"></div>
-                    Avg Baseline
-                  </div>
+                <div class="sr-playback-progress-wrap" id="sr-progress-wrap">
+                  <div class="sr-playback-progress-fill" id="sr-progress-fill"></div>
                 </div>
-              </div>
-              <div class="sr-chart-canvas-wrap">
-                <canvas id="sr-timeline-canvas"></canvas>
               </div>
             </div>
-          </section>
 
-          <!-- ── AUDIO PLAYBACK ── -->
-          <section class="sr-fade-up sr-fade-up--3">
-            <div class="sr-section-label">Recording</div>
-            <div class="sr-playback-card sr-card">
-              <div class="sr-card__title">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-                Attempt Recording
+            <!-- Hidden audio element connected by JS -->
+            <audio id="attemptAudioPolished" style="display:none"></audio>
+            <!-- Transcript toggle -->
+            <div style="margin-top:14px;">
+              <button id="accessTranscriptBtn" class="sr-transcript-btn">Access Transcript</button>
+              <div id="transcriptContainer" style="display:none;margin-top:10px;">
+                <div style="background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.18);border-radius:10px;padding:14px;font-size:13px;color:#c7d2fe;line-height:1.7;font-family:'IBM Plex Sans',sans-serif;" id="transcriptText"></div>
               </div>
+            </div>
+          </div>
+        </section>
 
-              <!-- Decorative waveform -->
-              <div class="sr-playback-waveform" id="sr-waveform"></div>
+        <!-- ── AI ANALYSIS ── -->
+        <section class="sr-fade-up sr-fade-up--4">
+          <div class="sr-section-label">AI Analysis</div>
+          <div class="sr-analysis-card sr-card">
+            <div class="sr-analysis-header">
+              <div class="sr-card__title" style="margin-bottom:0;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Analysis
+              </div>
+              <span class="sr-analysis-model-tag">BOL-ANALYSIS-v2</span>
+            </div>
 
-              <div class="sr-playback-inner">
-                <button class="sr-playback-btn" id="playAudioBtnPolished" aria-label="Play / Pause">
-                  <svg id="sr-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <!-- Sub-score breakdown -->
+            <div class="sr-breakdown-row">
+              <div class="sr-breakdown-card">
+                <div class="sr-breakdown-card__label">Vocal Clarity</div>
+                <div class="sr-breakdown-card__score-row">
+                  <span class="sr-breakdown-card__score" id="srClarityScore">—</span>
+                  <span class="sr-breakdown-card__max">/100</span>
+                </div>
+                <div class="sr-breakdown-bar"><div class="sr-breakdown-bar-fill sr-bar-primary" id="srClarityBar"></div></div>
+              </div>
+              <div class="sr-breakdown-card">
+                <div class="sr-breakdown-card__label">Pace Control</div>
+                <div class="sr-breakdown-card__score-row">
+                  <span class="sr-breakdown-card__score" id="srPaceScore">—</span>
+                  <span class="sr-breakdown-card__max">/100</span>
+                </div>
+                <div class="sr-breakdown-bar"><div class="sr-breakdown-bar-fill sr-bar-amber" id="srPaceBar"></div></div>
+              </div>
+              <div class="sr-breakdown-card">
+                <div class="sr-breakdown-card__label">Delivery Flow</div>
+                <div class="sr-breakdown-card__score-row">
+                  <span class="sr-breakdown-card__score" id="srFlowScore">—</span>
+                  <span class="sr-breakdown-card__max">/100</span>
+                </div>
+                <div class="sr-breakdown-bar"><div class="sr-breakdown-bar-fill sr-bar-primary" id="srFlowBar"></div></div>
+              </div>
+            </div>
+
+            <!-- AI Feedback text -->
+            <div class="sr-result-feedback" id="resultFeedback">Feedback will appear here.</div>
+
+            <!-- Trajectory row -->
+            <div class="sr-trajectory-row hidden" id="trajectoryRow">
+              <span class="sr-trajectory-arrow" id="trajectoryArrow">—</span>
+              <span class="sr-trajectory-text" id="trajectoryText">—</span>
+            </div>
+
+            <!-- IMPROVE CONFIDENCE CTA -->
+            <section class="sr-fade-up sr-fade-up--5">
+              <div class="sr-improve-cta-wrap">
+                <button id="improveConfidenceBtn" class="sr-improve-cta-btn">
+                  Unlock Your Power
                 </button>
-                <div class="sr-playback-track">
-                  <div class="sr-playback-meta">
-                    <span class="sr-playback-title">Your Attempt</span>
-                    <span class="sr-playback-time" id="sr-time-display">0:00</span>
-                  </div>
-                  <div class="sr-playback-progress-wrap" id="sr-progress-wrap">
-                    <div class="sr-playback-progress-fill" id="sr-progress-fill"></div>
-                  </div>
-                </div>
               </div>
+            </section>
 
-              <!-- Hidden audio element connected by JS -->
-              <audio id="attemptAudioPolished" style="display:none"></audio>
-              <!-- Transcript toggle -->
-<div style="margin-top:14px;">
-  <button id="accessTranscriptBtn" class="sr-transcript-btn">Access Transcript</button>
+          </div>
+        </section>
 
-  <div id="transcriptContainer" style="display:none;margin-top:10px;">
-    <div style="background:rgba(99,102,241,0.06);border:1px solid rgba(99,102,241,0.18);border-radius:10px;padding:14px;font-size:13px;color:#c7d2fe;line-height:1.7;font-family:'IBM Plex Sans',sans-serif;" id="transcriptText"></div>
+        <!-- ── NEXT STEPS / ACTIONS ── -->
+        <section class="sr-fade-up sr-fade-up--5">
+          <div class="sr-section-label">Next Steps</div>
+          <div class="sr-actions-row">
+            <button id="retakeBtnPolished" class="sr-btn sr-btn--primary">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+              Retake Attempt
+            </button>
+            <button id="saveBtn" class="sr-btn sr-btn--secondary">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              Save Attempt
+            </button>
+            <button id="closeResultBtn" class="sr-btn sr-btn--ghost">
+              Close
+            </button>
+          </div>
+        </section>
+
+      </main>
+    </div><!-- /sr-scroll-body -->
+  </div><!-- /sr-page-wrap -->
+</div><!-- /#resultScreen -->
+
+<!-- ANALYSIS LOADER -->
+<!-- ANALYSIS LOADER -->
+<div id="analysisLoader" class="analysis-loader">
+  <div class="loader-scene">
+
+    <!-- Outer ambient ring (static, decorative depth) -->
+    <div class="loader-ring-ambient"></div>
+
+    <!-- GPU-composited spinner ring -->
+    <div class="loader-ring-track">
+      <div class="loader-ring-spinner"></div>
+    </div>
+
+    <!-- Logo lockup — primary visual anchor -->
+  <div class="loader-logo-wrap">
+  <div class="loader-logo-mark">
+    <img src="logo.png" class="loader-waveform-img" alt="BOL waveform" />
   </div>
 </div>
-            </div>
-          </section>
-
-          <!-- ── AI ANALYSIS ── -->
-          <section class="sr-fade-up sr-fade-up--4">
-            <div class="sr-section-label">AI Analysis</div>
-            <div class="sr-analysis-card sr-card">
-              <div class="sr-analysis-header">
-                <div class="sr-card__title" style="margin-bottom:0;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                  Analysis
-                </div>
-                <span class="sr-analysis-model-tag">BOL-ANALYSIS-v2</span>
-              </div>
-
-              <!-- Sub-score breakdown -->
-              <div class="sr-breakdown-row">
-                <div class="sr-breakdown-card">
-                  <div class="sr-breakdown-card__label">Vocal Clarity</div>
-                  <div class="sr-breakdown-card__score-row">
-                    <span class="sr-breakdown-card__score" id="srClarityScore">—</span>
-                    <span class="sr-breakdown-card__max">/100</span>
-                  </div>
-                  <div class="sr-breakdown-bar"><div class="sr-breakdown-bar-fill sr-bar-primary" id="srClarityBar"></div></div>
-                </div>
-                <div class="sr-breakdown-card">
-                  <div class="sr-breakdown-card__label">Pace Control</div>
-                  <div class="sr-breakdown-card__score-row">
-                    <span class="sr-breakdown-card__score" id="srPaceScore">—</span>
-                    <span class="sr-breakdown-card__max">/100</span>
-                  </div>
-                  <div class="sr-breakdown-bar"><div class="sr-breakdown-bar-fill sr-bar-amber" id="srPaceBar"></div></div>
-                </div>
-                <div class="sr-breakdown-card">
-                  <div class="sr-breakdown-card__label">Delivery Flow</div>
-                  <div class="sr-breakdown-card__score-row">
-                    <span class="sr-breakdown-card__score" id="srFlowScore">—</span>
-                    <span class="sr-breakdown-card__max">/100</span>
-                  </div>
-                  <div class="sr-breakdown-bar"><div class="sr-breakdown-bar-fill sr-bar-primary" id="srFlowBar"></div></div>
-                </div>
-              </div>
-
-              <!-- AI Feedback text (mapped to resultFeedback) -->
-              <div class="sr-result-feedback" id="resultFeedback">Feedback will appear here.</div>
-
-              <!-- Trajectory row -->
-              <div class="sr-trajectory-row hidden" id="trajectoryRow">
-                <span class="sr-trajectory-arrow" id="trajectoryArrow">—</span>
-                <span class="sr-trajectory-text" id="trajectoryText">—</span>
-              </div>
-<!-- IMPROVE CONFIDENCE CTA -->
-<section class="sr-fade-up sr-fade-up--5">
-  <div class="sr-improve-cta-wrap">
-    
-    <button id="improveConfidenceBtn" class="sr-improve-cta-btn">
-      Unlock Your Power
-    </button>
 
   </div>
-            
-          </section>
 
-          <!-- ── NEXT STEPS / ACTIONS ── -->
-          <section class="sr-fade-up sr-fade-up--5">
-            <div class="sr-section-label">Next Steps</div>
-            <div class="sr-actions-row">
-              <button id="retakeBtnPolished" class="sr-btn sr-btn--primary">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
-                Retake Attempt
-              </button>
-              <button id="saveBtn" class="sr-btn sr-btn--secondary">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                Save Attempt
-              </button>
-  <button id="closeResultBtn" class="sr-btn sr-btn--ghost">
-    Close
-  </button>
-             
-            </div>
-          </section>
+  <!-- Text hierarchy below the scene -->
+  <p class="loader-label">Analyzing your delivery</p>
+  <p class="loader-sublabel" id="loaderSubLabel">Running AI confidence model…</p>
+</div>
 
-        </main>
-      </div><!-- /sr-scroll-body -->
-    </div><!-- /sr-page-wrap -->
-  </div><!-- /#resultScreen -->
+<script>
+/* ─── RING ANIMATION ─── */
+window.addEventListener('load', () => {
+  const ring = document.getElementById('mainRing');
+  if (ring) {
+    const circumference = 251.3;
+    const score = 76;
+    setTimeout(() => {
+      ring.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(.25,.46,.45,.94)';
+      ring.style.strokeDashoffset = circumference - (circumference * (score / 100));
+    }, 300);
+  }
 
-  <!-- ANALYSIS LOADER -->
-  <div id="analysisLoader" class="analysis-loader">
-    <div class="loader-container">
-        <div class="loader-ring"></div>
-        <img src="logo.png" class="loader-logo">
-    </div>
-    <div class="loader-text">Running AI confidence model...</div>
-    <div class="loader-sub">AI is evaluating your speaking patterns</div>
-  </div>
+  const bar = document.getElementById('progressBar');
+  if (bar) {
+    setTimeout(() => { bar.style.width = '76%'; }, 400);
+  }
+});
 
-  <!-- =====================================================================
-       APPLICATION SCRIPT — ALL ORIGINAL LOGIC PRESERVED
-       Only animateRing + showResultScreen updated for new result screen IDs
-       ===================================================================== -->
-  <script type="module">
+/* ─── MINI CHART ─── */
+(function() {
+  const container = document.getElementById('miniChart');
+  if (!container) return;
+  const heights = [40, 45, 35, 55, 50, 65, 60, 72, 78, 75, 82, 76];
+  const peaks = [false, false, false, false, false, false, false, false, false, false, true, false];
+  heights.forEach((h, i) => {
+    const b = document.createElement('div');
+    b.className = 'bar' + (peaks[i] ? ' active' : '');
+    b.style.height = h + '%';
+    container.appendChild(b);
+  });
+})();
+
+/* ─── SEPARATOR ITEMS ─── */
+(function() {
+  const items = [
+    { emoji: '📊', text: '<strong>76 avg</strong> confidence score' },
+    { emoji: '⚡', text: '<strong>45 sec</strong> average session' },
+    { emoji: '📈', text: 'Improve <strong>+15 pts</strong> in 5 sessions' },
+    { emoji: '🎯', text: '<strong>8 metrics</strong> measured per session' },
+    { emoji: '📋', text: 'Works for <strong>vivas, pitches, interviews</strong>' },
+    { emoji: '🔤', text: 'Filler words flagged <strong>in real time</strong>' },
+    { emoji: '🎙️', text: 'No app. <strong>Browser based</strong>.' },
+    { emoji: '✨', text: '<strong>Results in 60</strong> seconds' },
+  ];
+  const track = document.getElementById('sepTrack');
+  if (!track) return;
+  [...items, ...items].forEach(item => {
+    const d = document.createElement('div');
+    d.className = 'sep-item';
+    d.innerHTML = `<span class="sep-emoji">${item.emoji}</span><span class="sep-text">${item.text}</span>`;
+    track.appendChild(d);
+  });
+})();
+
+/* ─── DASHBOARD CHART ─── */
+(function() {
+  const container = document.getElementById('dashChart');
+  if (!container) return;
+  const scores = [58, 61, 59, 64, 68, 72, 71, 76, 79, 81];
+  const max = Math.max(...scores);
+  scores.forEach((s, i) => {
+    const b = document.createElement('div');
+    b.className = 'chart-bar' + (i === scores.length - 1 ? ' peak' : '');
+    b.style.height = Math.round((s / max) * 100) + '%';
+    b.title = `Session ${i + 1}: ${s}`;
+    container.appendChild(b);
+  });
+})();
+
+/* ─── CIRCULAR JOURNEY — VIEWPORT TRIGGER ─── */
+(function() {
+  const svg = document.getElementById('journeySvg');
+  if (!svg) return;
+  let triggered = false;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !triggered) {
+        triggered = true;
+        document.getElementById('jRingDraw').classList.add('animate');
+        setTimeout(() => {
+          document.getElementById('jOrbit').classList.add('animate');
+        }, 1400);
+        document.querySelectorAll('.journey-node').forEach(n => {
+          const cls = n.className.baseVal;
+          if (cls.includes('animate-1')) n.classList.add('animate-1');
+          if (cls.includes('animate-2')) n.classList.add('animate-2');
+          if (cls.includes('animate-3')) n.classList.add('animate-3');
+          if (cls.includes('animate-4')) n.classList.add('animate-4');
+        });
+        document.querySelectorAll('.journey-label').forEach(n => {
+          const cls = n.className.baseVal;
+          if (cls.includes('animate-1')) n.classList.add('animate-1');
+          if (cls.includes('animate-2')) n.classList.add('animate-2');
+          if (cls.includes('animate-3')) n.classList.add('animate-3');
+          if (cls.includes('animate-4')) n.classList.add('animate-4');
+        });
+        document.getElementById('jCenterText').classList.add('animate');
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  obs.observe(svg);
+})();
+
+/* ─── DYNAMIC TESTIMONIALS ─── */
+(function() {
+  const TESTIMONIALS = [
+    {
+      name: 'Nikhil Kumar',
+      college: 'B.Tech, PSIT Kanpur',
+      avClass: 'av-1',
+      text: 'I thought I spoke fine until BOL showed how often I was pausing and rushing. Seeing 165 wpm and 7 panic pauses on the first attempt was a shock. But that number made me actually fix things.'
+    },
+    {
+      name: 'Priya Chaurasia',
+      college: 'B.Tech Student, HBTU Kanpur',
+      avClass: 'av-2',
+      text: 'My viva felt completely different after using BOL for two weeks. The confidence timeline showed exactly where I was losing flow. Knowing that made it easy to fix. Passed with confidence.'
+    },
+    {
+      name: 'Rohit Katiyar',
+      college: 'B.Tech, Pranveer Singh Institute',
+      avClass: 'av-3',
+      text: 'For placement interviews, having a confidence score every day changed how I prepared. I could actually see myself improving. That score mattered more than any friend\'s opinion.'
+    },
+    {
+      name: 'Aditya Mishra',
+      college: 'MBA,Kanpur Institute of Technology',
+      avClass: 'av-4',
+      text: 'Group discussions were my weak spot before placements. BOL showed my pace was 171 wpm — way too fast. Slowing down to 140 and watching my score go from 54 to 79 in a week changed everything.'
+    },
+    {
+      name: 'Shivam Tiwari',
+      college: 'BCA, CSJM University Kanpur',
+      avClass: 'av-5',
+      text: 'I never realized how many filler words I used until BOL flagged 23 in one session. That was embarrassing but motivating. Three sessions later I was down to 6. Real feedback, real change.'
+    },
+    {
+      name: 'Anjali Verma',
+      college: 'B.Pharm, AXIS Colleges',
+      avClass: 'av-1',
+      text: 'Viva season is brutal. BOL helped me practice my drug mechanism answers until I could deliver them at consistent pace with no panic pauses. My examiner actually commented on my clarity.'
+    },
+    {
+      name: 'Ayush Gupta',
+      college: 'B.Tech, Allenhouse College Kanpur',
+      avClass: 'av-2',
+      text: 'I used BOL before every mock interview in my placement prep. The confidence score acted like a readiness meter — I only felt ready to apply when I consistently hit above 75. Got placed in TCS.'
+    },
+    {
+      name: 'Muskan Singh',
+      college: 'BBA, HBTU Kanpur',
+      avClass: 'av-3',
+      text: 'Stage fear was real for me. My first BOL session was 38 — that number hurt. But seeing it climb session by session to 71 gave me something to hold on to. I spoke at our college fest for the first time.'
+    },
+    {
+      name: 'Harsh Tripathi',
+      college: 'B.Tech, KIT kanpur',
+      avClass: 'av-4',
+      text: 'My voice used to shake during technical presentations. BOL\'s voice stability metric caught exactly when it dropped. Practicing the same segment ten times, watching stability go green, that\'s how I fixed it.'
+    },
+    {
+      name: 'Vaibhav Yadav',
+      college: 'B.Tech, Harcourt Butler Technical University',
+      avClass: 'av-5',
+      text: 'Before BOL I was just recording myself on my phone and guessing what was wrong. Having 8 actual metrics to look at changed my whole prep strategy. I knew what to work on instead of practicing blindly.'
+    },
+    {
+      name: 'Saurabh Verma',
+      college: 'MBA, AXIS COLLEGES Kanpur Campus',
+      avClass: 'av-1',
+      text: 'Our professor said my presentation lacked authority. I had no idea what that meant. BOL showed my active speech time was only 68% with lots of trailing silences. Fixed it. Scored highest in the next one.'
+    },
+    {
+      name: 'Shikhar Mishra',
+      college: 'B.Tech, AXIS Colleges Kanpur',
+      avClass: 'av-2',
+      text: 'I was preparing for UPSC interviews and needed to speak clearly under pressure. BOL was the only tool that gave me a measurable target. I practised until I hit 80+ three sessions in a row.'
+    },
+    {
+      name: 'Rajat Singh',
+      college: 'BCA, JAGRAN College Kanpur',
+      avClass: 'av-3',
+      text: 'Presentations always made me anxious. BOL removed the anxiety about the unknown — now I have data. I know my score, I know my pace, I know what needs work. It\'s not guesswork anymore.'
+    },
+    {
+      name: 'Shashwat Shrivastav',
+      college: 'B.Tech, Kanpur Institute of Technology',
+      avClass: 'av-4',
+      text: 'My startup pitch practice was all over the place before BOL. Seeing that my opening 30 seconds had 4 panic pauses and 178 wpm pace helped me slow down. Investors in our college fest actually stayed engaged.'
+    },
+    {
+      name: 'Pallavi Singh',
+      college: 'B.Pharm, Pranveer Singh Institute',
+      avClass: 'av-5',
+      text: 'I was terrified of my final year viva. Two weeks with BOL and my confidence score went from 47 to 74. The examiner asked tough questions and I stayed composed. I knew I had practiced correctly.'
+    },
+    {
+      name: 'Anjali Rawat',
+      college: 'BBA, CSJM University Kanpur',
+      avClass: 'av-1',
+      text: 'HR rounds at campus placements test your communication as much as your knowledge. BOL helped me find that my speaking pace was inconsistent under pressure. Fixing that rhythm made me much calmer in interviews.'
+    },
+    {
+      name: 'Mohit Agarwal',
+      college: 'B.Tech, HBTU Kanpur',
+      avClass: 'av-2',
+      text: 'I was selected to represent my college at a technical symposium. BOL helped me refine my 5-minute talk until every metric was in the green. My score was 83 before I stepped on stage. I felt prepared.'
+    },
+    {
+      name: 'Manisha Dubey',
+      college: 'MBA, Kanpur institute of technology',
+      avClass: 'av-3',
+      text: 'I was struggling with filler words. Every "basically" and "you know" I said lowered my credibility. BOL flagged 31 fillers in my first session. Seeing it drop to 7 over a week was genuinely satisfying.'
+    },
+    {
+      name: 'Mahak Jaiswal',
+      college: 'BCA, Rama Degree College Kanpur',
+      avClass: 'av-4',
+      text: 'No one had ever told me my voice dropped in volume when I got to the important part of my answers. BOL caught it immediately. That single insight made my job interview delivery significantly stronger.'
+    },
+    {
+      name: 'Sonam Tiwari',
+      college: 'B.Tech, PSIT College of Engineering',
+      avClass: 'av-5',
+      text: 'My confidence score on day one was 42. That was honest feedback I needed to hear but had never gotten. Three weeks later I hit 77. I used that number as proof to myself that I was ready. Cleared my campus interview.'
+    }
+  ];
+
+  const CARDS = [0, 1, 2];
+  const INTERVAL_MS = 5500;
+  const GLOW_MS = 500;
+
+  let shownIndices = [0, 1, 2];
+  let nextIndex = 3;
+
+  function getInitials(name) {
+    return name.split(' ').slice(0, 2).map(n => n[0]).join('');
+  }
+
+  function renderCard(cardSlot, testiData) {
+    const card = document.getElementById('tcard-' + cardSlot);
+    if (!card) return;
+    const inner = card.querySelector('.testi-card-inner');
+
+    inner.textContent = '';
+
+    const starsDiv = document.createElement('div');
+    starsDiv.className = 'stars';
+    starsDiv.textContent = '★★★★★';
+
+    const textP = document.createElement('p');
+    textP.className = 'testi-text';
+    textP.textContent = '\u201C' + testiData.text + '\u201D';
+
+    const authorDiv = document.createElement('div');
+    authorDiv.className = 'author';
+
+    const av = document.createElement('div');
+    av.className = 'avatar ' + testiData.avClass;
+    av.textContent = getInitials(testiData.name);
+
+    const infoDiv = document.createElement('div');
+    const nameD = document.createElement('div');
+    nameD.className = 'author-name';
+    nameD.textContent = testiData.name;
+    const roleD = document.createElement('div');
+    roleD.className = 'author-role';
+    roleD.textContent = testiData.college;
+    infoDiv.appendChild(nameD);
+    infoDiv.appendChild(roleD);
+    authorDiv.appendChild(av);
+    authorDiv.appendChild(infoDiv);
+
+    inner.appendChild(starsDiv);
+    inner.appendChild(textP);
+    inner.appendChild(authorDiv);
+  }
+
+  function initCards() {
+    CARDS.forEach((slot, i) => {
+      renderCard(slot, TESTIMONIALS[i]);
+      const card = document.getElementById('tcard-' + slot);
+      if (card) {
+        const inner = card.querySelector('.testi-card-inner');
+        inner.classList.add('testi-fade-in');
+      }
+    });
+  }
+
+  function rotateCard(slotIndex) {
+    const card = document.getElementById('tcard-' + slotIndex);
+    if (!card) return;
+    const inner = card.querySelector('.testi-card-inner');
+
+    inner.classList.add('testi-fade-out');
+    inner.classList.remove('testi-fade-in');
+
+    setTimeout(() => {
+      const newTesti = TESTIMONIALS[nextIndex % TESTIMONIALS.length];
+      shownIndices[slotIndex] = nextIndex % TESTIMONIALS.length;
+      nextIndex++;
+
+      renderCard(slotIndex, newTesti);
+
+      card.classList.add('testi-glowing');
+
+      const av = card.querySelector('.avatar');
+      if (av) {
+        av.classList.add('avatar-pop');
+        setTimeout(() => av.classList.remove('avatar-pop'), 400);
+      }
+
+      inner.classList.remove('testi-fade-out');
+      inner.classList.add('testi-fade-in');
+
+      setTimeout(() => card.classList.remove('testi-glowing'), GLOW_MS + 200);
+    }, 350);
+  }
+
+  function startRotation() {
+    setInterval(() => rotateCard(0), INTERVAL_MS);
+    setTimeout(() => {
+      setInterval(() => rotateCard(1), INTERVAL_MS);
+    }, Math.round(INTERVAL_MS / 3));
+    setTimeout(() => {
+      setInterval(() => rotateCard(2), INTERVAL_MS);
+    }, Math.round((INTERVAL_MS * 2) / 3));
+  }
+
+  initCards();
+  startRotation();
+})();
+
+/* ─── INTERSECTION OBSERVER FOR FADE-IN ─── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.animation = 'fadeIn .6s ease forwards';
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.case-card').forEach(el => observer.observe(el));
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+
+<script type="module">
 
 // ===== Import VAD =====
 import { createVAD } from "./vad/vad.js";
@@ -602,6 +2571,7 @@ const recordBtn    = document.getElementById("recordTestBtn");
 const modal        = document.getElementById("recordModal");
 const closeModalBtn= document.getElementById("closeModalBtn");
 const micButton    = document.getElementById("micButton");
+const micWrap = document.getElementById("micWrap");
 const micLabel     = document.getElementById("micLabel");
 const waveform     = document.getElementById("waveform");
 const bars         = waveform ? Array.from(waveform.querySelectorAll(".bar")) : [];
@@ -637,7 +2607,7 @@ const suggestions=["Yes, you can do it.","Don't be in a hurry.","Relax your shou
 /* ---------- UI helpers ---------- */
 function startTimer(){ timerInterval = setInterval(()=>{ secondsElapsed++; const mm=String(Math.floor(secondsElapsed/60)).padStart(2,"0"); const ss=String(secondsElapsed%60).padStart(2,"0"); timerDisplay.textContent=mm+":"+ss; },1000); }
 function startSuggestionLoop(){ let idx=0; suggestionText.textContent=suggestions[idx]; suggestionInterval=setInterval(()=>{ idx=(idx+1)%suggestions.length; suggestionText.textContent=suggestions[idx]; },3000); }
-function startWaveformAnimation(){ waveformInterval=setInterval(()=>{ bars.forEach(b=>{ const h=10+Math.random()*40; const o=0.28+Math.random()*0.7; b.style.height=h+"px"; b.style.opacity=o.toFixed(2); }); },120); }
+function startWaveformAnimation(){ waveformInterval=setInterval(()=>{ bars.forEach(b=>{ const h=12+Math.random()*22; const o=0.35+Math.random()*0.50; b.style.height=h+"px"; b.style.opacity=o.toFixed(2); }); },280); }
 function resetWaveform(){ bars.forEach(b=>{b.style.height="10px";b.style.opacity="0.3";}); }
 function stopIntervals(){ clearInterval(timerInterval); clearInterval(suggestionInterval); clearInterval(waveformInterval); timerInterval=suggestionInterval=waveformInterval=null; }
 
@@ -831,6 +2801,7 @@ function startRecordingUI(preExistingStream){
     isRecording=true;
     recordingStartMs = performance.now();
     if (micButton) micButton.classList.add("recording");
+    if (micWrap) micWrap.classList.add("recording");
     if (micLabel) micLabel.textContent="Tap to stop";
     secondsElapsed=0; timerDisplay.textContent="00:00"; submitBtn.disabled=true;
     startTimer(); startSuggestionLoop(); startWaveformAnimation();
@@ -851,6 +2822,7 @@ function stopRecordingUI(){
   stopRickyVAD();
   isRecording=false;
   if (micButton) micButton.classList.remove("recording");
+  if (micWrap) micWrap.classList.remove("recording");
   if (micLabel) micLabel.textContent="Tap to record again";
   if (recordingStartMs !== null) {
     const totalSessionMs = Math.max(0, performance.now() - recordingStartMs);
@@ -977,20 +2949,37 @@ submitBtn.addEventListener('click', async ()=>{
   if (!rickySpeechDetected) { alert("❌ No clear human speech detected.\nPlease speak audibly before submitting."); return; }
 
   document.getElementById("analysisLoader").classList.add("show");
-  const loaderMessages = ["Analyzing vocal stability...","Detecting confidence markers...","Evaluating speech clarity...","Running AI confidence model...","Preparing your report..."];
-  let msgIndex = 0;
-  const loaderText = document.querySelector(".loader-text");
-  const loaderInterval = setInterval(()=>{ msgIndex = (msgIndex + 1) % loaderMessages.length; loaderText.textContent = loaderMessages[msgIndex]; }, 1600);
+  
+const loaderMessages = [
+  "Analyzing vocal stability…",
+  "Detecting confidence markers…",
+  "Evaluating speech clarity…",
+  "Measuring pause patterns…",
+  "Preparing your report…"
+];
+let msgIndex = 0;
+const loaderSubLabel = document.getElementById("loaderSubLabel");
+
+const loaderInterval = setInterval(() => {
+  msgIndex = (msgIndex + 1) % loaderMessages.length;
+  if (loaderSubLabel) {
+    loaderSubLabel.style.opacity = "0";
+    setTimeout(() => {
+      loaderSubLabel.textContent = loaderMessages[msgIndex];
+      loaderSubLabel.style.opacity = "1";
+    }, 220);
+  }
+}, 1800);
 
   let score = 60;
   if (!recordedBlob) { alert("No audio recorded"); return; }
 
   const formData = new FormData();
   formData.append("audio", recordedBlob, "attempt.webm");
-const response = await fetch("https://bol-backend-j3f2.onrender.com/api/transcribe", {
-  method: "POST",
-  body: formData
-});
+  const response = await fetch("https://bol-backend-j3f2.onrender.com/api/transcribe", {
+    method: "POST",
+    body: formData
+  });
   if (!response.ok) { throw new Error("Backend transcribe failed"); }
   const backendData = await response.json();
 
@@ -1024,23 +3013,20 @@ const response = await fetch("https://bol-backend-j3f2.onrender.com/api/transcri
   if (!transcript || transcript.trim().length === 0) {
     console.warn("No transcript found — skipping LLM.");
   } else {
-const llmResponse = await fetch("https://bol-backend-j3f2.onrender.com/api/llm-feedback", {
+    const llmResponse = await fetch("https://bol-backend-j3f2.onrender.com/api/llm-feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-     body: JSON.stringify({ 
-  transcript, 
-  metrics,
-  sessionId: backendData.sessionId
-})
+      body: JSON.stringify({ 
+        transcript, 
+        metrics,
+        sessionId: backendData.sessionId
+      })
     });
     if (!llmResponse.ok) { console.error("LLM call failed:", await llmResponse.text()); }
     else {
-llmData = await llmResponse.json();
-
-window.bolMistakes = llmData.mistakes || [];
-
-console.log("LLM MISTAKES:", window.bolMistakes);
-
+      llmData = await llmResponse.json();
+      window.bolMistakes = llmData.mistakes || [];
+      console.log("LLM MISTAKES:", window.bolMistakes);
     }
   }
 
@@ -1171,8 +3157,8 @@ console.log("LLM MISTAKES:", window.bolMistakes);
   if(frontendRaw < 38){ finalScore = Math.min(finalScore, 32); }
   finalScore = Math.max(30, Math.min(95, Math.round(finalScore)));
 
-  scoreValueEl.innerHTML = `${finalScore} <span>/100</span>`;
-  scoreLabelEl.textContent = (finalScore < 40 ? "Too nervous, too many pauses" : finalScore < 70 ? "Better pacing needed" : finalScore < 85 ? "Strong delivery, minor pauses" : "Confident & smooth");
+  if (scoreValueEl) scoreValueEl.innerHTML = `${finalScore} <span>/100</span>`;
+  if (scoreLabelEl) scoreLabelEl.textContent = (finalScore < 40 ? "Too nervous, too many pauses" : finalScore < 70 ? "Better pacing needed" : finalScore < 85 ? "Strong delivery, minor pauses" : "Confident & smooth");
   if (scoreBarFillEl) scoreBarFillEl.style.width = `${finalScore}%`;
   score = finalScore;
 
@@ -1233,37 +3219,32 @@ console.log("LLM MISTAKES:", window.bolMistakes);
   const backendWpm = Number(backendData?.speechRate || 0);
   const backendTotalWords = Number(backendData?.totalWords || 0);
 
+  // backend score update //
+  const { data: { user } } = await supabaseClient.auth.getUser();
 
+  if (user) {
+    const insertData = {
+      user_id: user.id,
+      confidence_score: Math.round(finalScore),
+      speech_length: Math.round(totalDuration),
+      effective_duration: Math.round(effectiveDuration),
+      total_duration: Math.round(totalDuration),
+      pauses: pauseEvents.length,
+      wpm: Number(backendWpm) > 0 ? Math.round(Number(backendWpm)) : 0
+    };
 
-  // backend score upadate //
+    console.log("📤 Sending to Supabase:", insertData);
 
-const { data: { user } } = await supabaseClient.auth.getUser();
+    const { error } = await supabaseClient
+      .from('Attempts')
+      .insert([insertData]);
 
-if (user) {
-
- const insertData = {
-  user_id: user.id,
-  confidence_score: Math.round(finalScore),
-  speech_length: Math.round(totalDuration),
-  effective_duration: Math.round(effectiveDuration),
-  total_duration: Math.round(totalDuration),
-  pauses: pauseEvents.length,
-  wpm: Number(backendWpm) > 0 ? Math.round(Number(backendWpm)) : 0
-};
-
-  console.log("📤 Sending to Supabase:", insertData);
-
-  const { error } = await supabaseClient
-    .from('Attempts')
-    .insert([insertData]);
-
-  if (error) {
-    console.error("❌ Supabase insert error:", error);
-  } else {
-    console.log("✅ Attempt saved successfully");
+    if (error) {
+      console.error("❌ Supabase insert error:", error);
+    } else {
+      console.log("✅ Attempt saved successfully");
+    }
   }
-}
-
 
   clearInterval(loaderInterval);
   document.getElementById("analysisLoader").classList.remove("show");
@@ -1341,7 +3322,6 @@ function drawTimelineChart(score, trajectory, totalSeconds){
     render();
   }
 
-  // Build plausible data curve from trajectory & score
   function buildData(){
     const pts = 18;
     const base = Math.max(35, score - 20);
@@ -1361,7 +3341,6 @@ function drawTimelineChart(score, trajectory, totalSeconds){
       } else {
         v = score + Math.sin(t * Math.PI * 2) * 6;
       }
-      // add small organic noise
       v += (Math.sin(i * 1.3 + 0.7) * 3.5 + Math.cos(i * 0.8 + 1.1) * 2.5);
       arr.push(Math.max(30, Math.min(100, Math.round(v))));
     }
@@ -1383,7 +3362,6 @@ function drawTimelineChart(score, trajectory, totalSeconds){
     function toX(i){ return PAD.left + (i/(data.length-1))*chartW; }
     function toY(v){ return PAD.top + chartH - ((v-MIN)/(MAX-MIN))*chartH; }
 
-    // Grid lines
     ctx.strokeStyle = 'rgba(30,37,53,0.9)';
     ctx.lineWidth = 1*dpr;
     [40,60,80,100].forEach(v=>{
@@ -1391,7 +3369,6 @@ function drawTimelineChart(score, trajectory, totalSeconds){
       ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(W-PAD.right, y); ctx.stroke();
     });
 
-    // Y labels
     ctx.fillStyle = 'rgba(75,85,99,0.8)';
     ctx.font = `${9*dpr}px IBM Plex Mono, monospace`;
     ctx.textAlign = 'right';
@@ -1399,7 +3376,6 @@ function drawTimelineChart(score, trajectory, totalSeconds){
       ctx.fillText(v, PAD.left-6*dpr, toY(v)+3*dpr);
     });
 
-    // X labels
     ctx.textAlign = 'center';
     ctx.fillStyle = 'rgba(75,85,99,0.8)';
     ctx.font = `${9*dpr}px IBM Plex Mono, monospace`;
@@ -1411,7 +3387,6 @@ function drawTimelineChart(score, trajectory, totalSeconds){
       ctx.fillText(label, toX(idx), H-8*dpr);
     }
 
-    // Avg dashed
     const avgY = toY(avg);
     ctx.setLineDash([4*dpr,4*dpr]);
     ctx.strokeStyle = 'rgba(75,85,99,0.5)';
@@ -1419,7 +3394,6 @@ function drawTimelineChart(score, trajectory, totalSeconds){
     ctx.beginPath(); ctx.moveTo(PAD.left,avgY); ctx.lineTo(W-PAD.right,avgY); ctx.stroke();
     ctx.setLineDash([]);
 
-    // Area fill
     ctx.beginPath();
     data.forEach((v,i)=>{ i===0 ? ctx.moveTo(toX(i),toY(v)) : ctx.lineTo(toX(i),toY(v)); });
     ctx.lineTo(toX(data.length-1), H-PAD.bottom);
@@ -1432,7 +3406,6 @@ function drawTimelineChart(score, trajectory, totalSeconds){
     ctx.fillStyle = grad;
     ctx.fill();
 
-    // Main line
     ctx.beginPath();
     data.forEach((v,i)=>{
       const x=toX(i), y=toY(v);
@@ -1450,7 +3423,6 @@ function drawTimelineChart(score, trajectory, totalSeconds){
     ctx.stroke();
     ctx.shadowBlur  = 0;
 
-    // Dots
     data.forEach((v,i)=>{
       const x=toX(i), y=toY(v);
       ctx.beginPath();
@@ -1462,7 +3434,6 @@ function drawTimelineChart(score, trajectory, totalSeconds){
       ctx.shadowBlur  = 0;
     });
 
-    // Peak annotation
     const peakIdx = data.indexOf(Math.max(...data));
     const px=toX(peakIdx), py=toY(data[peakIdx]);
     ctx.fillStyle = 'rgba(99,102,241,.15)';
@@ -1492,7 +3463,12 @@ function buildSrWaveform(progress=0){
   container.innerHTML = '';
   const BARS = 72;
   for(let i=0; i<BARS; i++){
-    const h = 20 + Math.abs(Math.sin(i*0.42+1.2)*80 + Math.sin(i*0.19+2.1)*40 + Math.sin(i*0.07+0.5)*30);
+   const h = 30 +
+Math.abs(
+  Math.sin(i*0.08+1.2)*45 +
+  Math.sin(i*0.03+2.1)*20 +
+  Math.sin(i*0.01+0.5)*10
+);
     const bar = document.createElement('div');
     bar.className = 'sr-waveform-bar';
     const pct = i/BARS;
@@ -1537,7 +3513,6 @@ function wireSrAudioPlayback(audioBlob){
     const pct = (audioEl.currentTime/audioEl.duration)*100;
     if(progressFill) progressFill.style.width = pct+'%';
     if(timeDisp) timeDisp.textContent = fmtTime(audioEl.currentTime);
-    // update waveform active bar
     buildSrWaveform(audioEl.currentTime/audioEl.duration);
   };
 
@@ -1582,11 +3557,9 @@ window.showResultScreen = function(
   backendScore,
   frontendContribution
 ){
-  // Blur the page behind overlay
   const pageEl = document.querySelector('.page');
   if (pageEl) pageEl.classList.add('blurred');
 
-  // ── Format helpers ──
   function formatTimeSecs(s){
     const mm=String(Math.floor(s/60)).padStart(2,'0');
     const ss=String(Math.floor(s%60)).padStart(2,'0');
@@ -1594,7 +3567,6 @@ window.showResultScreen = function(
   }
   if(effectiveSeconds > totalSeconds) effectiveSeconds = totalSeconds;
 
-  // ── Populate date in topbar ──
   const dateEl = document.getElementById('srSessionDate');
   if(dateEl){
     const now = new Date();
@@ -1602,11 +3574,9 @@ window.showResultScreen = function(
       + ' · ' + now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
   }
 
-  // ── Score ring + counter ──
   animateCounter(ringScoreEl, 0, score, 900);
   animateRing(score);
 
-  // ── Badge ──
   const badge   = document.getElementById('srBadge');
   const badgeTxt= document.getElementById('srBadgeText');
   const subtext = document.getElementById('srScoreSubtext');
@@ -1628,14 +3598,12 @@ window.showResultScreen = function(
     ? 'Room to grow — keep practising'
     : 'High nervousness detected — short daily drills help';
 
-  // ── Meta line ──
   const metaEl = document.getElementById('srMetaLine');
   if(metaEl){
     const paceLabel = computePacingLabel(effectiveSeconds, backendWpm, backendTotalWords);
     metaEl.textContent = `Attempt · ${paceLabel} · ${pauses} pause${pauses!==1?'s':''}`;
   }
 
-  // ── Duration metric cards ──
   const effEl  = document.getElementById('resultEffectiveDuration');
   const totEl  = document.getElementById('resultTotalDuration');
   const wpmEl  = document.getElementById('resultBackendWpm');
@@ -1652,7 +3620,6 @@ window.showResultScreen = function(
   }
   if(pauseEl) pauseEl.textContent = String(pauses);
 
-  // ── Metric bar widths ──
   setTimeout(()=>{
     const effBar   = document.getElementById('srEffBar');
     const wpmBar   = document.getElementById('srWpmBar');
@@ -1665,7 +3632,6 @@ window.showResultScreen = function(
     if(pauseBar) pauseBar.style.width = pausePct+'%';
   }, 300);
 
-  // ── Sub-score breakdown ──
   const clarityScore = Math.min(100, Math.max(30, Math.round(score + (onsetPenalty <= 0 ? 6 : -onsetPenalty))));
   const paceScore    = safeWpm>=115 && safeWpm<=155 ? Math.min(100,Math.round(score+8)) : Math.max(30,Math.round(score-10));
   const flowScore    = panicPauses<=1 ? Math.min(100,Math.round(score+5)) : Math.max(30,Math.round(score-(panicPauses*4)));
@@ -1686,36 +3652,28 @@ window.showResultScreen = function(
     if(fb) fb.style.width = flowScore+'%';
   }, 500);
 
-  // ── AI Feedback text ──
   const feedbackEl = document.getElementById('resultFeedback');
 
-if(feedbackEl){
+  if(feedbackEl){
+    const mistakes = window.bolMistakes || [];
 
-  const mistakes = window.bolMistakes || [];
+    if(mistakes.length === 0){
+      feedbackEl.textContent = "No major confidence issues detected.";
+      return;
+    }
 
-  if(mistakes.length === 0){
-    feedbackEl.textContent = "No major confidence issues detected.";
-    return;
+    feedbackEl.innerHTML = mistakes.map(m => `
+      <div class="sr-mistake-card">
+        <div class="sr-mistake-title">
+          ${m.title}
+        </div>
+        <div class="sr-mistake-description">
+          ${m.description}
+        </div>
+      </div>
+    `).join('');
   }
 
-  feedbackEl.innerHTML = mistakes.map(m => `
-    <div class="sr-mistake-card">
-
-      <div class="sr-mistake-title">
-        ${m.title}
-      </div>
-
-      <div class="sr-mistake-description">
-        ${m.description}
-      </div>
-
-    </div>
-  `).join('');
-
-}
-
-
-  // ── Trajectory row ──
   const rowEl   = document.getElementById("trajectoryRow");
   const arrowEl = document.getElementById("trajectoryArrow");
   const textEl  = document.getElementById("trajectoryText");
@@ -1731,20 +3689,16 @@ if(feedbackEl){
     else { arrowEl.textContent="➖"; arrowEl.classList.add("flat"); textEl.textContent="Mixed pattern"; }
   }
 
-  // ── Timeline chart ──
   drawTimelineChart(score, trajectory, totalSeconds);
 
-  // ── Waveform + audio ──
   buildSrWaveform(0);
   wireSrAudioPlayback(audioBlob);
 
-  // ── Score panel pulse on high score ──
   if(score >= 70){
     const panel = document.getElementById('srScorePanel');
     if(panel){ panel.classList.add('pulse'); setTimeout(()=>panel.classList.remove('pulse'),1800); }
   }
 
-  // ── Save button ──
   if(saveBtn){
     saveBtn.onclick = ()=>{
       saveBtn.textContent = '✓ Saved';
@@ -1753,7 +3707,6 @@ if(feedbackEl){
     };
   }
 
-  // ── Show overlay ──
   if(resultScreenEl){ resultScreenEl.classList.add('show'); resultScreenEl.setAttribute('aria-hidden','false'); }
 };
 
@@ -1767,7 +3720,6 @@ function closeResultScreen(){
 
 if(closeBtn) closeBtn.addEventListener('click', closeResultScreen);
 
-// Topbar × button also closes
 const srTopbarClose = document.getElementById('srTopbarClose');
 if(srTopbarClose) srTopbarClose.addEventListener('click', closeResultScreen);
 
@@ -1791,7 +3743,6 @@ document.addEventListener('keydown',(e)=>{
   }
 });
 
-/* ── Transcript toggle (existing logic, updated btn class) ── */
 if(transcriptBtn && transcriptContainer && transcriptText){
   transcriptBtn.addEventListener("click",()=>{
     const isHidden = transcriptContainer.style.display==="none" || transcriptContainer.style.display==="";
@@ -1817,7 +3768,6 @@ if(transcriptBtn && transcriptContainer && transcriptText){
   });
 }
 
-/* ── Improve button nav ── */
 const improveConfidenceBtn = document.getElementById("improveConfidenceBtn");
 
 if(improveConfidenceBtn)
@@ -1831,10 +3781,8 @@ improveConfidenceBtn.addEventListener("click", ()=>{
   }
 });
 
-/* ── Auto-start when coming from improvement.html ── */
 window.addEventListener('load', async ()=>{
   try {
-
     if(sessionStorage.getItem('bol_from_improvement')){
       sessionStorage.removeItem('bol_from_improvement');
       if(typeof openModal==='function') openModal();
@@ -1851,9 +3799,73 @@ window.addEventListener('load', async ()=>{
   } catch(e){ console.error('Auto-start init error',e); }
 });
 
-  </script>
- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
-<script src="BOLauth.js"></script>
+</script>
 
+<script src="BOLauth.js"></script>
+<script>
+(function(){
+  function initNavAuth(){
+    if(typeof supabaseClient==='undefined'){
+      setTimeout(initNavAuth,80);
+      return;
+    }
+
+    var loggedOutEl = document.getElementById('nav-auth-logged-out');
+    var loggedInEl  = document.getElementById('nav-auth-logged-in');
+    var nameEl      = document.getElementById('navUserName');
+    var emailEl     = document.getElementById('navUserEmail');
+    var logoutBtn   = document.getElementById('navLogoutBtn');
+    var ctaBtn      = document.getElementById('ctaRecordBtn');
+    var heroBtn     = document.getElementById('recordTestBtn');
+
+    function showLoggedOut(){
+      if(loggedOutEl) loggedOutEl.classList.remove('nav-auth-state--hidden');
+      if(loggedInEl)  loggedInEl.classList.add('nav-auth-state--hidden');
+    }
+
+    function showLoggedIn(user){
+      if(loggedOutEl) loggedOutEl.classList.add('nav-auth-state--hidden');
+      if(loggedInEl)  loggedInEl.classList.remove('nav-auth-state--hidden');
+      var meta = user.user_metadata || {};
+      var name = meta.full_name || meta.name || (user.email||'').split('@')[0] || 'User';
+      if(nameEl)  nameEl.textContent  = name;
+      if(emailEl) emailEl.textContent = user.email || '';
+    }
+
+    supabaseClient.auth.getUser()
+      .then(function(res){
+        var user = res && res.data && res.data.user;
+        if(user) showLoggedIn(user);
+        else     showLoggedOut();
+      })
+      .catch(showLoggedOut);
+
+    supabaseClient.auth.onAuthStateChange(function(event, session){
+      if(session && session.user) showLoggedIn(session.user);
+      else                        showLoggedOut();
+    });
+
+    if(logoutBtn){
+      logoutBtn.addEventListener('click', function(){
+        supabaseClient.auth.signOut()
+          .then(showLoggedOut)
+          .catch(showLoggedOut);
+      });
+    }
+
+    if(ctaBtn && heroBtn){
+      ctaBtn.addEventListener('click', function(){
+        heroBtn.click();
+      });
+    }
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initNavAuth);
+  } else {
+    initNavAuth();
+  }
+})();
+</script>
 </body>
 </html>

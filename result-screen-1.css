@@ -33,12 +33,6 @@
 /* Google Fonts for Session Report */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
 
-/* ─── OVERLAY ─── */
-
-html, body{
-  margin:0;
-  padding:0;
-}
 
 
 /* ─── PAGE WRAP ─── */
@@ -702,13 +696,11 @@ remove blue focus glow from custom audio controls
 #closeResultBtn { background: transparent; color: #cbd5e1; border: 1px solid rgba(255,255,255,0.02); }
 #saveBtn { background: linear-gradient(90deg,#10b981,#06b6d4); color: #021020; border: none; box-shadow: 0 12px 30px rgba(16,185,129,0.12); }
 
-/* slightly larger text in feedback area */
-.result-feedback { font-size: 15px; line-height:1.5; }
 
 /* ensure audio control shows nicely */
 #audioContainerPolished { width:100%; display:flex; align-items:center; gap:12px; }
 
-*{box-sizing:border-box;margin:0;padding:0}
+
 :root{
   --bg:#020617;
   --muted:#9ca3af;
@@ -717,25 +709,11 @@ remove blue focus glow from custom audio controls
   --accent2:#22c55e;
   --card:#081226;
 }
-/* === EDIT START: Soft atmospheric gradient (body override) === */
-body{
-  margin:0;   /* THIS removes the gap */
-
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",sans-serif;
-
-  background:
-    radial-gradient(circle at 15% 20%, rgba(99,102,241,0.18), transparent 60%),
-    radial-gradient(circle at 85% 80%, rgba(34,197,94,0.08), transparent 70%),
-    #020617;
-
-  color:var(--text);
-  min-height:100vh;
-}
 
 
 
 /* === EDIT END === */
-.page{max-width:1120px;margin:0 auto;padding:28px 20px 80px}
+#resultScreen .page{max-width:1120px;margin:0 auto;padding:28px 20px 80px}
 .nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
 
 .nav-left{display:flex;gap:12px;align-items:center}
@@ -747,13 +725,13 @@ body{
 .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(148,163,184,0.06);font-size:12px;color:var(--muted);margin-bottom:14px}
 .pill-dot{width:8px;height:8px;border-radius:999px;background:var(--accent2);box-shadow:0 0 10px rgba(34,197,94,.9)}
 
-.hero-title{font-size:clamp(30px,4.6vw,48px);line-height:1.02;font-weight:800;margin-bottom:8px}
+#resultScreen .hero-title {font-size:clamp(30px,4.6vw,48px);line-height:1.02;font-weight:800;margin-bottom:8px}
 .hero-title .blue{color:var(--accent1)}
 .hero-subtitle{color:var(--muted);line-height:1.6;max-width:640px;margin-bottom:12px;font-size:15px}
 .hero-subtitle b{color:var(--text)}
 .hero-bullets{margin:14px 0 18px;padding-left:18px;color:var(--muted);list-style:disc}
 .hero-bullets li{margin-bottom:8px;font-size:14px}
-.hero-actions{display:flex;gap:12px;margin-bottom:8px}
+#resultScreen .hero-actions{display:flex;gap:12px;margin-bottom:8px}
 .primary-btn{background:linear-gradient(90deg,var(--accent1),#2563eb);border:none;color:white;padding:12px 18px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:0 12px 30px rgba(37,99,235,0.14)}
 .secondary-btn{background:transparent;border:1px solid rgba(148,163,184,0.06);color:var(--text);padding:10px 16px;border-radius:999px;cursor:pointer}
 
@@ -769,13 +747,13 @@ body{
 
 .metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:12px}
 .metric-card{background:rgba(255,255,255,0.01);border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,0.02)}
-.metric-label{font-size:12px;color:var(--muted);margin-bottom:6px}
+#resultScreen .metric-label{font-size:12px;color:var(--muted);margin-bottom:6px}
 .metric-main{font-size:14px;font-weight:700;color:var(--text)}
 .metric-tag{font-size:11px;padding:4px 8px;border-radius:999px;background:rgba(34,197,94,0.12);color:#bbf7d0;display:inline-block;margin-top:8px}
 
 .snapshot-footer{font-size:13px;color:var(--muted);border-top:1px dashed rgba(55,65,81,0.4);padding-top:10px;margin-top:8px}
 
-.section{margin-top:44px}
+#resultScreen .section{margin-top:44px}
 .section-title{font-size:20px;font-weight:800;margin-bottom:8px}
 .section-subtitle{max-width:720px;color:var(--muted);margin-bottom:18px}
 .three-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
@@ -788,26 +766,9 @@ ul.future-list li{margin-bottom:8px}
 
 .footer-line{margin-top:28px;font-size:12px;color:var(--muted);border-top:1px solid rgba(31,41,55,0.6);padding-top:12px}
 
-.record-modal{position:fixed;inset:0;z-index:900;display:none;align-items:center;justify-content:center}
-.record-modal.show{display:flex}
-.record-modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px)}
-.record-modal-content{position:relative;max-width:520px;width:92%;background:linear-gradient(180deg,#071028,#071020);border-radius:18px;padding:20px;border:1px solid rgba(148,163,184,0.04);box-shadow:0 30px 80px rgba(2,6,23,0.85)}
-.record-modal-close{position:absolute;right:12px;top:10px;border:none;background:transparent;color:var(--muted);font-size:20px;cursor:pointer}
-.record-title{font-size:18px;font-weight:800;margin-bottom:6px}
-.record-subtitle{font-size:13px;color:var(--muted);margin-bottom:10px}
-.mic-button{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 16px;border-radius:999px;border:1px solid rgba(59,130,246,0.12);background:linear-gradient(180deg,#0d254a,#071028);cursor:pointer}
-.mic-button.recording{border-color:rgba(34,197,94,0.9);box-shadow:0 6px 30px rgba(34,197,94,0.06)}
-.mic-icon{font-size:26px}
-.mic-label{font-size:13px;color:var(--text)}
-.waveform{display:flex;justify-content:center;align-items:flex-end;gap:6px;height:50px;margin:14px 0}
-.waveform .bar{width:6px;height:10px;border-radius:999px;background:linear-gradient(to top,var(--accent2),var(--accent1));opacity:.24;transform-origin:bottom;transition:height .12s linear,opacity .12s linear}
 
-.record-suggestion{text-align:center;color:var(--text);min-height:18px;margin-bottom:8px}
-.record-timer{text-align:center;font-weight:800}
-.submit-btn{width:100%;padding:10px;border-radius:999px;border:none;background:linear-gradient(90deg,#2563eb,#22c55e);color:white;font-weight:800;cursor:pointer}
-.submit-btn:disabled{opacity:0.45;cursor:not-allowed}
 
-.result-inner{
+#resultScreen .result-inner{
   width:100%;
   max-width:1100px;
   display:grid;
@@ -841,8 +802,8 @@ ul.future-list li{margin-bottom:8px}
 
   box-shadow:0 30px 80px rgba(2,6,23,0.7);
 }
-.ring{width:160px;height:160px;position:relative; /* keep circle constrained */ }
-.ring svg{transform:rotate(-90deg); display:block;}
+#resultScreen .ring{width:160px;height:160px;position:relative; /* keep circle constrained */ }
+#resultScreen .ring svg{transform:rotate(-90deg); display:block;}
 .ring .bg{stroke:rgba(255,255,255,0.05);stroke-width:14;fill:none}
 .ring .fg {
   fill: none;
@@ -1135,63 +1096,8 @@ ul.future-list li{margin-bottom:8px}
   pointer-events:auto;
 }
 
-/* container keeps everything controlled */
-.loader-container{
-  position:relative;
-  width:130px;
-  height:130px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}.loader-ring{
-  position:absolute;
-  width:130px;
-  height:130px;
-  border-radius:50%;
-
-  background: conic-gradient(
-    from 0deg,
-    #3b82f6,
-    transparent 40%
-  );
-
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), white 0);
-  mask: radial-gradient(farthest-side, transparent calc(100% - 6px), white 0);
-
-  animation:spin 2.4s linear infinite;
-  will-change: transform;
-}
 
 
-/* LOGO — never rotates */
-.loader-logo{
-  width:80px;
-  height:80px;
-  object-fit:contain;
-  z-index:2;
-}
-
-/* animation */
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-/* text */
-.loader-text{
-  margin-top:28px;
-  font-size:18px;
-  font-weight:600;
-  color:#e6edf7;
-  letter-spacing:.4px;
-}
-
-.loader-sub{
-  margin-top:8px;
-  font-size:14px;
-  color:#94a3b8;
-}
 .session-top-row{
   display:grid;
   grid-template-columns:340px 1fr;

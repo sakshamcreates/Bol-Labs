@@ -1,0 +1,1504 @@
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — BOL · Break Your Stage Fear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ======================================
+       CSS VARIABLES — BOL DESIGN TOKENS
+    ====================================== */
+    :root {
+      --bg-base:        #080c18;
+      --bg-layer1:      #0d1424;
+      --bg-layer2:      #111b30;
+      --bg-layer3:      #162038;
+      --bg-card:        #0f1829;
+      --bg-card-hover:  #131e35;
+
+      --blue-core:      #4361ee;
+      --blue-light:     #738eff;
+      --blue-dim:       #2d4acc;
+      --purple-core:    #7c3aed;
+      --purple-light:   #a78bfa;
+      --orange-accent:  #f97316;
+      --teal-accent:    #0dce8f;
+
+      --text-primary:   #f0f4ff;
+      --text-secondary: #8b9dc3;
+      --text-muted:     #4a5d85;
+      --text-label:     #5a7aab;
+
+      --border-subtle:  rgba(67,97,238,0.12);
+      --border-dim:     rgba(67,97,238,0.2);
+      --border-bright:  rgba(67,97,238,0.45);
+
+      --glow-blue:      0 0 40px rgba(67,97,238,0.18);
+      --glow-blue-md:   0 0 60px rgba(67,97,238,0.22);
+      --glow-purple:    0 0 40px rgba(124,58,237,0.15);
+
+      --radius-sm:  8px;
+      --radius-md:  12px;
+      --radius-lg:  16px;
+      --radius-xl:  22px;
+      --radius-2xl: 28px;
+
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'Manrope', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+
+      --nav-height: 68px;
+    }
+
+    /* ======================================
+       RESET & BASE
+    ====================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ======================================
+       NOISE TEXTURE OVERLAY
+    ====================================== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ======================================
+       GLOBAL GRADIENT ORBS (AMBIENT)
+    ====================================== */
+    .ambient-orbs {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.09;
+      animation: orbDrift 20s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, var(--blue-core), rgba(67,97,238,0.3) 40%, transparent 70%);
+      top: -250px; left: -200px;
+    }
+    .orb-2 {
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, var(--purple-core), rgba(124,58,237,0.3) 40%, transparent 70%);
+      top: 40%; right: -220px;
+      animation-delay: -7s;
+    }
+    .orb-3 {
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, var(--blue-light), rgba(115,142,255,0.25) 40%, transparent 70%);
+      bottom: -50px; left: 30%;
+      animation-delay: -13s;
+      opacity: 0.05;
+    }
+    .orb-4 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, var(--teal-accent), rgba(13,206,143,0.2) 40%, transparent 70%);
+      top: 60%; left: 10%;
+      animation-delay: -4s;
+      opacity: 0.04;
+    }
+    @keyframes orbDrift {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(20px, -15px) scale(1.04); }
+      66%  { transform: translate(-10px, 10px) scale(0.97); }
+      100% { transform: translate(35px, 22px) scale(1.06); }
+    }
+
+    /* ======================================
+       LAYOUT WRAPPER
+    ====================================== */
+    .page-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ======================================
+       NAVBAR — EXACT MATCH TO HOMEPAGE
+    ====================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-height);
+      background: rgba(8, 12, 24, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+      margin-right: 40px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--blue-core), var(--blue-dim));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      color: #fff;
+      box-shadow: 0 2px 12px rgba(67,97,238,0.4);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex: 1;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-login {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: 8px 18px;
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius-md);
+      background: transparent;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .btn-login:hover {
+      color: var(--text-primary);
+      border-color: var(--border-bright);
+      background: rgba(67,97,238,0.06);
+    }
+
+    .btn-start {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      padding: 9px 20px;
+      background: linear-gradient(135deg, var(--blue-core) 0%, var(--blue-dim) 100%);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 16px rgba(67,97,238,0.35);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .btn-start:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(67,97,238,0.5);
+      background: linear-gradient(135deg, #5571ff 0%, var(--blue-core) 100%);
+    }
+    .btn-start svg { width: 14px; height: 14px; }
+
+    /* ======================================
+       HERO SECTION
+    ====================================== */
+    .hero-section {
+      padding: 64px 0 56px;
+    }
+
+    @keyframes heroGlowPulse {
+      0%, 100% { box-shadow: 0 0 40px rgba(67,97,238,0.18), 0 0 80px rgba(67,97,238,0.06), 0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06); }
+      50%       { box-shadow: 0 0 60px rgba(67,97,238,0.28), 0 0 120px rgba(67,97,238,0.10), 0 24px 80px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06); }
+    }
+
+    @keyframes heroBeamDrift {
+      0%   { transform: translateX(-50%) translateY(0px) scale(1);   opacity: 0.18; }
+      50%  { transform: translateX(-50%) translateY(-14px) scale(1.08); opacity: 0.26; }
+      100% { transform: translateX(-50%) translateY(0px) scale(1);   opacity: 0.18; }
+    }
+
+    .hero-card {
+      position: relative;
+      background: linear-gradient(135deg,
+        rgba(13, 20, 36, 0.96) 0%,
+        rgba(18, 28, 52, 0.93) 40%,
+        rgba(14, 22, 44, 0.96) 100%
+      );
+      border: 1px solid rgba(67,97,238,0.32);
+      border-radius: var(--radius-2xl);
+      padding: 72px 60px;
+      overflow: hidden;
+      animation: heroGlowPulse 5s ease-in-out infinite;
+      text-align: center;
+    }
+
+    /* Hero animated beam */
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -90px; left: 50%;
+      width: 560px; height: 340px;
+      background: radial-gradient(ellipse, rgba(67,97,238,0.22) 0%, rgba(124,58,237,0.06) 50%, transparent 70%);
+      pointer-events: none;
+      animation: heroBeamDrift 6s ease-in-out infinite;
+    }
+
+    /* subtle grid lines */
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(67,97,238,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(67,97,238,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--teal-accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(13,206,143,0.07);
+      border: 1px solid rgba(13,206,143,0.25);
+      border-radius: 100px;
+      padding: 7px 16px;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 16px rgba(13,206,143,0.08), inset 0 1px 0 rgba(255,255,255,0.05);
+      text-shadow: 0 0 10px rgba(13,206,143,0.4);
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal-accent);
+      box-shadow: 0 0 8px var(--teal-accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto 32px;
+      line-height: 1.65;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-meta-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+
+    /* ======================================
+       SECTION LABELS (like homepage)
+    ====================================== */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--blue-light);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1.5px;
+      background: linear-gradient(90deg, var(--blue-core), transparent);
+    }
+
+    /* ======================================
+       SUMMARY CARDS SECTION
+    ====================================== */
+    .summary-section {
+      padding: 0 0 64px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    @keyframes shimmerSweep {
+      0%   { transform: translateX(-100%) skewX(-12deg); }
+      100% { transform: translateX(250%) skewX(-12deg); }
+    }
+
+    .summary-card {
+      position: relative;
+      background: linear-gradient(145deg, var(--bg-card) 0%, rgba(15,24,45,0.8) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 28px 24px;
+      overflow: hidden;
+      cursor: default;
+      perspective: 900px;
+      transform-style: preserve-3d;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1),
+                  border-color 0.3s ease,
+                  box-shadow 0.35s ease,
+                  background 0.3s ease;
+    }
+
+    .summary-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg,
+        transparent 35%,
+        rgba(255,255,255,0.04) 45%,
+        rgba(255,255,255,0.06) 50%,
+        rgba(255,255,255,0.04) 55%,
+        transparent 65%
+      );
+      transform: translateX(-100%) skewX(-12deg);
+      pointer-events: none;
+      border-radius: inherit;
+    }
+
+    .summary-card:hover::after {
+      animation: shimmerSweep 0.65s ease forwards;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-7px) scale(1.015);
+      border-color: rgba(67,97,238,0.5);
+      box-shadow:
+        0 0 0 1px rgba(67,97,238,0.12),
+        0 0 30px rgba(67,97,238,0.2),
+        0 0 60px rgba(67,97,238,0.08),
+        0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .summary-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(67,97,238,0.18), rgba(67,97,238,0.06));
+      border: 1px solid rgba(67,97,238,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 18px;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .summary-card:hover .summary-icon {
+      background: linear-gradient(135deg, rgba(67,97,238,0.35), rgba(124,58,237,0.15));
+      box-shadow: 0 0 0 1px rgba(67,97,238,0.3), 0 0 24px rgba(67,97,238,0.3);
+      transform: scale(1.08);
+    }
+
+    .summary-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .summary-desc {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ======================================
+       PRIVACY CONTENT SECTIONS
+    ====================================== */
+    .content-section {
+      padding: 0 0 80px;
+    }
+
+    .content-header {
+      margin-bottom: 40px;
+    }
+
+    .content-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .content-subtitle {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      max-width: 600px;
+    }
+
+    .policy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .policy-card {
+      position: relative;
+      background: linear-gradient(145deg, var(--bg-card) 0%, rgba(13, 19, 36, 0.9) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    .policy-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 2px; height: 100%;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(67,97,238,0.6) 40%,
+        rgba(124,58,237,0.4) 70%,
+        transparent 100%
+      );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      border-radius: 2px 0 0 2px;
+    }
+
+    .policy-card:hover::before { opacity: 1; }
+
+    /* policy-card:hover is defined below with spotlight effect */
+
+    .policy-card-full {
+      grid-column: 1 / -1;
+    }
+
+    /* inner accent line */
+    .policy-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 28px;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--blue-core), var(--purple-core), transparent);
+      transition: width 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s;
+      opacity: 0;
+    }
+    .policy-card:hover::after {
+      width: 80px;
+      opacity: 1;
+    }
+
+    .policy-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .policy-card-num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: #c4d0ff;
+      letter-spacing: 0.08em;
+      background: linear-gradient(135deg, rgba(67,97,238,0.22) 0%, rgba(124,58,237,0.14) 100%);
+      border: 1px solid rgba(67,97,238,0.32);
+      border-radius: 6px;
+      padding: 4px 9px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      box-shadow: 0 0 10px rgba(67,97,238,0.2), inset 0 1px 0 rgba(255,255,255,0.06);
+      text-shadow: 0 0 8px rgba(115,142,255,0.5);
+      transition: box-shadow 0.3s, border-color 0.3s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .policy-card:hover .policy-card-num {
+      box-shadow: 0 0 16px rgba(67,97,238,0.4), 0 0 4px rgba(124,58,237,0.2), inset 0 1px 0 rgba(255,255,255,0.08);
+      border-color: rgba(67,97,238,0.5);
+      transform: scale(1.05);
+    }
+
+    .policy-card-icon {
+      width: 40px; height: 40px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(67,97,238,0.15), rgba(124,58,237,0.1));
+      border: 1px solid rgba(67,97,238,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      transition: background 0.3s, box-shadow 0.3s, border-color 0.3s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .policy-card:hover .policy-card-icon {
+      background: linear-gradient(135deg, rgba(67,97,238,0.28), rgba(124,58,237,0.18));
+      border-color: rgba(67,97,238,0.3);
+      box-shadow: 0 0 16px rgba(67,97,238,0.25);
+      transform: scale(1.06) translateY(-1px);
+    }
+
+    .policy-card-meta { flex: 1; }
+
+    .policy-card-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+    }
+
+    .policy-card-body {
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .policy-list {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .policy-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      transition: color 0.2s ease;
+      padding: 2px 0;
+    }
+
+    .policy-list-item:hover { color: rgba(178,196,240,0.9); }
+
+    .policy-list-item::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      margin-top: 7px;
+      flex-shrink: 0;
+      opacity: 0.6;
+      transition: opacity 0.2s, box-shadow 0.2s;
+    }
+
+    .policy-list-item:hover::before {
+      opacity: 1;
+      box-shadow: 0 0 6px rgba(115,142,255,0.5);
+    }
+
+    /* Tag chips */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--blue-light);
+      background: rgba(67,97,238,0.08);
+      border: 1px solid rgba(67,97,238,0.2);
+      border-radius: 100px;
+      padding: 4px 12px;
+      margin-right: 6px;
+      margin-top: 6px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+      cursor: default;
+    }
+
+    .chip:hover {
+      background: rgba(67,97,238,0.16);
+      border-color: rgba(67,97,238,0.4);
+      color: #c4d4ff;
+      box-shadow: 0 0 10px rgba(67,97,238,0.2);
+      transform: translateY(-1px);
+    }
+
+    .chip-row {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    /* ======================================
+       CONTACT CARD
+    ====================================== */
+    .contact-section {
+      padding: 0 0 80px;
+    }
+
+    .contact-card {
+      position: relative;
+      background: linear-gradient(135deg,
+        rgba(67,97,238,0.14) 0%,
+        rgba(12,18,34,0.97) 28%,
+        rgba(10,16,30,0.97) 65%,
+        rgba(124,58,237,0.10) 100%
+      );
+      border: 1px solid rgba(67,97,238,0.38);
+      border-radius: var(--radius-2xl);
+      padding: 64px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow:
+        0 0 0 1px rgba(124,58,237,0.06),
+        0 0 60px rgba(67,97,238,0.16),
+        0 0 120px rgba(67,97,238,0.06),
+        0 0 40px rgba(124,58,237,0.1),
+        0 32px 80px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(67,97,238,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(67,97,238,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(67,97,238,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    @keyframes contactIconPulse {
+      0%, 100% { box-shadow: 0 0 16px rgba(67,97,238,0.2), inset 0 1px 0 rgba(255,255,255,0.06); }
+      50%       { box-shadow: 0 0 28px rgba(67,97,238,0.38), 0 0 8px rgba(124,58,237,0.15), inset 0 1px 0 rgba(255,255,255,0.06); }
+    }
+
+    .contact-icon {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(67,97,238,0.28), rgba(124,58,237,0.14));
+      border: 1px solid rgba(67,97,238,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 1;
+      animation: contactIconPulse 3s ease-in-out infinite;
+    }
+
+    .contact-email {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: #9ab4ff;
+      background: rgba(67,97,238,0.1);
+      border: 1px solid rgba(67,97,238,0.28);
+      border-radius: var(--radius-md);
+      padding: 10px 22px;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+      transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, color 0.25s;
+    }
+
+    .contact-email:hover {
+      background: rgba(67,97,238,0.18);
+      border-color: rgba(67,97,238,0.5);
+      color: #c0d0ff;
+      box-shadow: 0 0 16px rgba(67,97,238,0.2), 0 0 4px rgba(67,97,238,0.1);
+    }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue-core), var(--blue-dim));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      padding: 14px 32px;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(67,97,238,0.4), 0 1px 0 rgba(255,255,255,0.08) inset;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .btn-contact::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -75%;
+      width: 50%; height: 100%;
+      background: linear-gradient(105deg, transparent, rgba(255,255,255,0.12), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.5s ease;
+    }
+
+    .btn-contact:hover::after {
+      left: 130%;
+    }
+
+    .btn-contact:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(67,97,238,0.55), 0 4px 12px rgba(67,97,238,0.3), 0 1px 0 rgba(255,255,255,0.1) inset;
+      background: linear-gradient(135deg, #5a74ff, var(--blue-core));
+    }
+
+    .contact-trust {
+      margin-top: 20px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-trust span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Mouse-follow spotlight glow on policy cards */
+    .policy-card {
+      --mouse-x: 50%;
+      --mouse-y: 50%;
+    }
+
+    .policy-card:hover {
+      background: radial-gradient(
+        circle 180px at var(--mouse-x) var(--mouse-y),
+        rgba(67,97,238,0.07) 0%,
+        transparent 70%
+      ),
+      linear-gradient(145deg, rgba(16,24,44,1) 0%, rgba(14,22,40,0.95) 100%);
+      border-color: rgba(67,97,238,0.35);
+      transform: translateY(-3px);
+      box-shadow:
+        0 0 0 1px rgba(67,97,238,0.08),
+        0 12px 40px rgba(0,0,0,0.3),
+        0 0 30px rgba(67,97,238,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    /* ======================================
+       FOOTER — EXACT MATCH TO HOMEPAGE
+    ====================================== */
+    .footer {
+      background: var(--bg-layer1);
+      border-top: 1px solid var(--border-subtle);
+      padding: 56px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+
+    .footer-brand-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand-desc {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      max-width: 240px;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: 0.01em;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      transition: color 0.2s ease, transform 0.2s cubic-bezier(0.22,1,0.36,1);
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+      transform: translateX(3px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-subtle);
+      padding: 20px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copyright {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-founder {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-founder a {
+      color: var(--blue-light);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer-founder a:hover { color: var(--text-primary); }
+
+    /* ======================================
+       DIVIDER
+    ====================================== */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(67,97,238,0.15) 15%,
+        rgba(67,97,238,0.35) 40%,
+        rgba(124,58,237,0.25) 60%,
+        rgba(67,97,238,0.15) 85%,
+        transparent 100%
+      );
+      margin-bottom: 64px;
+      position: relative;
+    }
+
+    .section-divider::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(115,142,255,0.5), transparent);
+      filter: blur(2px);
+    }
+
+    /* ======================================
+       RESPONSIVE
+    ====================================== */
+    @media (max-width: 1024px) {
+      .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-card { padding: 48px 28px; }
+      .policy-grid { grid-template-columns: 1fr; }
+      .contact-card { padding: 40px 24px; }
+      .nav-links { display: none; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 520px) {
+      .container { padding: 0 16px; }
+      .hero-card { padding: 40px 20px; }
+      .hero-title { font-size: 2.2rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .policy-card { padding: 24px 20px; }
+    }
+
+    /* ======================================
+       PAGE ENTRY ANIMATIONS
+    ====================================== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeUp 0.55s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    .delay-1 { animation-delay: 0.08s; }
+    .delay-2 { animation-delay: 0.16s; }
+    .delay-3 { animation-delay: 0.24s; }
+    .delay-4 { animation-delay: 0.32s; }
+    .delay-5 { animation-delay: 0.40s; }
+
+    /* scroll-triggered reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AMBIENT ORBS -->
+  <div class="ambient-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+  </div>
+
+  <div class="page-content">
+
+    <!-- ============================
+         NAVBAR
+    ============================ -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-icon">B</div>
+          BOL
+        </a>
+        <div class="nav-links">
+          <a href="BOL.html#features">Features</a>
+          <a href="view demoreport.html">How It Works</a>
+          <a href="BOL.html#dashboard">Dashboard</a>
+        </div>
+        <div class="nav-actions">
+      
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============================
+         HERO
+    ============================ -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-card animate-in">
+          <div class="hero-badge">Privacy &amp; Data</div>
+          <h1 class="hero-title">Privacy Policy</h1>
+          <p class="hero-subtitle">
+            Learn how BOL collects, uses, stores, and protects your data while helping you improve your speaking confidence.
+          </p>
+          <div class="hero-meta">
+            <span>Last Updated</span>
+            <div class="hero-meta-dot"></div>
+            <span>June 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         SUMMARY CARDS
+    ============================ -->
+    <section class="summary-section">
+      <div class="container">
+        <div class="summary-grid">
+
+          <div class="summary-card reveal">
+            <div class="summary-icon">🎙️</div>
+            <div class="summary-title">What We Collect</div>
+            <p class="summary-desc">Audio recordings, speech transcripts, confidence scores, and account information.</p>
+          </div>
+
+          <div class="summary-card reveal">
+            <div class="summary-icon">📊</div>
+            <div class="summary-title">How We Use Data</div>
+            <p class="summary-desc">Improve speech analysis, generate actionable feedback, and enhance platform quality.</p>
+          </div>
+
+          <div class="summary-card reveal">
+            <div class="summary-icon">🔒</div>
+            <div class="summary-title">Data Protection</div>
+            <p class="summary-desc">Industry-standard security practices help protect your information at every layer.</p>
+          </div>
+
+          <div class="summary-card reveal">
+            <div class="summary-icon">⚙️</div>
+            <div class="summary-title">Your Control</div>
+            <p class="summary-desc">Request access, corrections, or permanent deletion of your data at any time.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- ============================
+         MAIN POLICY CONTENT
+    ============================ -->
+    <section class="content-section">
+      <div class="container">
+
+        <div class="content-header reveal">
+          <div class="section-label">Full Policy</div>
+          <h2 class="content-title">Everything you need to know.</h2>
+          <p class="content-subtitle">BOL is committed to transparency. Here is the complete breakdown of how your data is handled.</p>
+        </div>
+
+        <div class="policy-grid">
+
+          <!-- 01 Information We Collect -->
+          <div class="policy-card reveal">
+            <div class="policy-card-header">
+              <span class="policy-card-num">01</span>
+              <div class="policy-card-icon">📋</div>
+              <div class="policy-card-meta">
+                <div class="policy-card-title">Information We Collect</div>
+              </div>
+            </div>
+            <div class="policy-card-body">
+              When you use BOL, we collect the following categories of information to power your experience:
+              <div class="policy-list">
+                <div class="policy-list-item">Account information — name, email address, and authentication credentials when you register.</div>
+                <div class="policy-list-item">Audio recordings — voice input captured during practice sessions to perform analysis.</div>
+                <div class="policy-list-item">Speech transcripts — text generated from your spoken sessions.</div>
+                <div class="policy-list-item">Confidence scores — numeric results and session metrics produced during analysis.</div>
+                <div class="policy-list-item">Usage analytics — interaction patterns, session frequency, and platform activity.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 02 How We Use Information -->
+          <div class="policy-card reveal">
+            <div class="policy-card-header">
+              <span class="policy-card-num">02</span>
+              <div class="policy-card-icon">💡</div>
+              <div class="policy-card-meta">
+                <div class="policy-card-title">How We Use Information</div>
+              </div>
+            </div>
+            <div class="policy-card-body">
+              The data BOL collects is used exclusively to deliver and improve your speaking confidence experience:
+              <div class="policy-list">
+                <div class="policy-list-item">Generate real-time confidence analysis across pace, pauses, and vocal stability.</div>
+                <div class="policy-list-item">Produce personalised speaking feedback and identify specific areas to improve.</div>
+                <div class="policy-list-item">Enhance platform features, algorithms, and analysis accuracy over time.</div>
+                <div class="policy-list-item">Provide user support, respond to inquiries, and resolve account issues.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 03 Audio Processing -->
+          <div class="policy-card policy-card-full reveal">
+            <div class="policy-card-header">
+              <span class="policy-card-num">03</span>
+              <div class="policy-card-icon">🎚️</div>
+              <div class="policy-card-meta">
+                <div class="policy-card-title">Audio Processing</div>
+              </div>
+            </div>
+            <div class="policy-card-body">
+              BOL is built around your voice. When you start a session, your microphone input is captured directly in your browser and sent to our processing pipeline. This audio may be processed to generate transcripts, calculate speech pace and pause metrics, evaluate vocal stability, and produce a numeric confidence score. Audio data is used strictly to deliver session results and improve analysis accuracy. BOL does not use your voice recordings for advertising, profiling, or any purpose unrelated to speaking analysis. Sessions are processed securely, and data is not shared with third parties beyond the services listed below.
+            </div>
+          </div>
+
+          <!-- 04 Third-Party Services -->
+          <div class="policy-card reveal">
+            <div class="policy-card-header">
+              <span class="policy-card-num">04</span>
+              <div class="policy-card-icon">🔗</div>
+              <div class="policy-card-meta">
+                <div class="policy-card-title">Third-Party Services</div>
+              </div>
+            </div>
+            <div class="policy-card-body">
+              BOL integrates with a limited set of trusted third-party providers to deliver its core functionality. These services may process certain data in accordance with their own privacy policies.
+              <div class="chip-row">
+                <span class="chip">OpenAI APIs</span>
+                <span class="chip">Speech Processing</span>
+                <span class="chip">Analytics Services</span>
+              </div>
+              <div class="policy-list" style="margin-top:16px;">
+                <div class="policy-list-item">OpenAI APIs may process transcripts to generate analysis and feedback.</div>
+                <div class="policy-list-item">Speech processing services handle audio-to-text conversion.</div>
+                <div class="policy-list-item">Analytics services help us understand platform usage at an aggregate level.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 05 Data Storage & Security -->
+          <div class="policy-card reveal">
+            <div class="policy-card-header">
+              <span class="policy-card-num">05</span>
+              <div class="policy-card-icon">🛡️</div>
+              <div class="policy-card-meta">
+                <div class="policy-card-title">Data Storage &amp; Security</div>
+              </div>
+            </div>
+            <div class="policy-card-body">
+              BOL takes reasonable technical and organisational measures to protect your data against unauthorised access, alteration, or disclosure. Your data is stored on secure infrastructure and accessed only by authorised processes and personnel where necessary. While we implement industry-standard protections, no method of transmission or storage can be guaranteed to be entirely secure. We encourage users to practise safe account hygiene, including using strong, unique passwords and logging out after sessions on shared devices.
+            </div>
+          </div>
+
+          <!-- 06 Your Rights -->
+          <div class="policy-card reveal">
+            <div class="policy-card-header">
+              <span class="policy-card-num">06</span>
+              <div class="policy-card-icon">✅</div>
+              <div class="policy-card-meta">
+                <div class="policy-card-title">Your Rights</div>
+              </div>
+            </div>
+            <div class="policy-card-body">
+              You have meaningful control over your data. At any time, you may exercise the following rights by contacting us directly:
+              <div class="policy-list">
+                <div class="policy-list-item">Access your data — request a copy of the information BOL holds about you.</div>
+                <div class="policy-list-item">Correct your information — request updates or corrections to inaccurate data.</div>
+                <div class="policy-list-item">Request deletion — ask that your account and associated data be permanently removed.</div>
+              </div>
+              <div style="margin-top:14px; font-size:13.5px; color:var(--text-muted);">To exercise any of these rights, contact us at sakshamsingh1940@gmail.com.</div>
+            </div>
+          </div>
+
+          <!-- 07 Cookies & Analytics -->
+          <div class="policy-card reveal">
+            <div class="policy-card-header">
+              <span class="policy-card-num">07</span>
+              <div class="policy-card-icon">🍪</div>
+              <div class="policy-card-meta">
+                <div class="policy-card-title">Cookies &amp; Analytics</div>
+              </div>
+            </div>
+            <div class="policy-card-body">
+              BOL uses cookies and similar technologies to maintain your session state, remember preferences, and understand how the platform is used. Analytics data is collected to identify which features are most valuable, detect errors, and guide product decisions. This data is processed in aggregate form and is not used to build individual advertising profiles. You may manage cookie behaviour through your browser settings, though doing so may affect platform functionality.
+            </div>
+          </div>
+
+          <!-- 08 Changes to This Policy -->
+          <div class="policy-card reveal">
+            <div class="policy-card-header">
+              <span class="policy-card-num">08</span>
+              <div class="policy-card-icon">🔄</div>
+              <div class="policy-card-meta">
+                <div class="policy-card-title">Changes to This Policy</div>
+              </div>
+            </div>
+            <div class="policy-card-body">
+              BOL may update this Privacy Policy from time to time as the platform evolves, new features are introduced, or legal requirements change. When material updates occur, we will revise the "Last Updated" date at the top of this page. We encourage you to review this policy periodically. Continued use of BOL after changes have been published constitutes your acceptance of the updated terms. Where significant changes affect how your data is used, we will make reasonable efforts to notify users directly.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="section-divider"></div></div>
+
+    <!-- ============================
+         CONTACT SECTION
+    ============================ -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div class="contact-icon">✉️</div>
+          <h2 class="contact-title">Questions About Privacy?</h2>
+          <p class="contact-desc">
+            If you have questions regarding privacy, data handling, audio recordings, transcripts, account information, or data deletion requests, contact us directly.
+          </p>
+          <a href="mailto:sakshamsingh1940@gmail.com" class="contact-email">
+            sakshamsingh1940@gmail.com
+          </a>
+          <br />
+          <a href="mailto:sakshamsingh1940@gmail.com" class="btn-contact">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 3H2C1.45 3 1 3.45 1 4v8c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 4l-6 5L2 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Contact Support
+          </a>
+          <p class="contact-trust">
+            <span>
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" style="margin-right:5px;opacity:0.5">
+                <path d="M8 1l1.8 5.4H16l-4.9 3.5 1.8 5.6L8 12l-4.9 3.5 1.8-5.6L0 6.4h6.2z" fill="currentColor"/>
+              </svg>
+              We typically respond to privacy-related inquiries within a reasonable timeframe.
+            </span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================
+         FOOTER
+    ============================ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+
+          <div>
+            <div class="footer-brand-title">BOL</div>
+            <p class="footer-brand-desc">Speaking Confidence Lab. Measure your delivery. Reduce your stage fear. Own the room.</p>
+          </div>
+
+          <div>
+            <div class="footer-col-title">Product</div>
+            <div class="footer-links">
+              <a href="BOL.html#features">Features</a>
+              <a href="view demoreport.html">How It Works</a>
+              <a href="BOL.html#dashboard">Dashboard</a>
+             
+            </div>
+          </div>
+
+          <div>
+            <div class="footer-col-title">Resources</div>
+            <div class="footer-links">
+            
+              <a href="contact.html">Contact</a>
+              <a href="support.htm">Support</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="footer-col-title">Legal</div>
+            <div class="footer-links">
+              <a href="#" style="color:var(--blue-light);">Privacy</a>
+              <a href="terms.html">Terms</a>
+              <a href="changelog.html">Changelog</a>
+              <a href="status.html">Status</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-copyright">© 2026 BOL · Break Your Stage Fear.</div>
+          <div class="footer-founder">founder: <a href="#">Saksham Singh</a></div>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /page-content -->
+
+  <script>
+    // ============================================================
+    // SCROLL-TRIGGERED REVEAL
+    // ============================================================
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // stagger cards in the same row
+          const siblings = entry.target.parentElement
+            ? Array.from(entry.target.parentElement.querySelectorAll('.reveal:not(.visible)'))
+            : [];
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, Math.min(idx * 70, 280));
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ============================================================
+    // NAVBAR SCROLL SHADOW
+    // ============================================================
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        navbar.style.borderBottomColor = 'rgba(67,97,238,0.18)';
+        navbar.style.boxShadow = '0 4px 32px rgba(0,0,0,0.3)';
+      } else {
+        navbar.style.borderBottomColor = '';
+        navbar.style.boxShadow = '';
+      }
+    }, { passive: true });
+
+    // ============================================================
+    // SUMMARY CARD MAGNETIC HOVER (premium tilt)
+    // ============================================================
+    document.querySelectorAll('.summary-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width  - 0.5) * 8;
+        const y = ((e.clientY - rect.top)  / rect.height - 0.5) * 8;
+        card.style.transition = 'transform 0.08s ease, border-color 0.3s, box-shadow 0.35s, background 0.3s';
+        card.style.transform = `translateY(-7px) scale(1.015) rotateY(${x}deg) rotateX(${-y}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.45s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, box-shadow 0.35s, background 0.3s';
+        card.style.transform = '';
+      });
+    });
+
+    // ============================================================
+    // POLICY CARD SUBTLE SPOTLIGHT FOLLOW
+    // ============================================================
+    document.querySelectorAll('.policy-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
+
+</body>
+</html>

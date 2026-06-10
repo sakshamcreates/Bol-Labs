@@ -1,0 +1,805 @@
+
+html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOL — Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Tokens ────────────────────────────────────────────────── */
+    :root {
+      --bg-base:       #0b0f1a;
+      --bg-surface:    #111827;
+      --bg-card:       #131929;
+
+      --border:        rgba(255,255,255,0.07);
+      --border-subtle: rgba(255,255,255,0.04);
+      --border-glow:   rgba(99,102,241,0.35);
+
+      --accent-blue:   #4f8ef7;
+      --accent-purple: #7c6df6;
+      --accent-coral:  #f4714a;
+      --accent-green:  #22c55e;
+
+      --grad-primary:  linear-gradient(135deg, #4f8ef7 0%, #7c6df6 100%);
+      --grad-card:     linear-gradient(145deg, rgba(79,142,247,0.06) 0%, rgba(124,109,246,0.04) 100%);
+
+      --text-primary:  #f0f4ff;
+      --text-secondary:#8b9cc8;
+      --text-muted:    #4a5578;
+
+      --radius-sm:  6px;
+      --radius-md:  10px;
+      --radius-lg:  14px;
+      --radius-xl:  20px;
+
+      --font-display: 'Bricolage Grotesque', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+      --font-mono:    'JetBrains Mono', 'IBM Plex Mono', monospace;
+      --font-ui:      'IBM Plex Sans', 'DM Sans', sans-serif;
+
+      --shadow-hover:  0 8px 40px rgba(79,142,247,0.12), 0 2px 8px rgba(0,0,0,0.5);
+      --nav-height:    64px;
+    }
+
+    /* ─── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 99px; }
+
+    /* ─── NAVBAR ────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-height);
+      background: rgba(11,15,26,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100; display: flex; align-items: center; padding: 0 40px;
+    }
+    .nav-inner {
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; gap: 40px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo-icon {
+      width: 34px; height: 34px;
+      background: var(--grad-primary);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 800; font-size: 15px; color: #fff; letter-spacing: -0.5px;
+    }
+    .nav-logo-text { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--text-primary); }
+    .nav-links { display: flex; align-items: center; gap: 6px; flex: 1; }
+    .nav-links a {
+      font-family: var(--font-body); font-size: 14px; color: var(--text-secondary);
+      text-decoration: none; padding: 6px 14px; border-radius: var(--radius-sm);
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+    .btn-ghost {
+      font-family: var(--font-body); font-size: 14px; color: var(--text-secondary);
+      background: none; border: 1px solid var(--border); padding: 7px 18px;
+      border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s; text-decoration: none;
+    }
+    .btn-ghost:hover { color: var(--text-primary); border-color: rgba(255,255,255,0.15); }
+    .btn-primary {
+      font-family: var(--font-body); font-size: 14px; font-weight: 600; color: #fff;
+      background: var(--grad-primary); border: none; padding: 8px 20px;
+      border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s;
+      text-decoration: none; display: flex; align-items: center; gap: 6px;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(79,142,247,0.3); }
+
+    /* ─── PAGE ──────────────────────────────────────────────────── */
+    .page { padding-top: var(--nav-height); padding-bottom: 60px; position: relative; z-index: 1; }
+
+    /* ─── HERO ──────────────────────────────────────────────────── */
+    .hero {
+      position: relative; padding: 80px 40px 60px; text-align: center; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      top: -80px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 500px;
+      background: radial-gradient(ellipse 60% 50% at 50% 30%,
+        rgba(99,102,241,0.14) 0%, rgba(79,142,247,0.08) 40%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(99,102,241,0.3), rgba(99,102,241,0.3), transparent);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.2);
+      border-radius: 99px; padding: 6px 16px; margin-bottom: 28px;
+      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      color: var(--accent-blue); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .hero-badge .pulse {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--accent-blue);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.35; transform: scale(0.65); }
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 6vw, 72px);
+      font-weight: 800; line-height: 1.04; letter-spacing: -0.03em;
+      color: var(--text-primary); margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-family: var(--font-body); font-size: 17px; color: var(--text-secondary);
+      max-width: 500px; margin: 0 auto; line-height: 1.65;
+    }
+
+    /* ─── CONTACT OPTIONS ───────────────────────────────────────── */
+    .contact-options {
+      max-width: 1200px; margin: 0 auto; padding: 56px 40px 0;
+    }
+    .options-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .option-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); padding: 30px 26px;
+      position: relative; overflow: hidden;
+      transition: all 0.35s ease; cursor: default;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .option-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--grad-card); opacity: 0; transition: opacity 0.35s;
+    }
+    .option-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--grad-primary); opacity: 0; transition: opacity 0.3s;
+    }
+    .option-card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .option-card:hover::before { opacity: 1; }
+    .option-card:hover::after  { opacity: 1; }
+
+    .option-icon {
+      width: 44px; height: 44px; border-radius: var(--radius-md);
+      background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.18);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; position: relative; z-index: 1;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .option-card:hover .option-icon {
+      background: rgba(79,142,247,0.16); border-color: rgba(79,142,247,0.3);
+    }
+    .option-icon svg { width: 20px; height: 20px; }
+
+    .option-title {
+      font-family: var(--font-display); font-size: 17px; font-weight: 700;
+      letter-spacing: -0.015em; color: var(--text-primary);
+      margin-bottom: 6px; position: relative; z-index: 1;
+    }
+    .option-email {
+      font-family: var(--font-mono); font-size: 12px; color: var(--accent-blue);
+      margin-bottom: 10px; position: relative; z-index: 1;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .option-email:hover { color: #7ab0ff; }
+    .option-desc {
+      font-family: var(--font-body); font-size: 13.5px; color: var(--text-secondary);
+      line-height: 1.6; margin-bottom: 22px; flex: 1;
+      position: relative; z-index: 1;
+    }
+    .option-btn {
+      font-family: var(--font-body); font-size: 13px; font-weight: 600;
+      color: var(--accent-blue); background: rgba(79,142,247,0.08);
+      border: 1px solid rgba(79,142,247,0.22); padding: 9px 18px;
+      border-radius: var(--radius-sm); cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+      align-self: flex-start; position: relative; z-index: 1;
+    }
+    .option-btn:hover {
+      background: rgba(79,142,247,0.14); border-color: rgba(79,142,247,0.4);
+      transform: translateY(-1px); box-shadow: 0 4px 16px rgba(79,142,247,0.18);
+    }
+    .option-btn svg { width: 13px; height: 13px; }
+
+    /* ─── MAIN LAYOUT (form + founder) ──────────────────────────── */
+    .main-layout {
+      max-width: 1200px; margin: 56px auto 0; padding: 0 40px;
+      display: grid; grid-template-columns: 1fr 420px; gap: 24px;
+      align-items: start;
+    }
+
+    /* ─── CONTACT FORM ───────────────────────────────────────────── */
+    .form-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); padding: 36px 34px;
+      position: relative; overflow: hidden;
+    }
+    .form-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--grad-primary);
+    }
+    .form-title {
+      font-family: var(--font-display); font-size: 22px; font-weight: 800;
+      letter-spacing: -0.025em; color: var(--text-primary); margin-bottom: 6px;
+    }
+    .form-sub {
+      font-family: var(--font-body); font-size: 14px; color: var(--text-secondary);
+      margin-bottom: 28px; line-height: 1.5;
+    }
+
+    .form-group { margin-bottom: 18px; }
+    .form-label {
+      display: block; font-family: var(--font-ui); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 7px;
+    }
+    .form-input, .form-textarea {
+      width: 100%; font-family: var(--font-body); font-size: 14px;
+      color: var(--text-primary); background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.09); border-radius: var(--radius-md);
+      padding: 12px 16px; outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-input:focus, .form-textarea:focus {
+      border-color: rgba(79,142,247,0.5);
+      background: rgba(79,142,247,0.03);
+      box-shadow: 0 0 0 3px rgba(79,142,247,0.1);
+    }
+    .form-textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+
+    .form-submit {
+      width: 100%; font-family: var(--font-body); font-size: 15px; font-weight: 600;
+      color: #fff; background: var(--grad-primary); border: none;
+      padding: 13px 24px; border-radius: var(--radius-md); cursor: pointer;
+      transition: all 0.25s; display: flex; align-items: center;
+      justify-content: center; gap: 8px; margin-top: 6px;
+    }
+    .form-submit:hover {
+      opacity: 0.9; transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(79,142,247,0.35);
+    }
+    .form-submit:active { transform: translateY(0); }
+    .form-submit svg { width: 16px; height: 16px; }
+
+    /* Success state */
+    .form-success {
+      display: none; text-align: center; padding: 28px 0 8px;
+    }
+    .form-success.show { display: block; }
+    .form-success-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; font-size: 22px;
+    }
+    .form-success-title {
+      font-family: var(--font-display); font-size: 20px; font-weight: 700;
+      color: var(--text-primary); margin-bottom: 8px;
+    }
+    .form-success-sub {
+      font-family: var(--font-body); font-size: 14px; color: var(--text-secondary);
+    }
+
+    /* ─── RIGHT COLUMN ──────────────────────────────────────────── */
+    .right-col { display: flex; flex-direction: column; gap: 20px; }
+
+    /* ─── FOUNDER CARD ──────────────────────────────────────────── */
+    .founder-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(79,142,247,0.18);
+      border-radius: var(--radius-xl); padding: 30px 28px;
+      position: relative; overflow: hidden;
+      transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
+    }
+    .founder-card::before {
+      content: ''; position: absolute;
+      top: -50px; left: -50px; width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(79,142,247,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .founder-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,142,247,0.5), rgba(124,109,246,0.4), transparent);
+    }
+    .founder-card:hover {
+      border-color: rgba(79,142,247,0.35);
+      box-shadow: 0 0 40px rgba(79,142,247,0.1), 0 8px 32px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+    }
+    .founder-inner { position: relative; z-index: 1; }
+    .founder-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .founder-avatar {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--grad-primary); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 800; font-size: 18px; color: #fff;
+      box-shadow: 0 0 20px rgba(79,142,247,0.3);
+    }
+    
+    .founder-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent-blue); background: rgba(79,142,247,0.08);
+      border: 1px solid rgba(79,142,247,0.2); padding: 2px 8px;
+      border-radius: 99px; margin-bottom: 4px;
+    }
+    .founder-name {
+      font-family: var(--font-display); font-size: 16px; font-weight: 700;
+      letter-spacing: -0.015em; color: var(--text-primary);
+    }
+    .founder-role {
+      font-family: var(--font-body); font-size: 12px; color: var(--text-muted);
+    }
+    .founder-desc {
+      font-family: var(--font-body); font-size: 13.5px;
+      color: var(--text-secondary); line-height: 1.7;
+    }
+
+    /* ─── STATS GRID ─────────────────────────────────────────────── */
+    .stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .stat-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 20px 18px;
+      position: relative; overflow: hidden;
+      transition: all 0.3s ease; cursor: default;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--grad-card); opacity: 0; transition: opacity 0.3s;
+    }
+    .stat-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--grad-primary); opacity: 0; transition: opacity 0.3s;
+    }
+    .stat-card:hover { border-color: var(--border-glow); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+    .stat-card:hover::before { opacity: 1; }
+    .stat-card:hover::after  { opacity: 1; }
+    .stat-label {
+      font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 8px; position: relative; z-index: 1;
+    }
+    .stat-value {
+      font-family: var(--font-display); font-size: 22px; font-weight: 800;
+      color: var(--accent-blue); line-height: 1; margin-bottom: 4px;
+      position: relative; z-index: 1;
+    }
+    .stat-desc {
+      font-family: var(--font-body); font-size: 11.5px; color: var(--text-muted);
+      line-height: 1.4; position: relative; z-index: 1;
+    }
+
+    /* ─── DIVIDER ────────────────────────────────────────────────── */
+    .divider {
+      max-width: 1200px; margin: 60px auto 0; padding: 0 40px;
+    }
+    .divider hr {
+      border: none; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--bg-surface); border-top: 1px solid var(--border);
+      padding: 36px 40px 36px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 32px; padding-bottom: 28px;
+    }
+    .footer-brand .nav-logo { margin-bottom: 12px; display: inline-flex; }
+    .footer-brand-desc {
+      font-family: var(--font-body); font-size: 13px; color: var(--text-muted);
+      line-height: 1.7; max-width: 240px;
+    }
+    .footer-col h4 {
+      font-family: var(--font-ui); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      font-family: var(--font-body); font-size: 14px; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--text-primary); }
+    .footer-bottom {
+      max-width: 1200px; margin: 0 auto; padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a {
+      font-family: var(--font-body); font-size: 12px; color: var(--text-muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: var(--text-secondary); }
+
+    /* ─── TICKER ────────────────────────────────────────────────── */
+    .ticker-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; height: 36px;
+      background: rgba(11,15,26,0.95); backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border);
+      overflow: hidden; z-index: 99; display: flex; align-items: center;
+    }
+    .ticker-track { display: flex; white-space: nowrap; will-change: transform; }
+    .ticker-item {
+      font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);
+      padding: 0 32px; display: flex; align-items: center; gap: 8px;
+    }
+    .ticker-item span { color: var(--text-secondary); }
+    .ticker-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent-blue); opacity: 0.5;
+    }
+
+    /* ─── FADE-IN ───────────────────────────────────────────────── */
+    .fade-in {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.07s; }
+    .delay-2 { transition-delay: 0.14s; }
+    .delay-3 { transition-delay: 0.21s; }
+    .delay-4 { transition-delay: 0.28s; }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────────── */
+    @media (max-width: 980px) {
+      .main-layout { grid-template-columns: 1fr; }
+      .right-col { flex-direction: row; flex-wrap: wrap; }
+      .founder-card { flex: 1; min-width: 280px; }
+      .stats-section-wrap { flex: 1; min-width: 280px; }
+    }
+    @media (max-width: 760px) {
+      .options-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .right-col { flex-direction: column; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero, .contact-options, .main-layout, .divider, footer { padding-left: 20px; padding-right: 20px; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVBAR ──────────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">B</div>
+        <span class="nav-logo-text">BOL</span>
+      </a>
+      <div class="nav-links">
+        <a href="BOL.html#features">Features</a>
+        <a href="view demoreport.html">How It Works</a>
+        <a href="BOL.html#dashboard">Dashboard</a>
+      </div>
+      <div class="nav-actions">
+       
+        <a href="dashboard.html" class="btn-primary">track your improvement</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── PAGE ────────────────────────────────────────────────────── -->
+  <div class="page">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-badge"><span class="pulse"></span>Get in Touch</div>
+      <h1 class="hero-title">Let's Talk</h1>
+      <p class="hero-sub">Questions, feedback, bug reports, partnership inquiries, or feature requests. We'd love to hear from you.</p>
+    </section>
+
+    <!-- CONTACT OPTIONS -->
+    <div class="contact-options">
+      <div class="options-grid">
+
+        <div class="option-card fade-in delay-1">
+          <div class="option-icon">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="4" width="16" height="12" rx="2" stroke="#4f8ef7" stroke-width="1.5"/>
+              <path d="M2 7l8 5 8-5" stroke="#4f8ef7" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="option-title">Email Support</div>
+          <a href="mailto:sakshamsingh1940@gmail.com" class="option-email">sakshamsingh1940@gmail.com</a>
+          <div class="option-desc">General questions, support requests, and account issues. We typically respond within 24 hours.</div>
+          <a href="mailto:sakshamsingh1940@gmail.com" class="option-btn">
+            Send Email
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="option-card fade-in delay-2">
+          <div class="option-icon">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 4v12M4 10h12" stroke="#4f8ef7" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="option-title">Feature Requests</div>
+          <div class="option-desc">Have an idea to improve BOL? Share your suggestions and help shape the product roadmap.</div>
+          <a href="mailto:sakshamsingh1940@gmail.com?subject=Feature Request" class="option-btn">
+            Submit Idea
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="option-card fade-in delay-3">
+          <div class="option-icon">
+            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10" r="7" stroke="#4f8ef7" stroke-width="1.5"/>
+              <path d="M10 7v4" stroke="#4f8ef7" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="10" cy="13.5" r="0.75" fill="#4f8ef7"/>
+            </svg>
+          </div>
+          <div class="option-title">Bug Reports</div>
+          <div class="option-desc">Found something broken? Help us improve the platform by reporting issues with as much detail as possible.</div>
+          <a href="mailto:sakshamsingh1940@gmail.com?subject=Bug Report" class="option-btn">
+            Report Issue
+            <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MAIN LAYOUT -->
+    <div class="main-layout">
+
+      <!-- FORM -->
+      <div class="form-card fade-in">
+        <div class="form-title">Send a Message</div>
+        <div class="form-sub">Fill out the form and we'll get back to you as soon as possible.</div>
+
+        <div id="formBody">
+          <div class="form-group">
+            <label class="form-label" for="name">Name</label>
+            <input class="form-input" id="name" type="text" placeholder="Your name" autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" id="email" type="email" placeholder="you@example.com" autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-textarea" id="message" placeholder="Write your message here…"></textarea>
+          </div>
+          <button class="form-submit" onclick="handleSubmit()">
+            Send Message
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 3l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <div class="form-success" id="formSuccess">
+          <div class="form-success-icon">✓</div>
+          <div class="form-success-title">Message Sent</div>
+          <div class="form-success-sub">Thanks for reaching out. We'll be in touch shortly.</div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="right-col">
+
+        <!-- FOUNDER -->
+        <div class="founder-card fade-in delay-1">
+          <div class="founder-inner">
+            <div class="founder-top">
+              <div class="founder-avatar">S</div>
+              <div class="founder-meta">
+                <div class="founder-badge">✦ Founder & Developer</div>
+                <div class="founder-name">Saksham Singh</div>
+                <div class="founder-role">Building BOL · Kanpur, India</div>
+              </div>
+            </div>
+            <div class="founder-desc">BOL was created to help students and professionals measure, understand, and improve speaking confidence through real feedback and data-driven practice. Every feature comes from lived experience with the problem.</div>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-section-wrap fade-in delay-2">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Early Users</div>
+              <div class="stat-value">600+</div>
+              <div class="stat-desc">Students &amp; professionals</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Satisfaction</div>
+              <div class="stat-value">85%</div>
+              <div class="stat-desc">Satisfaction rate</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Metrics</div>
+              <div class="stat-value">8+</div>
+              <div class="stat-desc">Speaking metrics analyzed</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Analysis Time</div>
+              <div class="stat-value">60s</div>
+              <div class="stat-desc">Per session report</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"><hr /></div>
+
+  </div><!-- /page -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-icon">B</div>
+          <span class="nav-logo-text">BOL</span>
+        </a>
+        <p class="footer-brand-desc">Break Your Stage Fear Before It Breaks Your Future. Real scores. Real data. Real improvement.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="BOL.html#features">Features</a></li>
+          <li><a href="view demoreport.html">How It Works</a></li>
+          <li><a href="bol.html#dashboard">Dashboard</a></li>
+      
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+        
+          <li><a href="#">contact</a></li>
+          <li><a href="support.htm">support</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+              <li><a href="changelog.html">Changelog</a></li>
+                 <li><a href="status.html">Status</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 BOL. All rights reserved.</div>
+      <div class="footer-legal">
+      </div>
+    </div>
+  </footer>
+
+  <!-- TICKER -->
+  <div class="ticker-bar">
+    <div class="ticker-track" id="ticker">
+      <div class="ticker-item"><span class="ticker-dot"></span> Works for <span>vivas, pitches, interviews</span></div>
+      <div class="ticker-item"><span class="ticker-dot"></span> Filler words flagged <span>in real time</span></div>
+      <div class="ticker-item"><span class="ticker-dot"></span> No app. <span>Browser based.</span></div>
+      <div class="ticker-item"><span class="ticker-dot"></span> Results in <span>60 seconds</span></div>
+      <div class="ticker-item"><span class="ticker-dot"></span> <span>76 avg</span> confidence score</div>
+      <div class="ticker-item"><span class="ticker-dot"></span> <span>45 sec</span> average session</div>
+      <div class="ticker-item"><span class="ticker-dot"></span> Improve <span>+15 pts</span> in 5 sessions</div>
+      <div class="ticker-item"><span class="ticker-dot"></span> <span>8 metrics</span> measured per session</div>
+      <div class="ticker-item"><span class="ticker-dot"></span> Works for <span>vivas, pitches, interviews</span></div>
+      <div class="ticker-item"><span class="ticker-dot"></span> Filler words flagged <span>in real time</span></div>
+      <div class="ticker-item"><span class="ticker-dot"></span> No app. <span>Browser based.</span></div>
+      <div class="ticker-item"><span class="ticker-dot"></span> Results in <span>60 seconds</span></div>
+      <div class="ticker-item"><span class="ticker-dot"></span> <span>76 avg</span> confidence score</div>
+      <div class="ticker-item"><span class="ticker-dot"></span> <span>45 sec</span> average session</div>
+      <div class="ticker-item"><span class="ticker-dot"></span> Improve <span>+15 pts</span> in 5 sessions</div>
+      <div class="ticker-item"><span class="ticker-dot"></span> <span>8 metrics</span> measured per session</div>
+    </div>
+  </div>
+
+  <script>
+    /* ── Fade-in observer ────────────────────────────────────── */
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    fadeEls.forEach(el => io.observe(el));
+    window.addEventListener('load', () => {
+      fadeEls.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+      });
+    });
+
+    /* ── Form submit (frontend only) ─────────────────────────── */
+    function handleSubmit() {
+      const name    = document.getElementById('name').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!name || !email || !message) {
+        // Simple highlight on empty fields
+        [['name', name], ['email', email], ['message', message]].forEach(([id, val]) => {
+          if (!val) {
+            const el = document.getElementById(id);
+            el.style.borderColor = 'rgba(244,113,74,0.6)';
+            el.style.boxShadow   = '0 0 0 3px rgba(244,113,74,0.1)';
+            el.addEventListener('input', () => {
+              el.style.borderColor = '';
+              el.style.boxShadow   = '';
+            }, { once: true });
+          }
+        });
+        return;
+      }
+      document.getElementById('formBody').style.display    = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+    }
+
+    /* ── rAF ticker ──────────────────────────────────────────── */
+    (function () {
+      const track = document.getElementById('ticker');
+      if (!track) return;
+      let offset = 0, halfW = 0, paused = false;
+      const SPEED = 0.42;
+      function measure() { halfW = track.scrollWidth / 2; }
+      function step() {
+        if (!paused) {
+          offset += SPEED;
+          if (offset >= halfW) offset -= halfW;
+          track.style.transform = `translateX(${-offset}px)`;
+        }
+        requestAnimationFrame(step);
+      }
+      track.parentElement.addEventListener('mouseenter', () => paused = true);
+      track.parentElement.addEventListener('mouseleave', () => paused = false);
+      measure();
+      window.addEventListener('resize', measure);
+      requestAnimationFrame(step);
+    })();
+  </script>
+
+</body>
+</html>

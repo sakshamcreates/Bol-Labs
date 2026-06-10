@@ -1,0 +1,1549 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BOL — Break Your Stage Fear</title>
+<link rel="stylesheet" href="backup5.css">
+<link rel="stylesheet" href="result-screen-1.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── VARIABLES ─── */
+:root{
+  --bg:#050C18;--s1:#0B1526;--s2:#101D30;--s3:#162038;
+  --b1:rgba(255,255,255,0.07);--b2:rgba(255,255,255,0.12);--b3:rgba(255,255,255,0.18);
+  --t1:#E8EDF8;--t2:#8A97B5;--t3:#4A5672;
+  --blue:#3B82F6;--blue-l:#60A5FA;--blue-d:#1D4ED8;
+  --purple:#7C3AED;--purple-l:#A78BFA;
+  --green:#10B981;--green-l:#34D399;--red:#EF4444;
+  --r:14px;--r-lg:20px;--r-xl:24px;
+  --fh:'Bricolage Grotesque',sans-serif;
+  --fb:'DM Sans',sans-serif;
+  --fm:'JetBrains Mono',monospace;
+  --sh:0 32px 80px rgba(0,0,0,0.55);
+  --sh-sm:0 8px 24px rgba(0,0,0,0.35);
+}
+.btn-secondary{
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #E8EDF8;
+}
+.btn-secondary:hover{
+  border-color: rgba(24, 102, 228, 0.35);
+  background: rgba(59,130,246,.08);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--t1);min-height:100vh;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 700px 600px at 10% 0%,rgba(59,130,246,.09),transparent),
+    radial-gradient(ellipse 600px 500px at 90% 100%,rgba(124,58,237,.07),transparent)}
+.container{max-width:1160px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+/* ─── NAV ─── */
+nav{position:sticky;top:0;z-index:200;
+  backdrop-filter:blur(20px) saturate(1.5);
+  background:rgba(5,12,24,.88);
+  border-bottom:1px solid var(--b1)}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 24px;height:62px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo{width:34px;height:34px;border-radius:9px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-weight:800;font-size:15px;color:#fff}
+.nav-name{font-family:var(--fh);font-weight:700;font-size:17px;color:var(--t1)}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--t2);font-size:14px;font-weight:500;
+  transition:color .18s}
+.nav-links a:hover{color:var(--t1)}
+.nav-end{display:flex;align-items:center;gap:10px}
+.btn-ghost{background:transparent;border:1px solid var(--b2);color:var(--t2);
+  padding:7px 16px;border-radius:8px;font-family:var(--fb);font-size:13px;font-weight:500;
+  cursor:pointer;transition:all .18s;text-decoration:none;display:inline-flex;align-items:center}
+.btn-ghost:hover{border-color:var(--b3);color:var(--t1);background:rgba(255,255,255,.03)}
+.btn-cta{background:linear-gradient(135deg,var(--blue),#6366F1);border:none;color:#fff;
+  padding:8px 18px;border-radius:8px;font-family:var(--fb);font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;
+  box-shadow:0 4px 20px rgba(59,130,246,.3)}
+.btn-cta:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(59,130,246,.4)}
+.btn-cta svg{width:14px;height:14px}
+
+/* ─── HERO ─── */
+.hero{padding:72px 0 0}
+.hero-content{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding-bottom:48px}
+.hero-left{}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;
+  border-radius:999px;border:1px solid rgba(59,130,246,.25);
+  background:rgba(59,130,246,.08);
+  font-family:var(--fm);font-size:11px;color:var(--blue-l);margin-bottom:18px}
+.hero-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--red);
+  box-shadow:0 0 8px rgba(239,68,68,.8)}
+.hero-title{font-family:var(--fh);font-size:clamp(38px,5.2vw,62px);font-weight:800;
+  line-height:1.08;letter-spacing:-.025em;margin-bottom:18px;color:var(--t1)}
+.hero-title em{font-style:normal;color:var(--red);font-weight:800}
+.hero-sub{color:var(--t2);font-size:16px;line-height:1.7;max-width:480px;margin-bottom:32px}
+.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--blue),#6366F1);border:none;color:#fff;
+  padding:13px 26px;border-radius:10px;font-family:var(--fb);font-size:15px;font-weight:600;
+  cursor:pointer;transition:all .2s;box-shadow:0 8px 28px rgba(59,130,246,.3);text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(59,130,246,.42)}
+.btn-secondary{background:transparent;border:1px solid var(--b2);color:var(--t1);
+  padding:13px 22px;border-radius:10px;font-family:var(--fb);font-size:14px;font-weight:500;
+  cursor:pointer;transition:all .18s;text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.btn-secondary:hover{border-color:var(--b3);background:rgba(255,255,255,.025)}
+
+/* ─── CONFIDENCE CARD ─── */
+.hero-card{background:linear-gradient(145deg,rgba(11,21,38,.97),rgba(16,29,48,.95));
+  border:1px solid var(--b2);border-radius:var(--r-xl);padding:28px;
+  box-shadow:0 48px 100px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,255,255,.06);
+  position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(59,130,246,.45),rgba(124,58,237,.3),transparent)}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.card-title{font-family:var(--fh);font-weight:700;font-size:14px;color:var(--t1)}
+.card-badge{display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:6px;
+  background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);
+  font-family:var(--fm);font-size:10px;color:#6EE7B7}
+.badge-dot{width:4px;height:4px;border-radius:50%;background:var(--green);
+  animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 8px rgba(16,185,129,.8)}50%{opacity:.6;box-shadow:0 0 12px rgba(16,185,129,1.2)}}
+
+/* Score ring + meta */
+.score-section{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;
+  margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--b1)}
+.ring{position:relative;width:88px;height:88px;flex-shrink:0}
+.ring svg{transform:rotate(-90deg);display:block}
+.ring-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.ring-num{font-family:var(--fh);font-weight:800;font-size:24px;line-height:1}
+.ring-sub{font-family:var(--fm);font-size:10px;color:var(--t3);margin-top:2px}
+.meta-content{}
+.meta-title{font-family:var(--fh);font-weight:700;font-size:15px;margin-bottom:4px;color:var(--t1)}
+.meta-desc{font-size:12px;color:var(--t2);line-height:1.5;margin-bottom:12px}
+.progress-bar{height:4px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--purple));
+  border-radius:999px;width:0;transition:width 1.4s cubic-bezier(.25,.46,.45,.94)}
+
+/* Metrics pills */
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.metric-pill{background:rgba(255,255,255,.025);border:1px solid var(--b1);border-radius:10px;
+  padding:12px 14px;transition:border-color .18s}
+.metric-pill:hover{border-color:rgba(59,130,246,.2)}
+.metric-label{font-family:var(--fm);font-size:9px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.metric-value{font-family:var(--fh);font-weight:700;font-size:15px;line-height:1}
+.metric-hint{font-size:10px;color:var(--t3);margin-top:2px}
+.val-green{color:var(--green-l)}.val-blue{color:var(--blue-l)}.val-amber{color:#FBBF24}
+
+/* Mini progress bars */
+.chart-label{font-family:var(--fm);font-size:10px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.08em;margin-top:16px;margin-bottom:10px}
+.mini-bars{display:flex;align-items:flex-end;gap:2px;height:28px}
+.bar{flex:1;border-radius:2px 2px 0 0;background:rgba(59,130,246,.25);transition:all .2s;cursor:default}
+.bar.active{background:linear-gradient(to top,var(--blue),var(--blue-l))}
+
+/* ─── TRANSITION SEPARATOR ─── */
+.separator{padding:18px 0;border-top:1px solid var(--b1);border-bottom:1px solid var(--b1);
+  background:rgba(255,255,255,.01);margin:40px 0}
+.sep-track{display:flex;gap:48px;width:max-content;animation:slide 28s linear infinite}
+@keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.sep-item{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.sep-emoji{font-size:14px}.sep-text{font-size:12px;color:var(--t2)}
+
+/* ─── SECTIONS ─── */
+.section{padding:64px 0;position:relative;z-index:1}
+.section-alt{background:rgba(255,255,255,.015);border-top:1px solid var(--b1);border-bottom:1px solid var(--b1)}
+.section-header{margin-bottom:48px}
+.section-header.center{text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--fm);font-size:10px;color:var(--blue-l);
+  text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px;font-weight:600}
+.eyebrow::before{content:'';width:16px;height:1px;background:var(--blue-l)}
+.section-h{font-family:var(--fh);font-size:clamp(28px,3.6vw,42px);font-weight:800;
+  letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.section-p{color:var(--t2);font-size:15px;line-height:1.7;max-width:560px}
+.section-header.center .section-p{margin:0 auto}
+
+/* ─── PROBLEM GRID ─── */
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.prob-stack{display:flex;flex-direction:column;gap:12px}
+.prob-item{background:rgba(255,255,255,.02);border:1px solid var(--b1);border-radius:var(--r);
+  padding:16px;display:flex;gap:12px;align-items:flex-start;transition:all .2s}
+.prob-item:hover{border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.03)}
+.prob-ico{width:32px;height:32px;border-radius:8px;background:rgba(239,68,68,.1);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.prob-text{flex:1}
+.prob-title{font-weight:600;font-size:13px;margin-bottom:3px;color:var(--t1)}
+.prob-desc{font-size:12px;color:var(--t2);line-height:1.5}
+.solution-panel{background:linear-gradient(135deg,rgba(59,130,246,.09),rgba(124,58,237,.07));
+  border:1px solid rgba(59,130,246,.2);border-radius:var(--r-lg);padding:24px}
+.sol-tag{font-family:var(--fm);font-size:10px;color:var(--blue-l);
+  text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;font-weight:600}
+.sol-title{font-family:var(--fh);font-size:18px;font-weight:700;line-height:1.35;margin-bottom:12px}
+.sol-text{font-size:13px;color:var(--t2);line-height:1.65}
+
+/* ─── USE CASES ─── */
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.case-card{background:rgba(255,255,255,.02);border:1px solid var(--b1);border-radius:var(--r-lg);
+  padding:20px;transition:all .22s;cursor:default}
+.case-card:hover{border-color:rgba(59,130,246,.28);background:rgba(59,130,246,.04);
+  transform:translateY(-4px);box-shadow:0 24px 56px rgba(0,0,0,.35)}
+.case-ico{font-size:24px;margin-bottom:12px}
+.case-title{font-family:var(--fh);font-weight:700;font-size:15px;margin-bottom:6px}
+.case-text{font-size:12px;color:var(--t2);line-height:1.6}
+.case-tag{display:inline-block;margin-top:10px;padding:3px 7px;border-radius:4px;
+  background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.15);
+  font-family:var(--fm);font-size:9px;color:var(--blue-l)}
+
+/* ─── MEASURES ─── */
+.measures{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--b1);border:1px solid var(--b1);border-radius:var(--r-lg);overflow:hidden}
+.measure-card{background:var(--bg);padding:20px;transition:background .18s}
+.measure-card:hover{background:rgba(59,130,246,.04)}
+.m-ico{width:36px;height:36px;border-radius:9px;
+  background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(124,58,237,.1));
+  border:1px solid rgba(59,130,246,.18);
+  display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:10px}
+.m-title{font-family:var(--fh);font-weight:700;font-size:13px;margin-bottom:6px}
+.m-text{font-size:11px;color:var(--t2);line-height:1.6}
+
+/* ─── CIRCULAR JOURNEY (replaces steps) ─── */
+.journey-wrapper{position:relative;display:flex;align-items:center;justify-content:center;
+  margin-top:48px;padding:20px 0 40px}
+.journey-svg{width:100%;max-width:680px;display:block;margin:0 auto}
+
+/* ─── DASHBOARD PREVIEW ─── */
+.preview-frame{background:linear-gradient(145deg,rgba(11,21,38,.95),rgba(16,29,48,.9));
+  border:1px solid var(--b2);border-radius:var(--r-xl);overflow:hidden;margin-top:40px;
+  box-shadow:var(--sh)}
+.frame-header{padding:12px 18px;border-bottom:1px solid var(--b1);
+  display:flex;align-items:center;justify-content:space-between}
+.frame-dots{display:flex;gap:5px}
+.dot{width:9px;height:9px;border-radius:50%}
+.dot:nth-child(1){background:#EF4444}.dot:nth-child(2){background:#F59E0B}.dot:nth-child(3){background:#10B981}
+.frame-url{font-family:var(--fm);font-size:10px;color:var(--t3);
+  background:rgba(255,255,255,.04);padding:3px 10px;border-radius:5px}
+.frame-body{padding:20px;display:grid;grid-template-columns:220px 1fr;gap:20px}
+.sidebar-content{}
+.sidebar-h{font-family:var(--fm);font-size:9px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;font-weight:600}
+.session-list{display:flex;flex-direction:column;gap:6px}
+.session-item{padding:10px;border-radius:10px;border:1px solid var(--b1);
+  background:rgba(255,255,255,.02);cursor:pointer;transition:all .18s}
+.session-item.active{border-color:rgba(59,130,246,.3);background:rgba(59,130,246,.07)}
+.sess-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.sess-date{font-family:var(--fm);font-size:10px;color:var(--t3)}
+.sess-score{font-family:var(--fh);font-weight:700;font-size:12px}
+.sess-track{height:2px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;margin-top:4px}
+.sess-fill{height:100%;background:linear-gradient(90deg,var(--blue),#6366F1);border-radius:999px}
+.main-content{}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.kpi-card{background:rgba(255,255,255,.025);border:1px solid var(--b1);border-radius:11px;padding:14px}
+.kpi-label{font-family:var(--fm);font-size:9px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;font-weight:600}
+.kpi-value{font-family:var(--fh);font-weight:800;font-size:24px;margin-bottom:2px}
+.kpi-delta{font-size:10px}
+.up{color:var(--green-l)}.dn{color:var(--red)}
+.chart-card{background:rgba(255,255,255,.025);border:1px solid var(--b1);border-radius:11px;padding:14px}
+.chart-h{font-family:var(--fm);font-size:9px;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;font-weight:600}
+.chart{display:flex;align-items:flex-end;gap:3px;height:60px}
+.chart-bar{flex:1;border-radius:2px 2px 0 0;background:rgba(59,130,246,.2);transition:all .2s}
+.chart-bar.peak{background:linear-gradient(to top,var(--blue),var(--blue-l))}
+
+/* ─── COMPARISON TABLE ─── */
+.compare-table{width:100%;border-collapse:collapse;margin-top:40px;
+  border:1px solid var(--b1);border-radius:var(--r-lg);overflow:hidden}
+.compare-table th{padding:13px 16px;text-align:left;
+  background:rgba(255,255,255,.02);font-family:var(--fh);font-weight:700;font-size:12px;
+  border-bottom:1px solid var(--b1)}
+.compare-table th.bol{background:rgba(59,130,246,.09);color:var(--blue-l);
+  border-left:2px solid var(--blue)}
+.compare-table td{padding:12px 16px;border-bottom:1px solid var(--b1);
+  font-size:12px;color:var(--t2)}
+.compare-table td.bol{background:rgba(59,130,246,.04);border-left:2px solid rgba(59,130,246,.25);color:var(--t1)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table td:first-child{color:var(--t1);font-weight:500}
+.chk{color:var(--green-l);font-size:14px}.crs{color:var(--red)}.prt{color:#FBBF24;font-size:11px}
+
+/* ─── TESTIMONIALS — DYNAMIC ─── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.testi-card{background:rgba(255,255,255,.025);border:1px solid var(--b1);border-radius:var(--r-lg);
+  padding:20px;transition:border-color .3s,box-shadow .3s}
+.testi-card.testi-glowing{
+  border-color:rgba(59,130,246,.35);
+  box-shadow:0 0 28px rgba(59,130,246,.12),0 8px 32px rgba(0,0,0,.3)}
+.testi-card-inner{transition:opacity .35s ease,transform .35s ease}
+.testi-card-inner.testi-fade-out{opacity:0;transform:translateY(6px)}
+.testi-card-inner.testi-fade-in{opacity:1;transform:translateY(0)}
+.stars{color:#FBBF24;font-size:12px;letter-spacing:1px;margin-bottom:12px}
+.testi-text{font-size:12.5px;color:var(--t2);line-height:1.7;margin-bottom:14px}
+.author{display:flex;align-items:center;gap:10px}
+.avatar{width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-weight:700;font-size:12px;color:#fff;flex-shrink:0;
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.avatar.avatar-pop{transform:scale(1.18)}
+.av-1{background:linear-gradient(135deg,var(--blue),#6366F1)}
+.av-2{background:linear-gradient(135deg,var(--purple),#EC4899)}
+.av-3{background:linear-gradient(135deg,var(--green),#0EA5E9)}
+.av-4{background:linear-gradient(135deg,#F59E0B,#EF4444)}
+.av-5{background:linear-gradient(135deg,#06B6D4,#7C3AED)}
+.author-name{font-weight:600;font-size:12px;line-height:1}
+.author-role{font-size:10px;color:var(--t3);margin-top:1px}
+
+/* ─── CTA FINAL ─── */
+.cta-final{padding:64px 0 80px}
+.cta-box{background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(124,58,237,.08));
+  border:1px solid rgba(59,130,246,.2);border-radius:var(--r-xl);
+  padding:60px 36px;text-align:center;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,.55),transparent)}
+.cta-glow{position:absolute;width:350px;height:350px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,.08),transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-h{font-family:var(--fh);font-size:clamp(28px,3.8vw,40px);font-weight:800;
+  letter-spacing:-.02em;margin-bottom:12px;position:relative;z-index:1}
+.cta-p{color:var(--t2);font-size:15px;max-width:420px;margin:0 auto 28px;
+  line-height:1.7;position:relative;z-index:1}
+.cta-btns{display:flex;gap:12px;justify-content:center;align-items:center;
+  flex-wrap:wrap;position:relative;z-index:1;margin-bottom:10px}
+.cta-note{margin-top:10px;font-size:11px;color:var(--t3);position:relative;z-index:1}
+
+/* ─── FOOTER ─── */
+footer{border-top:1px solid var(--b1);padding:48px 0 32px}
+.footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;margin-bottom:36px}
+.footer-brand-h{font-family:var(--fh);font-weight:800;font-size:18px;margin-bottom:8px}
+.footer-brand-t{font-size:12px;color:var(--t3);line-height:1.7;max-width:200px}
+.footer-col-h{font-weight:600;font-size:12px;color:var(--t1);margin-bottom:12px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:12px;color:var(--t3);text-decoration:none;transition:color .18s}
+.footer-links a:hover{color:var(--t2)}
+.footer-bottom{padding-top:18px;border-top:1px solid var(--b1);
+  display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:11px;color:var(--t3)}
+.footer-built{font-family:var(--fm);font-size:10px;color:var(--t3)}
+.footer-built span{color:var(--blue-l)}
+
+/* ─── ANIMATIONS ─── */
+.fade-in{opacity:0;transform:translateY(24px);animation:fadeIn .6s ease forwards}
+@keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
+.fade-in:nth-child(1){animation-delay:.05s}
+.fade-in:nth-child(2){animation-delay:.1s}
+.fade-in:nth-child(3){animation-delay:.15s}
+.fade-in:nth-child(4){animation-delay:.2s}
+.fade-in:nth-child(5){animation-delay:.25s}
+.fade-in:nth-child(6){animation-delay:.3s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1024px){
+  .hero-content{grid-template-columns:1fr;gap:44px}
+  .problem-grid{grid-template-columns:1fr;gap:48px}
+  .cases-grid{grid-template-columns:repeat(2,1fr)}
+  .measures{grid-template-columns:repeat(2,1fr)}
+  .frame-body{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero{padding:52px 0 0}
+  .cases-grid{grid-template-columns:1fr}
+  .measures{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .compare-table{font-size:11px}
+  .compare-table td,.compare-table th{padding:8px 12px}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:6px;text-align:center}
+}
+@media(max-width:520px){
+  .hero-actions{flex-direction:column}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center}
+  .cases-grid{grid-template-columns:1fr}
+  .cta-btns{flex-direction:column}
+  .cta-btns .btn-primary,.cta-btns .btn-secondary{width:100%;justify-content:center}
+  .sep-track{gap:24px}
+}
+@keyframes centerPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.03);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+/* ─── CIRCULAR JOURNEY SVG ANIMS ─── */
+@keyframes ringDraw {
+  from { stroke-dashoffset: 1508; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes nodePop {
+  0%   { opacity:0; transform:scale(0.6); }
+  70%  { opacity:1; transform:scale(1.06); }
+  100% { opacity:1; transform:scale(1); }
+}
+@keyframes orbitGlow {
+  0%   { stroke-dashoffset: 1508; }
+  100% { stroke-dashoffset: -1508; }
+}
+@keyframes labelSlide {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.journey-ring-track {
+  fill:none;
+  stroke:rgba(59,130,246,0.10);
+  stroke-width:1.5;
+}
+.journey-ring-draw {
+  fill:none;
+  stroke:url(#jRingGrad);
+  stroke-width:1.5;
+  stroke-dasharray:1508;
+  stroke-dashoffset:1508;
+  stroke-linecap:round;
+}
+.journey-ring-draw.animate {
+  animation: ringDraw 1.2s cubic-bezier(.4,0,.2,1) forwards;
+}
+.journey-orbit {
+  fill:none;
+  stroke:rgba(59,130,246,0.55);
+  stroke-width:1.5;
+  stroke-dasharray:40 1468;
+  stroke-linecap:round;
+  opacity:0;
+}
+.journey-orbit.animate {
+  opacity:1;
+  animation: orbitGlow 4s linear infinite;
+}
+.journey-node {
+  opacity:0;
+  transform-origin:center;
+}
+.journey-node.animate-1 { animation: nodePop 0.5s cubic-bezier(.34,1.56,.64,1) 1.35s forwards; }
+.journey-node.animate-2 { animation: nodePop 0.5s cubic-bezier(.34,1.56,.64,1) 1.65s forwards; }
+.journey-node.animate-3 { animation: nodePop 0.5s cubic-bezier(.34,1.56,.64,1) 1.95s forwards; }
+.journey-node.animate-4 { animation: nodePop 0.5s cubic-bezier(.34,1.56,.64,1) 2.25s forwards; }
+.journey-label {
+  opacity:0;
+}
+.journey-label.animate-1 { animation: labelSlide 0.45s ease 1.55s forwards; }
+.journey-label.animate-2 { animation: labelSlide 0.45s ease 1.85s forwards; }
+.journey-label.animate-3 { animation: labelSlide 0.45s ease 2.15s forwards; }
+.journey-label.animate-4 { animation: labelSlide 0.45s ease 2.45s forwards; }
+.journey-center-text {
+  opacity:0;
+  animation:
+    labelSlide 0.5s ease 2.6s forwards,
+    centerPulse 4s ease-in-out infinite 3.2s;
+  transform-origin:center;
+}
+#orbitArrow polygon{
+  filter:
+    drop-shadow(0 0 8px #60A5FA)
+    drop-shadow(0 0 18px #60A5FA);
+}
+@media(prefers-reduced-motion:reduce){
+  .journey-ring-draw,.journey-orbit,.journey-node,.journey-label,.journey-center-text {
+    animation:none !important;
+    opacity:1 !important;
+    stroke-dashoffset:0 !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <div class="nav-logo">B</div>
+      <span class="nav-name">BOL</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+    </ul>
+    <div class="nav-end">
+      <a class="btn-ghost" href="#">Log in</a>
+      <a class="btn-cta" href="#">Start Free
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          Speaking Confidence Lab
+        </div>
+        <h1 class="hero-title">Break Your Stage Fear<br>Before It Breaks Your<em>Future.</em></h1>
+        <p class="hero-sub">BOL measures your speaking confidence across several parameters which includes pace, pauses, and vocal stability. Get a real score. See exactly what to fix. Practice with data. Pass with confidence.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            </svg>
+           start speaking
+          </a>
+       
+       <a class="btn-secondary" href="view demoreport.html">See How It Works</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="card-header">
+          <span class="card-title">Confidence Report</span>
+          <span class="card-badge">
+            <span class="badge-dot"></span>
+            Live Session
+          </span>
+        </div>
+
+        <div class="score-section">
+          <div class="ring">
+            <svg width="88" height="88" viewBox="0 0 88 88">
+              <circle cx="44" cy="44" r="40" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="8"/>
+              <circle id="mainRing" cx="44" cy="44" r="40" fill="none"
+                stroke="url(#ringGrad)" stroke-width="8" stroke-linecap="round"
+                stroke-dasharray="251.3" stroke-dashoffset="251.3"/>
+              <defs>
+                <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#3B82F6"/>
+                  <stop offset="100%" stop-color="#7C3AED"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="ring-center">
+              <span class="ring-num">76</span>
+              <span class="ring-sub">/100</span>
+            </div>
+          </div>
+          <div class="meta-content">
+            <div class="meta-title">Confidence Score</div>
+            <div class="meta-desc">Strong delivery. Reduce pauses by 2 in next attempt.</div>
+            <div class="progress-bar"><div class="progress-fill" id="progressBar"></div></div>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-pill">
+            <div class="metric-label">Speaking Pace</div>
+            <div class="metric-value val-blue">138<span style="font-size:12px;margin-left:2px">wpm</span></div>
+            <div class="metric-hint">Optimal range</div>
+          </div>
+          <div class="metric-pill">
+            <div class="metric-label">Pauses Detected</div>
+            <div class="metric-value val-green">4</div>
+            <div class="metric-hint">Balanced</div>
+          </div>
+          <div class="metric-pill">
+            <div class="metric-label">Voice Stability</div>
+            <div class="metric-value val-green">High</div>
+            <div class="metric-hint">Consistent</div>
+          </div>
+          <div class="metric-pill">
+            <div class="metric-label">Active Speech</div>
+            <div class="metric-value val-amber">45s</div>
+            <div class="metric-hint">of 50s total</div>
+          </div>
+        </div>
+
+        <div class="chart-label">Session progression</div>
+        <div class="mini-bars" id="miniChart"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SEPARATOR -->
+<div class="separator">
+  <div class="sep-track" id="sepTrack"></div>
+</div>
+
+<!-- THE PROBLEM -->
+<div class="container">
+  <section class="section" id="problem">
+    <div class="problem-grid">
+      <div>
+        <div class="section-header">
+          <div class="eyebrow">The Problem</div>
+          <h2 class="section-h">Most speakers never measure their delivery.</h2>
+          <p class="section-p">You practice. You feel ready. Then you stand up and stumble. No data. No feedback. No way to improve systematically.</p>
+        </div>
+        <div class="prob-stack">
+          <div class="prob-item">
+            <div class="prob-ico">🪞</div>
+            <div class="prob-text">
+              <div class="prob-title">Mirrors don't measure anything.</div>
+              <div class="prob-desc">You see your face. You don't see your pace, pauses, or confidence level.</div>
+            </div>
+          </div>
+          <div class="prob-item">
+            <div class="prob-ico">👥</div>
+            <div class="prob-text">
+              <div class="prob-title">Friends give you biased feedback.</div>
+              <div class="prob-desc">"You were great!" tells you nothing. Social politeness defeats honesty.</div>
+            </div>
+          </div>
+          <div class="prob-item">
+            <div class="prob-ico">📉</div>
+            <div class="prob-text">
+              <div class="prob-title">You discover weaknesses on stage.</div>
+              <div class="prob-desc">By the time you're in a viva, it's too late. No way to adjust or recover.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution-panel">
+        <div class="sol-tag">BOL's Approach</div>
+        <div class="sol-title">Stop practicing blindly. Start measuring your delivery.</div>
+        <div class="sol-text">
+          BOL listens to your voice. Analyzes your pace, pauses, stability, and flow. Gives you a numeric confidence score — 0 to 100 — backed by real data from your actual recording.<br><br>
+          You see exactly which metrics are holding your score down. You know precisely what to adjust. Next session, you measure again. You watch your score move. That's the difference between practice and improvement.
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- USE CASES -->
+<div class="section-alt">
+  <div class="container">
+    <section class="section">
+      <div class="section-header center">
+        <div class="eyebrow">For Every Speaking Situation</div>
+        <h2 class="section-h">Vivas. Interviews. Pitches. Presentations.</h2>
+        <p class="section-p">BOL works before any high-stakes speaking moment.</p>
+      </div>
+      <div class="cases-grid">
+        <div class="case-card fade-in">
+          <div class="case-ico">📋</div>
+          <div class="case-title">Viva Exams</div>
+          <div class="case-text">Practice answers until your confidence score is consistent. Know you're ready before you walk in.</div>
+          <span class="case-tag">Academic</span>
+        </div>
+        <div class="case-card fade-in">
+          <div class="case-ico">💼</div>
+          <div class="case-title">Job Interviews</div>
+          <div class="case-text">HR and technical rounds. Group discussions. BOL trains the delivery that separates you from other candidates.</div>
+          <span class="case-tag">Career</span>
+        </div>
+        <div class="case-card fade-in">
+          <div class="case-ico">🚀</div>
+          <div class="case-title">Pitches & Demos</div>
+          <div class="case-text">Your opening 90 seconds matter most. Refine it. Score it. Perfect it before the real audience.</div>
+          <span class="case-tag">Business</span>
+        </div>
+        <div class="case-card fade-in">
+          <div class="case-ico">🎓</div>
+          <div class="case-title">Class Presentations</div>
+          <div class="case-text">Turn nervousness into measurable improvement. See your confidence grow across sessions.</div>
+          <span class="case-tag">Academic</span>
+        </div>
+        <div class="case-card fade-in">
+          <div class="case-ico">🎙️</div>
+          <div class="case-title">Public Speaking</div>
+          <div class="case-text">From conference talks to toasts. Build a baseline. Track progress. Own the room.</div>
+          <span class="case-tag">Stage</span>
+        </div>
+        <div class="case-card fade-in">
+          <div class="case-ico">⚡</div>
+          <div class="case-title">Debate & Arguments</div>
+          <div class="case-text">Speed, clarity, and pacing. BOL measures exactly what debate judges reward.</div>
+          <span class="case-tag">Competition</span>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- WHAT WE MEASURE -->
+<div class="container">
+  <section class="section" id="features">
+    <div class="section-header">
+      <div class="eyebrow">Eight Dimensions of Delivery</div>
+      <h2 class="section-h">What Gets Scored</h2>
+      <p class="section-p">Every session. Every metric. All feeding into one confidence number.</p>
+    </div>
+    <div class="measures">
+      <div class="measure-card">
+        <div class="m-ico">📊</div>
+        <div class="m-title">Confidence Score</div>
+        <div class="m-text">0–100 composite. The single number that tells you how ready you are.</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">⏸</div>
+        <div class="m-title">Pause Analysis</div>
+        <div class="m-text">Rhetorical pauses vs. panic pauses. Which are holding you back?</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">⚡</div>
+        <div class="m-title">Speaking Pace</div>
+        <div class="m-text">120–155 wpm is optimal. Too fast? Too slow? BOL tells you.</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">🎯</div>
+        <div class="m-title">Voice Stability</div>
+        <div class="m-text">Nervous speakers show volume variance. BOL detects it.</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">🔤</div>
+        <div class="m-title">Filler Words</div>
+        <div class="m-text">Umm, uhh, like, basically. Every one is flagged.</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">⏱</div>
+        <div class="m-title">Active Speech Time</div>
+        <div class="m-text">How much are you actually speaking vs. silent?</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">💬</div>
+        <div class="m-title">Speech Flow</div>
+        <div class="m-text">Sentence completion. Trailing words. Authority vs. hedging.</div>
+      </div>
+      <div class="measure-card">
+        <div class="m-ico">📈</div>
+        <div class="m-title">Progress Tracking</div>
+        <div class="m-text">Every session logged. See your trajectory. Adjust your practice.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- HOW IT WORKS — CIRCULAR JOURNEY -->
+<div class="section-alt">
+  <div class="container">
+    <section class="section" id="how">
+      <div class="section-header center">
+        <div class="eyebrow">How It Works</div>
+        <h2 class="section-h">Record. Measure. Improve. Repeat.</h2>
+        <p class="section-p">30 seconds to first result. No equipment. No coaching. No waiting.</p>
+      </div>
+
+      <div class="journey-wrapper">
+        <svg class="journey-svg" viewBox="0 0 680 500" xmlns="http://www.w3.org/2000/svg" id="journeySvg" aria-label="Circular process: Record, Analyze, Score, Retest">
+          <defs>
+            <linearGradient id="jRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3B82F6"/>
+              <stop offset="50%" stop-color="#7C3AED"/>
+              <stop offset="100%" stop-color="#3B82F6"/>
+            </linearGradient>
+            <linearGradient id="jNode1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3B82F6"/>
+              <stop offset="100%" stop-color="#6366F1"/>
+            </linearGradient>
+            <linearGradient id="jNode2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7C3AED"/>
+              <stop offset="100%" stop-color="#A855F7"/>
+            </linearGradient>
+            <linearGradient id="jNode3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0EA5E9"/>
+              <stop offset="100%" stop-color="#3B82F6"/>
+            </linearGradient>
+            <linearGradient id="jNode4Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#10B981"/>
+              <stop offset="100%" stop-color="#0EA5E9"/>
+            </linearGradient>
+            <filter id="nodeGlow">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+            </filter>
+          </defs>
+
+          <!-- Background track ring -->
+          <circle cx="340" cy="250" r="174" class="journey-ring-track"/>
+          <!-- Animated draw ring -->
+          <circle cx="340" cy="250" r="174" class="journey-ring-draw" id="jRingDraw"/>
+          <path
+  id="orbitPath"
+  d="
+  M 340 76
+  A 174 174 0 1 1 339.9 76
+  "
+  fill="none"
+/>
+          <!-- Orbiting glow -->
+          <circle cx="340" cy="250" r="174" class="journey-orbit" id="jOrbit"/>
+          <g id="orbitArrow">
+
+  <polygon
+    points="0,-6 12,0 0,6"
+    fill="#60A5FA">
+
+    <animateMotion
+      dur="10s"
+      repeatCount="indefinite"
+      rotate="auto">
+
+      <mpath href="#orbitPath"/>
+
+    </animateMotion>
+
+  </polygon>
+
+</g>
+
+          <!-- Center BOL mark -->
+         <!-- Center BOL Engine -->
+<g class="journey-center-text" id="jCenterText">
+
+  <circle cx="340" cy="250" r="58"
+          fill="rgba(59,130,246,0.06)"
+          stroke="rgba(59,130,246,0.18)"
+          stroke-width="1.2"/>
+
+  <circle cx="340" cy="250" r="44"
+          fill="rgba(255,255,255,0.015)"
+          stroke="rgba(255,255,255,0.05)"
+          stroke-width="1"/>
+
+  <text x="340"
+        y="242"
+        text-anchor="middle"
+        font-family="'Bricolage Grotesque',sans-serif"
+        font-weight="800"
+        font-size="20"
+        fill="#E8EDF8">
+        Confidence
+  </text>
+
+  <text x="340"
+        y="264"
+        text-anchor="middle"
+        font-family="'JetBrains Mono',monospace"
+        font-size="11"
+        fill="#60A5FA"
+        letter-spacing="2">
+        ENGINE
+  </text>
+
+</g>
+
+          <!-- NODE 01 — TOP — Record Response -->
+          <!-- Position: top center, cx=340 cy=76 (250-174) -->
+          <g class="journey-node animate-1" id="jNode1">
+            <!-- Halo -->
+            <circle cx="340" cy="76" r="38" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.2)" stroke-width="1"/>
+            <!-- Main circle -->
+            <circle cx="340" cy="76" r="28" fill="url(#jNode1Grad)" filter="url(#nodeGlow)"/>
+            <!-- Icon: mic -->
+            <g transform="translate(340,76)" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round">
+              <rect x="-5" y="-11" width="10" height="16" rx="5" fill="rgba(255,255,255,0.15)" stroke="white"/>
+              <path d="M-9 6c0 5 18 5 18 0"/>
+              <line x1="0" y1="11" x2="0" y2="14"/>
+            </g>
+          </g>
+          <!-- Label 01 -->
+          <g class="journey-label animate-1" id="jLabel1">
+            <text x="340" y="124" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#4A5672" letter-spacing="1">01</text>
+            <text x="340" y="140" text-anchor="middle" font-family="'Bricolage Grotesque',sans-serif" font-weight="700" font-size="13" fill="#E8EDF8">Record Response</text>
+            <text x="340" y="155" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="11" fill="#8A97B5">30–60 seconds, any topic</text>
+          </g>
+
+          <!-- NODE 02 — RIGHT — BOL Analyzes -->
+          <!-- Position: right, cx=514 cy=250 (340+174) -->
+          <g class="journey-node animate-2" id="jNode2">
+            <circle cx="514" cy="250" r="38" fill="rgba(124,58,237,0.08)" stroke="rgba(124,58,237,0.2)" stroke-width="1"/>
+            <circle cx="514" cy="250" r="28" fill="url(#jNode2Grad)" filter="url(#nodeGlow)"/>
+            <!-- Icon: waveform bars -->
+            <g transform="translate(514,250)" fill="white">
+              <rect x="-11" y="-10" width="4" height="20" rx="2"/>
+              <rect x="-4" y="-14" width="4" height="28" rx="2"/>
+              <rect x="3" y="-7" width="4" height="14" rx="2"/>
+              <rect x="10" y="-11" width="4" height="22" rx="2" opacity="0.7"/>
+            </g>
+          </g>
+          <!-- Label 02 -->
+          <g class="journey-label animate-2" id="jLabel2">
+            <text x="590" y="243" text-anchor="start" font-family="'JetBrains Mono',monospace" font-size="10" fill="#4A5672" letter-spacing="1">02</text>
+            <text x="590" y="259" text-anchor="start" font-family="'Bricolage Grotesque',sans-serif" font-weight="700" font-size="13" fill="#E8EDF8">BOL Analysis</text>
+            <text x="590" y="274" text-anchor="start" font-family="'DM Sans',sans-serif" font-size="11" fill="#8A97B5">real-time data</text>
+          </g>
+
+          <!-- NODE 03 — BOTTOM — Get Your Score -->
+          <!-- Position: bottom center, cx=340 cy=424 (250+174) -->
+          <g class="journey-node animate-3" id="jNode3">
+            <circle cx="340" cy="424" r="38" fill="rgba(14,165,233,0.08)" stroke="rgba(14,165,233,0.2)" stroke-width="1"/>
+            <circle cx="340" cy="424" r="28" fill="url(#jNode3Grad)" filter="url(#nodeGlow)"/>
+            <!-- Icon: score/number -->
+            <text x="340" y="431" text-anchor="middle" font-family="'Bricolage Grotesque',sans-serif" font-weight="800" font-size="18" fill="white">0-100</text>
+          </g>
+          <!-- Label 03 -->
+          <g class="journey-label animate-3" id="jLabel3">
+            <text x="340" y="476" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-size="10" fill="#4A5672" letter-spacing="1">03</text>
+            <text x="340" y="492" text-anchor="middle" font-family="'Bricolage Grotesque',sans-serif" font-weight="700" font-size="13" fill="#E8EDF8">Get Your Score</text>
+          </g>
+
+          <!-- NODE 04 — LEFT — Practice & Retest -->
+          <!-- Position: left, cx=166 cy=250 (340-174) -->
+          <g class="journey-node animate-4" id="jNode4">
+            <circle cx="166" cy="250" r="38" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.2)" stroke-width="1"/>
+            <circle cx="166" cy="250" r="28" fill="url(#jNode4Grad)" filter="url(#nodeGlow)"/>
+            <!-- Icon: refresh/repeat -->
+            <g transform="translate(166,250)" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M-10 -4 A12 12 0 1 1 10 6"/>
+              <polyline points="10,0 10,7 17,7" transform="rotate(-15,10,4)"/>
+            </g>
+          </g>
+          <!-- Label 04 -->
+          <g class="journey-label animate-4" id="jLabel4">
+            <text x="88" y="243" text-anchor="end" font-family="'JetBrains Mono',monospace" font-size="10" fill="#4A5672" letter-spacing="1">04</text>
+            <text x="88" y="259" text-anchor="end" font-family="'Bricolage Grotesque',sans-serif" font-weight="700" font-size="13" fill="#E8EDF8">Drill & Review</text>
+            <text x="88" y="274" text-anchor="end" font-family="'DM Sans',sans-serif" font-size="11" fill="#8A97B5">Watch your score climb</text>
+          </g>
+
+          <!-- Subtle connector dots at cardinal points on ring -->
+          <circle cx="340" cy="76" r="3" fill="rgba(59,130,246,0.6)" class="journey-node animate-1"/>
+          <circle cx="514" cy="250" r="3" fill="rgba(124,58,237,0.6)" class="journey-node animate-2"/>
+          <circle cx="340" cy="424" r="3" fill="rgba(14,165,233,0.6)" class="journey-node animate-3"/>
+          <circle cx="166" cy="250" r="3" fill="rgba(16,185,129,0.6)" class="journey-node animate-4"/>
+        </svg>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- DASHBOARD PREVIEW -->
+<div class="container">
+  <section class="section" id="dashboard">
+    <div class="section-header">
+      <div class="eyebrow">Your Progress Dashboard</div>
+      <h2 class="section-h">Track every session. See your trajectory.</h2>
+      <p class="section-p">All your sessions in one place. Trends visible. Improvement quantifiable.</p>
+    </div>
+
+    <div class="preview-frame">
+      <div class="frame-header">
+        <div class="frame-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        </div>
+        <div class="frame-url">bolcoach.com</div>
+        <div style="width:60px"></div>
+      </div>
+      <div class="frame-body">
+        <div class="sidebar-content">
+          <div class="sidebar-h">Recent Sessions</div>
+          <div class="session-list">
+            <div class="session-item active">
+              <div class="sess-top">
+                <span class="sess-date">Today, 3:42 PM</span>
+                <span class="sess-score up">81</span>
+              </div>
+              <div class="sess-track"><div class="sess-fill" style="width:81%"></div></div>
+            </div>
+            <div class="session-item">
+              <div class="sess-top">
+                <span class="sess-date">Yesterday</span>
+                <span class="sess-score up">76</span>
+              </div>
+              <div class="sess-track"><div class="sess-fill" style="width:76%"></div></div>
+            </div>
+            <div class="session-item">
+              <div class="sess-top">
+                <span class="sess-date">2 days ago</span>
+                <span class="sess-score">71</span>
+              </div>
+              <div class="sess-track"><div class="sess-fill" style="width:71%"></div></div>
+            </div>
+            <div class="session-item">
+              <div class="sess-top">
+                <span class="sess-date">4 days ago</span>
+                <span class="sess-score">68</span>
+              </div>
+              <div class="sess-track"><div class="sess-fill" style="width:68%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="main-content">
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-label">Current Score</div>
+              <div class="kpi-value up">81</div>
+              <div class="kpi-delta up">↑ +13 in 4 days</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Avg. Pace</div>
+              <div class="kpi-value">135</div>
+              <div class="kpi-delta up">In optimal range</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">Panic Pauses</div>
+              <div class="kpi-value">2</div>
+              <div class="kpi-delta up">↓ Down from 6</div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-h">Confidence — Last 10 Sessions</div>
+            <div class="chart" id="dashChart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- COMPARISON -->
+<div class="section-alt">
+  <div class="container">
+    <section class="section">
+      <div class="section-header center">
+        <div class="eyebrow">Why BOL</div>
+        <h2 class="section-h">Different from everything else.</h2>
+        <p class="section-p">The difference isn't effort. It's measurement.</p>
+      </div>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Mirror Practice</th>
+            <th>Friend Feedback</th>
+            <th class="bol">BOL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Objective feedback</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="prt">Rarely</span></td>
+            <td class="bol"><span class="chk">✓</span> Always</td>
+          </tr>
+          <tr>
+            <td>Confidence score</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+            <td class="bol"><span class="chk">✓</span> 0–100</td>
+          </tr>
+          <tr>
+            <td>Progress tracking</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="crs">✗</span></td>
+            <td class="bol"><span class="chk">✓</span> Full history</td>
+          </tr>
+          <tr>
+            <td>Actionable feedback</td>
+            <td><span class="crs">✗</span></td>
+            <td><span class="prt">Vague</span></td>
+            <td class="bol"><span class="chk">✓</span> Specific metrics</td>
+          </tr>
+          <tr>
+            <td>Available 24/7</td>
+            <td><span class="chk">✓</span></td>
+            <td><span class="crs">✗</span></td>
+            <td class="bol"><span class="chk">✓</span> Always ready</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
+
+<!-- TESTIMONIALS — DYNAMIC -->
+<div class="container">
+  <section class="section">
+    <div class="section-header center">
+      <div class="eyebrow">Real Speakers. Real Results.</div>
+      <h2 class="section-h">Early User Feedback</h2>
+      <p class="section-p">What happens when measurement replaces guessing.</p>
+    </div>
+
+    <div class="testi-grid" id="testiGrid">
+      <div class="testi-card" id="tcard-0">
+        <div class="testi-card-inner">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text"></p>
+          <div class="author">
+            <div class="avatar av-1"></div>
+            <div>
+              <div class="author-name"></div>
+              <div class="author-role"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card" id="tcard-1">
+        <div class="testi-card-inner">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text"></p>
+          <div class="author">
+            <div class="avatar av-2"></div>
+            <div>
+              <div class="author-name"></div>
+              <div class="author-role"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card" id="tcard-2">
+        <div class="testi-card-inner">
+          <div class="stars">★★★★★</div>
+          <p class="testi-text"></p>
+          <div class="author">
+            <div class="avatar av-3"></div>
+            <div>
+              <div class="author-name"></div>
+              <div class="author-role"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FINAL CTA -->
+<div class="container">
+  <div class="cta-final">
+    <div class="cta-box">
+      <div class="cta-glow"></div>
+      <h2 class="cta-h">Ready to measure your speaking confidence?</h2>
+      <p class="cta-p">Get a real confidence score. See your metrics. Know exactly what to fix. Start improving.</p>
+      <div class="cta-btns">
+        <a class="btn-primary" href="#">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          </svg>
+          Start Free Assessment
+        </a>
+       <a class="btn-secondary" href="view demoreport.html">See How It Works</a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-h">BOL</div>
+        <div class="footer-brand-t">Speaking Confidence Lab. Measure your delivery. Reduce your stage fear. Own the room.</div>
+      </div>
+      <div>
+        <div class="footer-col-h">Product</div>
+        <ul class="footer-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-h">Resources</div>
+        <ul class="footer-links">
+          <li><a href="#">Speaking Tips</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-h">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">Status</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 BOL · Break Your Stage Fear.</div>
+      <div class="footer-built">founder <span>Saksham Singh</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ─── RING ANIMATION ─── */
+window.addEventListener('load', () => {
+  const ring = document.getElementById('mainRing');
+  if (ring) {
+    const circumference = 251.3;
+    const score = 76;
+    setTimeout(() => {
+      ring.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(.25,.46,.45,.94)';
+      ring.style.strokeDashoffset = circumference - (circumference * (score / 100));
+    }, 300);
+  }
+
+  const bar = document.getElementById('progressBar');
+  if (bar) {
+    setTimeout(() => { bar.style.width = '76%'; }, 400);
+  }
+});
+
+/* ─── MINI CHART ─── */
+(function() {
+  const container = document.getElementById('miniChart');
+  if (!container) return;
+  const heights = [40, 45, 35, 55, 50, 65, 60, 72, 78, 75, 82, 76];
+  const peaks = [false, false, false, false, false, false, false, false, false, false, true, false];
+  heights.forEach((h, i) => {
+    const b = document.createElement('div');
+    b.className = 'bar' + (peaks[i] ? ' active' : '');
+    b.style.height = h + '%';
+    container.appendChild(b);
+  });
+})();
+
+/* ─── SEPARATOR ITEMS ─── */
+(function() {
+  const items = [
+    { emoji: '📊', text: '<strong>76 avg</strong> confidence score' },
+    { emoji: '⚡', text: '<strong>45 sec</strong> average session' },
+    { emoji: '📈', text: 'Improve <strong>+15 pts</strong> in 5 sessions' },
+    { emoji: '🎯', text: '<strong>8 metrics</strong> measured per session' },
+    { emoji: '📋', text: 'Works for <strong>vivas, pitches, interviews</strong>' },
+    { emoji: '🔤', text: 'Filler words flagged <strong>in real time</strong>' },
+    { emoji: '🎙️', text: 'No app. <strong>Browser based</strong>.' },
+    { emoji: '✨', text: '<strong>Results in 60</strong> seconds' },
+  ];
+  const track = document.getElementById('sepTrack');
+  if (!track) return;
+  [...items, ...items].forEach(item => {
+    const d = document.createElement('div');
+    d.className = 'sep-item';
+    d.innerHTML = `<span class="sep-emoji">${item.emoji}</span><span class="sep-text">${item.text}</span>`;
+    track.appendChild(d);
+  });
+})();
+
+/* ─── DASHBOARD CHART ─── */
+(function() {
+  const container = document.getElementById('dashChart');
+  if (!container) return;
+  const scores = [58, 61, 59, 64, 68, 72, 71, 76, 79, 81];
+  const max = Math.max(...scores);
+  scores.forEach((s, i) => {
+    const b = document.createElement('div');
+    b.className = 'chart-bar' + (i === scores.length - 1 ? ' peak' : '');
+    b.style.height = Math.round((s / max) * 100) + '%';
+    b.title = `Session ${i + 1}: ${s}`;
+    container.appendChild(b);
+  });
+})();
+
+/* ─── CIRCULAR JOURNEY — VIEWPORT TRIGGER ─── */
+(function() {
+  const svg = document.getElementById('journeySvg');
+  if (!svg) return;
+  let triggered = false;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !triggered) {
+        triggered = true;
+        document.getElementById('jRingDraw').classList.add('animate');
+        setTimeout(() => {
+          document.getElementById('jOrbit').classList.add('animate');
+        }, 1400);
+        document.querySelectorAll('.journey-node').forEach(n => {
+          const cls = n.className.baseVal;
+          if (cls.includes('animate-1')) n.classList.add('animate-1');
+          if (cls.includes('animate-2')) n.classList.add('animate-2');
+          if (cls.includes('animate-3')) n.classList.add('animate-3');
+          if (cls.includes('animate-4')) n.classList.add('animate-4');
+        });
+        document.querySelectorAll('.journey-label').forEach(n => {
+          const cls = n.className.baseVal;
+          if (cls.includes('animate-1')) n.classList.add('animate-1');
+          if (cls.includes('animate-2')) n.classList.add('animate-2');
+          if (cls.includes('animate-3')) n.classList.add('animate-3');
+          if (cls.includes('animate-4')) n.classList.add('animate-4');
+        });
+        document.getElementById('jCenterText').classList.add('animate');
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  obs.observe(svg);
+})();
+
+/* ─── DYNAMIC TESTIMONIALS ─── */
+(function() {
+  const TESTIMONIALS = [
+    {
+      name: 'Nikhil Kumar',
+      college: 'B.Tech, PSIT Kanpur',
+      avClass: 'av-1',
+      text: 'I thought I spoke fine until BOL showed how often I was pausing and rushing. Seeing 165 wpm and 7 panic pauses on the first attempt was a shock. But that number made me actually fix things.'
+    },
+    {
+      name: 'Priya Chaurasia',
+      college: 'B.Tech Student, HBTU Kanpur',
+      avClass: 'av-2',
+      text: 'My viva felt completely different after using BOL for two weeks. The confidence timeline showed exactly where I was losing flow. Knowing that made it easy to fix. Passed with confidence.'
+    },
+    {
+      name: 'Rohit Katiyar',
+      college: 'B.Tech, Pranveer Singh Institute',
+      avClass: 'av-3',
+      text: 'For placement interviews, having a confidence score every day changed how I prepared. I could actually see myself improving. That score mattered more than any friend\'s opinion.'
+    },
+    {
+      name: 'Aditya Mishra',
+      college: 'MBA,Kanpur Institute of Technology',
+      avClass: 'av-4',
+      text: 'Group discussions were my weak spot before placements. BOL showed my pace was 171 wpm — way too fast. Slowing down to 140 and watching my score go from 54 to 79 in a week changed everything.'
+    },
+    {
+      name: 'Shivam Tiwari',
+      college: 'BCA, CSJM University Kanpur',
+      avClass: 'av-5',
+      text: 'I never realized how many filler words I used until BOL flagged 23 in one session. That was embarrassing but motivating. Three sessions later I was down to 6. Real feedback, real change.'
+    },
+    {
+      name: 'Anjali Verma',
+      college: 'B.Pharm, AXIS Colleges',
+      avClass: 'av-1',
+      text: 'Viva season is brutal. BOL helped me practice my drug mechanism answers until I could deliver them at consistent pace with no panic pauses. My examiner actually commented on my clarity.'
+    },
+    {
+      name: 'Ayush Gupta',
+      college: 'B.Tech, Allenhouse College Kanpur',
+      avClass: 'av-2',
+      text: 'I used BOL before every mock interview in my placement prep. The confidence score acted like a readiness meter — I only felt ready to apply when I consistently hit above 75. Got placed in TCS.'
+    },
+    {
+      name: 'Muskan Singh',
+      college: 'BBA, HBTU Kanpur',
+      avClass: 'av-3',
+      text: 'Stage fear was real for me. My first BOL session was 38 — that number hurt. But seeing it climb session by session to 71 gave me something to hold on to. I spoke at our college fest for the first time.'
+    },
+    {
+      name: 'Harsh Tripathi',
+      college: 'B.Tech, KIT kanpur',
+      avClass: 'av-4',
+      text: 'My voice used to shake during technical presentations. BOL\'s voice stability metric caught exactly when it dropped. Practicing the same segment ten times, watching stability go green, that\'s how I fixed it.'
+    },
+    {
+      name: 'Vaibhav Yadav',
+      college: 'B.Tech, Harcourt Butler Technical University',
+      avClass: 'av-5',
+      text: 'Before BOL I was just recording myself on my phone and guessing what was wrong. Having 8 actual metrics to look at changed my whole prep strategy. I knew what to work on instead of practicing blindly.'
+    },
+    {
+      name: 'Saurabh Verma',
+      college: 'MBA, AXIS COLLEGES Kanpur Campus',
+      avClass: 'av-1',
+      text: 'Our professor said my presentation lacked authority. I had no idea what that meant. BOL showed my active speech time was only 68% with lots of trailing silences. Fixed it. Scored highest in the next one.'
+    },
+    {
+      name: 'Shikhar Mishra',
+      college: 'B.Tech, AXIS Colleges Kanpur',
+      avClass: 'av-2',
+      text: 'I was preparing for UPSC interviews and needed to speak clearly under pressure. BOL was the only tool that gave me a measurable target. I practised until I hit 80+ three sessions in a row.'
+    },
+    {
+      name: 'Rajat Singh',
+      college: 'BCA, JAGRAN College Kanpur',
+      avClass: 'av-3',
+      text: 'Presentations always made me anxious. BOL removed the anxiety about the unknown — now I have data. I know my score, I know my pace, I know what needs work. It\'s not guesswork anymore.'
+    },
+    {
+      name: 'Shashwat Shrivastav',
+      college: 'B.Tech, Kanpur Institute of Technology',
+      avClass: 'av-4',
+      text: 'My startup pitch practice was all over the place before BOL. Seeing that my opening 30 seconds had 4 panic pauses and 178 wpm pace helped me slow down. Investors in our college fest actually stayed engaged.'
+    },
+    {
+      name: 'Pallavi Singh',
+      college: 'B.Pharm, Pranveer Singh Institute',
+      avClass: 'av-5',
+      text: 'I was terrified of my final year viva. Two weeks with BOL and my confidence score went from 47 to 74. The examiner asked tough questions and I stayed composed. I knew I had practiced correctly.'
+    },
+    {
+      name: 'Anjali Rawat',
+      college: 'BBA, CSJM University Kanpur',
+      avClass: 'av-1',
+      text: 'HR rounds at campus placements test your communication as much as your knowledge. BOL helped me find that my speaking pace was inconsistent under pressure. Fixing that rhythm made me much calmer in interviews.'
+    },
+    {
+      name: 'Mohit Agarwal',
+      college: 'B.Tech, HBTU Kanpur',
+      avClass: 'av-2',
+      text: 'I was selected to represent my college at a technical symposium. BOL helped me refine my 5-minute talk until every metric was in the green. My score was 83 before I stepped on stage. I felt prepared.'
+    },
+    {
+      name: 'Manisha Dubey',
+      college: 'MBA, Kanpur institute of technology',
+      avClass: 'av-3',
+      text: 'I was struggling with filler words. Every "basically" and "you know" I said lowered my credibility. BOL flagged 31 fillers in my first session. Seeing it drop to 7 over a week was genuinely satisfying.'
+    },
+    {
+      name: 'Mahak Jaiswal',
+      college: 'BCA, Rama Degree College Kanpur',
+      avClass: 'av-4',
+      text: 'No one had ever told me my voice dropped in volume when I got to the important part of my answers. BOL caught it immediately. That single insight made my job interview delivery significantly stronger.'
+    },
+    {
+      name: 'Sonam Tiwari',
+      college: 'B.Tech, PSIT College of Engineering',
+      avClass: 'av-5',
+      text: 'My confidence score on day one was 42. That was honest feedback I needed to hear but had never gotten. Three weeks later I hit 77. I used that number as proof to myself that I was ready. Cleared my campus interview.'
+    }
+  ];
+
+  const CARDS = [0, 1, 2];
+  const INTERVAL_MS = 5500;
+  const GLOW_MS = 500;
+
+  // Indices tracking which testimonial is shown in each card slot
+  let shownIndices = [0, 1, 2];
+  let nextIndex = 3;
+
+  function getInitials(name) {
+    return name.split(' ').slice(0, 2).map(n => n[0]).join('');
+  }
+
+  function renderCard(cardSlot, testiData) {
+    const card = document.getElementById('tcard-' + cardSlot);
+    if (!card) return;
+    const inner = card.querySelector('.testi-card-inner');
+    const avatar = card.querySelector('.avatar');
+    const textEl = card.querySelector('.testi-text');
+    const nameEl = card.querySelector('.author-name');
+    const roleEl = card.querySelector('.author-role');
+
+    inner.textContent = '';
+
+    const starsDiv = document.createElement('div');
+    starsDiv.className = 'stars';
+    starsDiv.textContent = '★★★★★';
+
+    const textP = document.createElement('p');
+    textP.className = 'testi-text';
+    textP.textContent = '\u201C' + testiData.text + '\u201D';
+
+    const authorDiv = document.createElement('div');
+    authorDiv.className = 'author';
+
+    const av = document.createElement('div');
+    av.className = 'avatar ' + testiData.avClass;
+    av.textContent = getInitials(testiData.name);
+
+    const infoDiv = document.createElement('div');
+    const nameD = document.createElement('div');
+    nameD.className = 'author-name';
+    nameD.textContent = testiData.name;
+    const roleD = document.createElement('div');
+    roleD.className = 'author-role';
+    roleD.textContent = testiData.college;
+    infoDiv.appendChild(nameD);
+    infoDiv.appendChild(roleD);
+    authorDiv.appendChild(av);
+    authorDiv.appendChild(infoDiv);
+
+    inner.appendChild(starsDiv);
+    inner.appendChild(textP);
+    inner.appendChild(authorDiv);
+  }
+
+  function initCards() {
+    CARDS.forEach((slot, i) => {
+      renderCard(slot, TESTIMONIALS[i]);
+      const card = document.getElementById('tcard-' + slot);
+      if (card) {
+        const inner = card.querySelector('.testi-card-inner');
+        inner.classList.add('testi-fade-in');
+      }
+    });
+  }
+
+  function rotateCard(slotIndex) {
+    const card = document.getElementById('tcard-' + slotIndex);
+    if (!card) return;
+    const inner = card.querySelector('.testi-card-inner');
+
+    // Fade out
+    inner.classList.add('testi-fade-out');
+    inner.classList.remove('testi-fade-in');
+
+    setTimeout(() => {
+      // Swap content
+      const newTesti = TESTIMONIALS[nextIndex % TESTIMONIALS.length];
+      shownIndices[slotIndex] = nextIndex % TESTIMONIALS.length;
+      nextIndex++;
+
+      renderCard(slotIndex, newTesti);
+
+      // Glow card
+      card.classList.add('testi-glowing');
+
+      // Scale-pop avatar
+      const av = card.querySelector('.avatar');
+      if (av) {
+        av.classList.add('avatar-pop');
+        setTimeout(() => av.classList.remove('avatar-pop'), 400);
+      }
+
+      // Fade in
+      inner.classList.remove('testi-fade-out');
+      inner.classList.add('testi-fade-in');
+
+      // Remove glow after GLOW_MS
+      setTimeout(() => card.classList.remove('testi-glowing'), GLOW_MS + 200);
+    }, 350);
+  }
+
+  // Staggered rotation: each card rotates on its own offset timer
+  function startRotation() {
+    // Card 0 rotates immediately on interval
+    setInterval(() => rotateCard(0), INTERVAL_MS);
+    // Card 1 offset by 1/3 interval
+    setTimeout(() => {
+      setInterval(() => rotateCard(1), INTERVAL_MS);
+    }, Math.round(INTERVAL_MS / 3));
+    // Card 2 offset by 2/3 interval
+    setTimeout(() => {
+      setInterval(() => rotateCard(2), INTERVAL_MS);
+    }, Math.round((INTERVAL_MS * 2) / 3));
+  }
+
+  initCards();
+  startRotation();
+})();
+
+/* ─── INTERSECTION OBSERVER FOR FADE-IN ─── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.animation = 'fadeIn .6s ease forwards';
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.case-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
